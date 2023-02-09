@@ -7,19 +7,24 @@ import Footer from "./components/footer/Footer";
 
 //pages
 import LandingPage from "./pages/landing-page/Landingpage";
-
+ import LoginPage from "./pages/core/login/Login"
+ import SignupPage from "./pages/core/signup/Signup"
+ 
 function App() {
   return (
     <div className="app">
-
 <HashRouter>
-     <Navbar />
+   <Navbar />
       <Routes>
         {/* pages */}
         <Route path="/" element={<LandingPage />} />
-    </Routes>
-      </HashRouter>
+            
+            {/*core*/}
+     <Route path="/signup" element={<SignupPage />} />
+ <Route path="/login" element={<LoginPage />} />
+</Routes>
     <Footer/>
+      </HashRouter>
     </div>
   )
 }

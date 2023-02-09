@@ -1,23 +1,23 @@
 import {Container, Nav} from 'react-bootstrap';
 import {FaBars} from "react-icons/fa";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {BsCart4, BsPerson} from "react-icons/bs";
 import { useEffect, useState} from "react";
 import "./Navbar.scss";
-import LoginModal from '../../pages/core/login/Login'
-import SignupModal from '../../pages/core/signup/Signup'
+
 function NavbarTool() {
-const [show, setShow] = useState(false)
-const [isOpen, setIsOpen] = useState(false)
+
+const navigate = useNavigate()
 
 const handleSignup = (e) =>{
   e.preventDefault()
-  setShow(true)
+  navigate('/signup')
 }
 
 const handleLogin = (e) =>{
   e.preventDefault()
-  setIsOpen(true)
+  navigate('/login')
+ 
 }
 
  const [stickyClass, setStickyClass] = useState('');
@@ -171,10 +171,6 @@ aria-labelledby="offcanvasExampleLabel">
     
   </div>
 </div>
-
-   {show && <SignupModal show={show} onHide={() => setShow(false)} />}
-
-      {isOpen && <LoginModal show={isOpen} onHide={() => setIsOpen(false)} />}
     </div>
   );
 }

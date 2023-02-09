@@ -1,51 +1,32 @@
-
-import styles from "./Login.module.scss";
-import {useState} from "react"
+import {Container,  Col, Form, InputGroup, Row} from 'react-bootstrap';
 import {useNavigate} from "react-router-dom";
-import {Button, Modal, Col, Form, InputGroup, Row} from 'react-bootstrap';
+import styles from "./Login.module.scss";
  import { Formik } from 'formik';
  import * as Yup from 'yup';
- //import LoginModal from '../login/Login/'
- 
+
 //icon
 import { RiLockPasswordFill } from "react-icons/ri";
 import {MdEmail,MdOutlinePhoneLocked, MdErrorOutline, MdPersonOutline} from "react-icons/md";
 
 
-const LoginModal = (props) => {
- const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+function SignupPage() {
+const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
  
-const navigate = useNavigate();
-//const [SignupOpen, setSignupOpen] = useState(false)
+const navigate = useNavigate()
 
-// const handleLogin = (e) =>{
-//setIsOpen(true)
-//props.onHide(true)
-//}
+const handleSignup = (e) =>{
+e.preventDefault()
+navigate('/signup')
+}
 
   return (
-    <>
- <Modal
-      {...props}
-      size="md"
-       backdrop="static"
-        keyboard={false}
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-      >
-      
-      <Modal.Header closeButton className="px-5">
-        <Modal.Title id="contained-modal-title-vcenter" className={styles.brandName}>
-        Bennyfoodie.
-        </Modal.Title>
-      </Modal.Header>
-      
-      <Modal.Body className="px-5">
-       <h1 className={styles.title}>Welcome Back to <span className={styles.color}>Bennyfoodie!</span></h1>
-           <p className={styles.subTitle}>Please Enter your details</p>
-     
+    <Container fluid className={styles.Container}>
+           <h1 className={styles.title}>Welcome Back to <span className={styles.color}>Bennyfoodie!</span></h1>
+           <p className={styles.subTitle}>
+         Enter your details, our prominent Customers
+           </p>
+    
      {/*registration form*/} 
-     
       <Formik
        initialValues={{ 
        email: '',
@@ -53,8 +34,9 @@ const navigate = useNavigate();
        }}
   
        validationSchema={Yup.object({
+       
          email: Yup.string().email('Invalid email address').required('Required'),
-        
+         
     password: Yup.string()
   .required('No password provided.')
   .min(8, 'Password is too short - should be 8 chars minimum.')
@@ -62,14 +44,15 @@ const navigate = useNavigate();
        })}
        onSubmit={(values, { setSubmitting }) => {
            alert(JSON.stringify(values, null, 2));
-           setSubmitting(false);
+           setSubmitting(true);
+         navigate('/')
        }}
      >
        {formik => (
          <Form  noValidate
          autoComplete='off'
          onSubmit={formik.handleSubmit}>
-      
+         
 {/*email section of the page*/} 
 
           <Form.Group className={styles.group}>
@@ -100,9 +83,9 @@ Email
 </div>
      </Form.Group>
       
-    {/*pasword section*/}  
+    {/*pasword and phone number section*/}  
       <Form.Group className={styles.group}>
-      
+     
      <div className={styles.subgroup}> 
     
       <Form.Label className={styles.labelfield}>
@@ -143,13 +126,15 @@ Password
      <hr/>
      <div className={styles.semiGroup}>
      <p className="text-center">
-     Don't Have an Account?
+      Don't Have an Account
      </p>
-     <button className={styles.btnLink}>Signup</button>
+     <button className={styles.btnLink} onClick={handleSignup}>Signup</button>
      </div>
-      </Modal.Body>
-    </Modal>
-    </>
+    
+    
+    
+    </Container>
   );
-};
-export default LoginModal
+}
+
+export default SignupPage;
