@@ -63,32 +63,32 @@ const handleLogin = (e) =>{
       
         <li className="nav-item">
         
-          <a as={Link} to="/about" 
+          <Link to="/about" 
           className="nav-link">
           About
-          </a>
+          </Link>
           
         </li>
         
         <li className="nav-item">
-           <a as={Link} to="/menu" 
+           <Link  to="/menu" 
           className="nav-link">
           Menu
-          </a>
+          </Link>
         </li>
         
           <li className="nav-item">
-           <a as={Link} to="/menu" 
+           <Link to="/menu" 
           className="nav-link">
     Cart
-          </a>
+          </Link>
         </li>
         
           <li className="nav-item">
-           <a as={Link} to="/menu" 
+           <Link to="/menu" 
           className="nav-link">
           Contact
-          </a>
+          </Link>
         </li>
       </ul>
       
@@ -110,7 +110,10 @@ const handleLogin = (e) =>{
 
 {/*offcanvas section*/}
 
-<div className="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+<div className="offcanvas offcanvas-start" 
+tabIndex="-1"
+id="offcanvasExample" 
+aria-labelledby="offcanvasExampleLabel">
 
   <div className="offcanvas-header">
     <h5 className="offcanvas-title" id="offcanvasExampleLabel">
@@ -124,32 +127,32 @@ const handleLogin = (e) =>{
       
         <li className="nav-item">
         
-          <a as={Link} to="/about" 
+          <Link to="/about" 
           className="nav-link">
           About
-          </a>
+          </Link>
           
         </li>
         
         <li className="nav-item">
-           <a as={Link} to="/menu" 
+           <Link to="/menu" 
           className="nav-link">
           Menu
-          </a>
+          </Link>
         </li>
         
           <li className="nav-item">
-           <a as={Link} to="/menu" 
+           <Link to="/menu" 
           className="nav-link">
     Cart
-          </a>
+          </Link>
         </li>
         
           <li className="nav-item">
-           <a as={Link} to="/menu" 
+           <Link to="/menu" 
           className="nav-link">
           Contact
-          </a>
+          </Link>
         </li>
      
       <form className="d-flex flex-column gap-4 mt-3">
@@ -169,16 +172,9 @@ const handleLogin = (e) =>{
   </div>
 </div>
 
-      <SignupModal
-        show={show}
-        onHide={() => setShow(false)}
-      />
- 
-  <LoginModal
-        show={isOpen}
-        onHide={() => setIsOpen(false)}
-      />
-      
+   {show && <SignupModal show={show} onHide={() => setShow(false)} />}
+
+      {isOpen && <LoginModal show={isOpen} onHide={() => setIsOpen(false)} />}
     </div>
   );
 }
