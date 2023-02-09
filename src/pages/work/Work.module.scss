@@ -1,0 +1,179 @@
+.Container{
+   padding: 32px 64px;
+   margin-top: 2rem;
+font-family: var(--font);
+     @media only screen and (min-width: 320px) and (max-width: 768px){
+  padding: 16px 24px;
+} 
+
+ .aboutTitle{
+font-family: var(--font);
+     font-size: 36px;
+    line-height: 44px;
+   font-weight: 400;
+   font-style: normal;
+   text-align: center;
+   letter-spacing: 0.5px;
+   color: var(--black);
+   text-align: center;
+@media only screen and (min-width: 320px) and (max-width: 768px){
+    font-size: 28px;
+    line-height: 1.5rem;
+} 
+   }  
+   
+  .subHeading{
+font-family: var(--font);
+    padding-top: 2rem;
+     font-size: 1.2rem;
+    line-height: 2.2rem;
+    font-weight: 400;
+   font-style: normal;
+   text-align: center;
+   letter-spacing: 0.5px;
+   color: var(--black);
+  @media only screen and (min-width: 320px) and (max-width: 420px){
+    font-size: 1rem;
+    line-height: 1.6rem;
+} 
+  @media only screen and (min-width: 421px) and (max-width: 768px){
+    font-size: 1.1rem;
+    line-height: 1.7rem;
+}  
+   }
+   
+    .subTitle{
+     font-size: 30px;
+    line-height: 44px;
+   font-weight: 400;
+   font-style: normal;
+   text-align: left;
+   letter-spacing: 0.5px;
+   color: var(--black);
+  @media only screen and (min-width: 320px) and (max-width: 420px){
+    padding-top: 1rem;
+    text-align: center;
+    font-size: 1.3rem;
+    line-height: 2rem;
+} 
+  @media only screen and (min-width: 421px) and (max-width: 768px){
+    text-align: center;
+    font-size: 1.5rem;
+    line-height: 1.7rem;
+}  
+   } 
+   
+.smallruler{
+  height: 4px;
+  width: 50px;
+  background: var(--purple);
+  border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+ 
+   
+     .heroimg{
+    width: 300px;
+    height: 380px;
+    border-radius: 8px;
+    border: none;
+    object-fit: cover;
+-webkit-box-shadow: -8px 5px 5px -3px  rgba(147, 143, 153, 0.4);
+-moz-box-shadow: -8px 5px 5px -3px  rgba(147, 143, 153, 0.4);
+box-shadow: -8px 10px 5px -3px rgba(147, 143, 153, 0.4);
+ @media only screen and (min-width: 320px) and  (max-width: 768px){
+    width: 80vw;
+display: flex;
+justify-content: center;
+align-items: center;
+margin: auto;
+padding-top: 2rem;
+ }
+  }
+  
+  .heroimg:hover{
+    transform: scale(1.2);
+  }
+  
+.textSection{
+  padding-top: 3rem;
+  
+   .subtext{
+     font-size: 1.1rem;
+    line-height: 2.3rem;
+   font-weight: 400;
+   font-style: normal;
+   text-align: center;
+   letter-spacing: 0.5px;
+   color: var(--black);
+   text-align: left;
+   //width: 500px;
+  @media only screen and (min-width: 320px) and (max-width: 420px){
+    text-align: center;
+    font-size: 1rem;
+line-height: 2rem;
+} 
+  @media only screen and (min-width: 421px) and (max-width: 768px){
+    text-align: center;
+    font-size: 1.2rem;
+    line-height: 2rem;
+} 
+  }
+   
+   
+.btnBox{
+ display: flex;
+align-items: flex-start;
+gap: 16px;
+}
+}
+
+.btnContainer{
+  margin-top: 3rem;
+ float: right;
+@media only screen and (min-width: 320px) and (max-width: 768px){
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    float: none;
+    margin-top: 1rem;
+} 
+}
+
+  .btn{
+border: 1px solid var(--purple);
+border-radius: 5px;
+font-family: var(--font);
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 20px;
+text-align: center;
+letter-spacing: 0.1px;
+color: var(--purple);
+padding: 10px 24px;
+background: transparent;
+width: 138px;
+box-shadow: 0px 2px 0px rgba(0,0,0, 0.016);
+text-decoration: none;
+      @media only screen and (min-width: 320px) and (max-width: 768px){
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+} 
+}
+
+.btn:hover{
+  border: 1px solid var(--purple);
+  cursor: pointer;
+  color: white;
+  background: var(--purple);
+}  
+}
