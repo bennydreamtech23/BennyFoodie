@@ -77,6 +77,7 @@ navigate('/login')
                  <MdPersonOutline/></InputGroup.Text>
                  
               <Form.Control
+              size="md" 
                 name="firstName"
                 placeholder="Enter your First Name"
                id="firstName"
@@ -103,6 +104,7 @@ Last Name
                  <MdPersonOutline/></InputGroup.Text>
                  
               <Form.Control
+                size="md" 
                 name="lastName"
                 placeholder="Enter your Last Name"
                id="lastName"
@@ -133,6 +135,7 @@ Email
         <MdEmail/></InputGroup.Text>
                  
               <Form.Control
+            size="md" 
             type="email"
           name="email"
      placeholder="Enter your Email Address"
@@ -162,6 +165,7 @@ Phone Number
         <MdOutlinePhoneLocked/></InputGroup.Text>
                  
               <Form.Control
+                size="md" 
                 type="number"
                 name="phoneNumber"
                 placeholder="Enter your Phone Number"
@@ -186,6 +190,7 @@ Password
         <RiLockPasswordFill/></InputGroup.Text>
                  
               <Form.Control
+                size="md" 
                 type="password"
                 name="password"
                 placeholder="Set your password"

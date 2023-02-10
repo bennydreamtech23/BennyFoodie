@@ -1,14 +1,15 @@
-import {Container, Nav} from 'react-bootstrap';
+import {Container, Nav, Badge} from 'react-bootstrap';
 import {FaBars} from "react-icons/fa";
 import {Link, useNavigate} from "react-router-dom";
 import {BsCart4, BsPerson} from "react-icons/bs";
 import { useEffect, useState} from "react";
 import "./Navbar.scss";
+import { useSelector } from "react-redux"
 
 function NavbarTool() {
-
 const navigate = useNavigate()
-
+const totalQuantity = useSelector(state => state.cart.totalQuantity)
+ 
 const handleSignup = (e) =>{
   e.preventDefault()
   navigate('/signup')
@@ -69,28 +70,37 @@ const handleLogin = (e) =>{
           </Link>
           
         </li>
-        
-        <li className="nav-item">
-           <Link  to="/menu" 
+     
+     <li className="nav-item">
+           <Link  to="/services" 
           className="nav-link">
-          Menu
+    Services
           </Link>
         </li>
-        
-          <li className="nav-item">
-           <Link to="/menu" 
-          className="nav-link">
-    Cart
-          </Link>
-        </li>
-        
+     
+  
           <li className="nav-item">
            <Link to="/menu" 
           className="nav-link">
           Contact
           </Link>
         </li>
-      </ul>
+
+      <li className="nav-item">
+           <Link  to="/menu" 
+          className="nav-link">
+          Menu
+          </Link>
+        </li>
+        
+    </ul>
+    
+     <form className="d-flex me-5">
+        <Link className="icon" to="/cart">
+        <BsCart4 className="h3"/>
+        <Badge bg="secondary" className="badge__content">{totalQuantity}</Badge>
+        </Link>
+      </form>
       
       <form className="d-flex gap-4">
       
@@ -103,6 +113,7 @@ const handleLogin = (e) =>{
    Login
         </button>
       </form>
+
     </div>
   </Container>
   
@@ -154,6 +165,12 @@ aria-labelledby="offcanvasExampleLabel">
           Contact
           </Link>
         </li>
+     
+ <form className="d-flex gap-4">
+        <Link className="nav-link text-dark">
+        <BsCart4/>
+        </Link>
+      </form>    
      
       <form className="d-flex flex-column gap-4 mt-3">
       

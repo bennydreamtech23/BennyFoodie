@@ -128,13 +128,14 @@ All
 </button>
 </div>
 
-  <div className={ProjectStyles.cardFilter}>
+<div className={ProjectStyles.cardFilter}>
 <button className="btn"
-onClick= {() => filterResult("Dinner")}>
+onClick= {() => filterResult("Breakfast")}>
 
-<MdDinnerDining className="lead mb-2"/>
+<MdOutlineFreeBreakfast className="lead mb-2"/>
 <br/>
-Dinner
+
+Breakfast
 </button>
 </div>
 
@@ -148,14 +149,13 @@ Lunch
 </button>
 </div>
 
-  <div className={ProjectStyles.cardFilter}>
+<div className={ProjectStyles.cardFilter}>
 <button className="btn"
-onClick= {() => filterResult("Breakfast")}>
+onClick= {() => filterResult("Dinner")}>
 
-<MdOutlineFreeBreakfast className="lead mb-2"/>
+<MdDinnerDining className="lead mb-2"/>
 <br/>
-
-Breakfast
+Dinner
 </button>
 </div>
 
@@ -166,7 +166,7 @@ Breakfast
       <Slider {...settings}
       className={ProjectStyles.slider_outer}>
       
-{data.map((values) =>{ const {id, image,name,price} = values
+{data.map((values) =>{ const {id, image, name,price} = values
            return(
       <div 
      className={ProjectStyles.slide_item}

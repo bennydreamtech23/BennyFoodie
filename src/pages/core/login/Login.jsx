@@ -68,6 +68,7 @@ Email
         <MdEmail/></InputGroup.Text>
                  
               <Form.Control
+                 size="md" 
             type="email"
           name="email"
      placeholder="Enter your Email Address"
@@ -97,6 +98,7 @@ Password
         <RiLockPasswordFill/></InputGroup.Text>
                  
               <Form.Control
+                size="md" 
                 type="password"
                 name="password"
                 placeholder="Set your password"
