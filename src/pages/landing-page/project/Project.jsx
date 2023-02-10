@@ -4,9 +4,13 @@ import ProjectStyles from "./Project.module.scss";
 import {BsFillSuitHeartFill} from "react-icons/bs";
 import FoodMenu from "../../../components/foodMenu/Foodmenu";
 import {useState} from "react";
+import Slider from "react-slick";
 import {MdOutlineFastfood, MdOutlineFreeBreakfast, MdLunchDining, MdDinnerDining} from "react-icons/md";
 
-import Slider from "react-slick";
+//redux
+import { useDispatch } from "react-redux";
+import {cartActions} from "../../../store/shopping-cart/cartSlice"
+
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -33,7 +37,7 @@ function SamplePrevArrow(props) {
 
 
 
-const ProjectSection = () =>{
+const ProjectSection = (props) =>{
   
     const chefanime = "https://res.cloudinary.com/dlst0ec4h/image/upload/v1673719201/pngwing.com-_1__ls7bfm.webp";
     
@@ -90,6 +94,18 @@ const ProjectSection = () =>{
         },
       ],
     };
+ 
+   const dispatch = useDispatch()
+  
+  const  addToCart = () =>{
+    dispatch(cartActions.addItem({
+      id,
+      name,
+      image,
+      price
+    }))
+    alert("item added")
+  }
  
   return(
     <Container fluid className={ProjectStyles.Container}>
@@ -166,7 +182,7 @@ Dinner
       <Slider {...settings}
       className={ProjectStyles.slider_outer}>
       
-{data.map((values) =>{ const {id, image, name,price} = values
+{data.map((values) =>{ const {id, image, name, price} = values
            return(
       <div 
      className={ProjectStyles.slide_item}
@@ -185,7 +201,7 @@ Dinner
        className={ProjectStyles.icon}/>
               <img
               src={image}
-             alt="product image"
+             alt={name}
             className={ProjectStyles.heroimg} />
                     </div>
 
@@ -197,7 +213,7 @@ Dinner
         </p>
         
               <div className={ProjectStyles.btnBox}>
-        <button className='secondarybtn'>Buy Now</button>
+        <button className='secondarybtn' onClick={addToCart}>Buy Now</button>
         </div>
                     </div>
               </div>

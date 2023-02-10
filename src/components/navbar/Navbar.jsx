@@ -153,9 +153,9 @@ aria-labelledby="offcanvasExampleLabel">
         </li>
         
           <li className="nav-item">
-           <Link to="/menu" 
+           <Link to="/services" 
           className="nav-link">
-    Cart
+    Services
           </Link>
         </li>
         
@@ -166,11 +166,12 @@ aria-labelledby="offcanvasExampleLabel">
           </Link>
         </li>
      
- <form className="d-flex gap-4">
-        <Link className="nav-link text-dark">
-        <BsCart4/>
+  <form className="d-flex me-5 mt-3">
+        <Link className="icon" to="/cart">
+        <BsCart4 className="h3"/>
+        <Badge bg="secondary" className="badge__content">{totalQuantity}</Badge>
         </Link>
-      </form>    
+      </form>
      
       <form className="d-flex flex-column gap-4 mt-3">
       
