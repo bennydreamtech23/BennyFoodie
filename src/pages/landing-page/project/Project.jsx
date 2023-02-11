@@ -1,15 +1,16 @@
-import {Container, Row, Col,Card} from 'react-bootstrap';
-import ProjectStyles from "./Project.module.scss";
-//import { Link } from "react-router-dom";
-import {BsFillSuitHeartFill} from "react-icons/bs";
-import FoodMenu from "../../../components/foodMenu/Foodmenu";
+
 import {useState} from "react";
 import Slider from "react-slick";
-import {MdOutlineFastfood, MdOutlineFreeBreakfast, MdLunchDining, MdDinnerDining} from "react-icons/md";
+import ProjectStyles from "./Project.module.scss";
+//import { Link } from "react-router-dom";
 
-//redux
-import { useDispatch } from "react-redux";
-import {cartActions} from "../../../store/shopping-cart/cartSlice"
+//components
+import foodMenu from "../../../components/foodMenu/foodmenu.js";
+import ProductCard from "../../../components/productCard/ProductCard"
+import {Container, Row, Col,Card} from 'react-bootstrap';
+
+//icon
+import {MdOutlineFastfood, MdOutlineFreeBreakfast, MdLunchDining, MdDinnerDining} from "react-icons/md";
 
 
 function SampleNextArrow(props) {
@@ -41,11 +42,11 @@ const ProjectSection = (props) =>{
   
     const chefanime = "https://res.cloudinary.com/dlst0ec4h/image/upload/v1673719201/pngwing.com-_1__ls7bfm.webp";
     
- const[data, setData] = useState(FoodMenu)
+ const[data, setData] = useState(foodMenu)
  
  //filter function
    const filterResult = (catItem) =>{
-    const result = FoodMenu.filter((curDate) =>{
+    const result = foodMenu.filter((curDate) =>{
       return curDate.category === catItem;
     });
     setData(result)
@@ -95,18 +96,6 @@ const ProjectSection = (props) =>{
       ],
     };
  
-   const dispatch = useDispatch()
-  
-  const  addToCart = () =>{
-    dispatch(cartActions.addItem({
-      id,
-      name,
-      image,
-      price
-    }))
-    alert("item added")
-  }
- 
   return(
     <Container fluid className={ProjectStyles.Container}>
     
@@ -127,7 +116,6 @@ const ProjectSection = (props) =>{
       loading="lazy"
       className={ProjectStyles.Img}/>
       </Col>
-  
   </Row>
   
   
@@ -137,9 +125,8 @@ const ProjectSection = (props) =>{
   
   <div className={ProjectStyles.cardFilter}>
    <button className="btn"
-onClick= {() => setData(FoodMenu)}>
-<MdOutlineFastfood className="lead mb-2"/>
-<br/>
+onClick= {() => setData(foodMenu)}>
+<MdOutlineFastfood className="lead me-2"/>
 All
 </button>
 </div>
@@ -148,9 +135,7 @@ All
 <button className="btn"
 onClick= {() => filterResult("Breakfast")}>
 
-<MdOutlineFreeBreakfast className="lead mb-2"/>
-<br/>
-
+<MdOutlineFreeBreakfast className="lead me-2"/>
 Breakfast
 </button>
 </div>
@@ -158,9 +143,7 @@ Breakfast
   <div className={ProjectStyles.cardFilter}>
 <button className="btn"
 onClick= {() => filterResult("Lunch")}>
-
-<MdLunchDining className="lead mb-2"/>
-<br/>
+<MdLunchDining className="lead me-2"/>
 Lunch
 </button>
 </div>
@@ -169,8 +152,7 @@ Lunch
 <button className="btn"
 onClick= {() => filterResult("Dinner")}>
 
-<MdDinnerDining className="lead mb-2"/>
-<br/>
+<MdDinnerDining className="lead me-2"/>
 Dinner
 </button>
 </div>
@@ -181,52 +163,17 @@ Dinner
         
       <Slider {...settings}
       className={ProjectStyles.slider_outer}>
-      
-{data.map((values) =>{ const {id, image, name, price} = values
-           return(
-      <div 
-     className={ProjectStyles.slide_item}
-         key={id}>
-         
-          <div
-          className={ProjectStyles.product_container}>
-                
-            <div 
-         className={ProjectStyles.product_inn}>
-                
-        <div 
-        className={ProjectStyles.product_pic_outer}>
-      
-        <BsFillSuitHeartFill 
-       className={ProjectStyles.icon}/>
-              <img
-              src={image}
-             alt={name}
-            className={ProjectStyles.heroimg} />
-                    </div>
+    {
+      foodMenu.map(item =>(
+      <div key={item.id}  className={ProjectStyles.slide_item}>
+      <ProductCard item={item}/>
+      </div>
+      ))
+    }
 
-              <div className={ProjectStyles.boxText}>
-        <h2 className="text-center h5">{name}</h2>
-        
-        <p className="text-center lead">
-            £{price}
-        </p>
-        
-              <div className={ProjectStyles.btnBox}>
-        <button className='secondarybtn' onClick={addToCart}>Buy Now</button>
-        </div>
-                    </div>
-              </div>
-                </div>
-              </div>
-              )
-        })}
           </Slider>
         </div>
 
-  
-
-    
       <div className="mt-5 d-flex align-items-center justify-content-center">
   <button className="secondarybtn">
   Explore All

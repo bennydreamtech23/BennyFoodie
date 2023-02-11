@@ -1,0 +1,88 @@
+
+/* slider*/
+
+.icon{
+font-size: 2.5rem;
+float: right;
+display: flex;
+align-items: flex-end;
+margin-left: auto;
+margin-top: 1rem;
+color: var(--green);
+background: white;
+padding: 5px 10px;
+border-radius: 25%;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    transition: all .2s;
+&:hover{
+transform: scaleX(1.2) scaleY(1.4);
+}
+}
+
+.product_container {
+  padding: 15px;
+  height: 100%;
+}
+
+.product_inn{
+  background-color: #F7F8F3;
+  padding: 15px;
+  height: 37rem;
+  width: 22rem;
+  transition: all 0.3s;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+ border-radius: 20px;
+ border: none;
+ display: flex;
+ flex-direction: column;
+ margin: 0 auto;
+ @media only screen and (min-width: 320px) and (max-width: 768px){
+   width: 19rem;
+    height: 33rem;
+} 
+ @media only screen and (min-width: 768px) and (max-width: 1200px){
+   width: 19rem;
+    height: 33rem;
+} 
+}
+
+.product_inn:hover {
+  transform: translateY(-10px);
+}
+
+     .heroimg{
+    width: 320px;
+    height: 320px;
+    object-fit: contain;
+display: flex;
+margin: 0 auto;
+@media only screen and (min-width: 320px) and (max-width: 768px){
+    width: 250px;
+    height: 250px;
+}
+ @media only screen and (min-width: 768px) and (max-width: 1200px){
+   width: 100%;
+    height: 100%;
+} 
+
+  }
+  
+  .heroimg:hover{
+    transform: scale(0.9);
+  }
+  
+ .tranding_product_inn {
+  margin-top: 2rem;
+}
+
+   .btnBox{
+ display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.boxText{
+  @media only screen and (min-width: 768px) and (max-width: 1200px){
+    padding-top: 2.2rem;
+}
+}

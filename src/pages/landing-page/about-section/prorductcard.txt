@@ -1,0 +1,39 @@
+{data.map((values) =>{ const {id, image, name, price} = values
+           return(
+      <div 
+     className={ProjectStyles.slide_item}
+         key={id}>
+         
+          <div
+          className={ProjectStyles.product_container}>
+                
+            <div 
+         className={ProjectStyles.product_inn}>
+                
+        <div 
+        className={ProjectStyles.product_pic_outer}>
+      
+        <BsFillSuitHeartFill 
+       className={ProjectStyles.icon}/>
+              <img
+              src={image}
+             alt={name}
+            className={ProjectStyles.heroimg} />
+                    </div>
+
+              <div className={ProjectStyles.boxText}>
+        <h2 className="text-center h5">{name}</h2>
+        
+        <p className="text-center lead">
+            £{price}
+        </p>
+        
+              <div className={ProjectStyles.btnBox}>
+        <button className='secondarybtn' onClick={addToCart}>Buy Now</button>
+        </div>
+                    </div>
+              </div>
+                </div>
+              </div>
+              )
+        })}
