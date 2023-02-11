@@ -42,7 +42,7 @@ return(
         <h2 className="text-center h5">{name}</h2>
         
         <p className="text-center lead">
-            £{price}
+           £{price}
         </p>
         
               <div className={FavouriteFoodStyle.btnBox}>

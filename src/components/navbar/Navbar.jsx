@@ -4,11 +4,20 @@ import {Link, useNavigate} from "react-router-dom";
 import {BsCart4, BsPerson} from "react-icons/bs";
 import { useEffect, useState} from "react";
 import "./Navbar.scss";
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
+import {cartListActions} from '../../store/shopping-cart/cartListSlice'
+
 
 function NavbarTool() {
 const navigate = useNavigate()
 const totalQuantity = useSelector(state => state.cart.totalQuantity)
+ 
+ const dispatch = useDispatch()
+ 
+ const toggleCart = () =>{
+   dispatch(cartListActions.toggle())
+ }
+ 
  
 const handleSignup = (e) =>{
   e.preventDefault()
@@ -20,6 +29,7 @@ const handleLogin = (e) =>{
   navigate('/login')
  
 }
+
 
  const [stickyClass, setStickyClass] = useState('');
   
@@ -96,10 +106,10 @@ const handleLogin = (e) =>{
     </ul>
     
      <form className="d-flex me-5">
-        <Link className="icon" to="/cart">
-        <BsCart4 className="h3"/>
+        <span className="iconPlus" to="/cart" onClick={toggleCart}>
+        <BsCart4 className="h3 text-light"/>
         <Badge bg="secondary" className="badge__content">{totalQuantity}</Badge>
-        </Link>
+        </span>
       </form>
       
       <form className="d-flex gap-4">
@@ -167,10 +177,10 @@ aria-labelledby="offcanvasExampleLabel">
         </li>
      
   <form className="d-flex me-5 mt-3">
-        <Link className="icon" to="/cart">
+        <span className="iconPlus" to="/cart" onClick={toggleCart}>
         <BsCart4 className="h3"/>
         <Badge bg="secondary" className="badge__content">{totalQuantity}</Badge>
-        </Link>
+        </span>
       </form>
      
       <form className="d-flex flex-column gap-4 mt-3">
