@@ -44,7 +44,7 @@ className={HeroStyles.btnBox}>
 className={`${HeroStyles.btn} ${HeroStyles.btnWhte} ${HeroStyles.btnAnimated}`}>
 Get Started </button>
 
-  <button class="secondarybtn">
+  <button className="secondarybtn">
      Order Now <BsArrowDownRight className={HeroStyles.arrow}/>
     </button>
 </div>

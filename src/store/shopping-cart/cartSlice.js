@@ -42,15 +42,14 @@ removeItem(state, action){
       state.totalQuantity--
       
     if(existingItem.quantity === 1){
-        state.cartItems = stat.cartItems.filter(item => item.id !== id)
+        state.cartItems = state.cartItems.filter(item => item.id !== id)
       }
      else{
       existingItem.quantity--
         existingItem.totalPrice = Number(existingItem.totalPrice) - Number(existingItem.price)
       }
-      state.totalAmount = state.cartItems.reduce((total, item) => (total + Number(item.price) * Number(item.quantity), 0
-      
-  ))
+      state.totalAmount = state.cartItems.reduce((total, item) => (total + Number(item.price) * Number(item.quantity)
+  ), 0)
 
 }
     

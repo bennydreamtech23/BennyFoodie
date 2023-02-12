@@ -5,7 +5,7 @@ import ProjectStyles from "./Project.module.scss";
 //import { Link } from "react-router-dom";
 
 //components
-import foodMenu from "../../../components/foodMenu/foodmenu.js";
+import foodmenu from "../../../components/foodMenu/foodmenu.js";
 import ProductCard from "../../../components/productCard/ProductCard"
 import {Container, Row, Col,Card} from 'react-bootstrap';
 
@@ -42,14 +42,14 @@ const ProjectSection = (props) =>{
   
     const chefanime = "https://res.cloudinary.com/dlst0ec4h/image/upload/v1673719201/pngwing.com-_1__ls7bfm.webp";
     
- const[data, setData] = useState(foodMenu)
+ const[item, setItem] = useState(foodmenu)
  
  //filter function
    const filterResult = (catItem) =>{
-    const result = foodMenu.filter((curDate) =>{
+    const result = foodmenu.filter((curDate) =>{
       return curDate.category === catItem;
     });
-    setData(result)
+    setItem(result)
   }
  
  //slack setting
@@ -125,7 +125,7 @@ const ProjectSection = (props) =>{
   
   <div className={ProjectStyles.cardFilter}>
    <button className="btn"
-onClick= {() => setData(foodMenu)}>
+onClick= {() => setItem(foodmenu)}>
 <MdOutlineFastfood className="lead me-2"/>
 All
 </button>
@@ -151,7 +151,6 @@ Lunch
 <div className={ProjectStyles.cardFilter}>
 <button className="btn"
 onClick= {() => filterResult("Dinner")}>
-
 <MdDinnerDining className="lead me-2"/>
 Dinner
 </button>
@@ -164,7 +163,7 @@ Dinner
       <Slider {...settings}
       className={ProjectStyles.slider_outer}>
     {
-      foodMenu.map(item =>(
+      foodmenu.map(item =>(
       <div key={item.id}  className={ProjectStyles.slide_item}>
       <ProductCard item={item}/>
       </div>
