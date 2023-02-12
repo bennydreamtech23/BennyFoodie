@@ -1,5 +1,5 @@
 
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import Slider from "react-slick";
 import ProjectStyles from "./Project.module.scss";
 //import { Link } from "react-router-dom";
@@ -36,21 +36,34 @@ function SamplePrevArrow(props) {
   );
 }
 
-
-
 const ProjectSection = (props) =>{
+  const chefanime = "https://res.cloudinary.com/dlst0ec4h/image/upload/v1673719201/pngwing.com-_1__ls7bfm.webp";
   
-    const chefanime = "https://res.cloudinary.com/dlst0ec4h/image/upload/v1673719201/pngwing.com-_1__ls7bfm.webp";
-    
- const[item, setItem] = useState(foodmenu)
+  const [category, setCategory] = useState("ALL")
+  
+ const[products, setProducts] = useState(foodmenu)
  
- //filter function
-   const filterResult = (catItem) =>{
-    const result = foodmenu.filter((curDate) =>{
-      return curDate.category === catItem;
-    });
-    setItem(result)
-  }
+  //filter function
+ useEffect(() =>{
+   if(category === "ALL"){
+     setProducts(foodmenu)
+   }
+   if(category === 'BREAKFAST'){
+     const filteredProducts = products.filter(item => item.category === "Breakfast")
+     setProducts(filteredProducts)
+   }
+    if(category === 'LUNCH'){
+     const filteredProducts = products.filter(item => item.category === "Lunch")
+     setProducts(filteredProducts)
+   }
+   
+     if(category === 'DINNER'){
+     const filteredProducts = products.filter(item => item.category === "Dinner")
+     setProducts(filteredProducts)
+   }
+ }, [category])
+
+   
  
  //slack setting
      const settings = {
@@ -125,15 +138,14 @@ const ProjectSection = (props) =>{
   
   <div className={ProjectStyles.cardFilter}>
    <button className="btn"
-onClick= {() => setItem(foodmenu)}>
+onClick= {() => setCategory("ALL")}>
 <MdOutlineFastfood className="lead me-2"/>
 All
 </button>
 </div>
 
 <div className={ProjectStyles.cardFilter}>
-<button className="btn"
-onClick= {() => filterResult("Breakfast")}>
+<button className="btn" onClick= {() => setCategory("BREAKFAST")}>
 
 <MdOutlineFreeBreakfast className="lead me-2"/>
 Breakfast
@@ -142,7 +154,7 @@ Breakfast
 
   <div className={ProjectStyles.cardFilter}>
 <button className="btn"
-onClick= {() => filterResult("Lunch")}>
+onClick= {() => setCategory("LUNCH")}>
 <MdLunchDining className="lead me-2"/>
 Lunch
 </button>
@@ -150,7 +162,7 @@ Lunch
 
 <div className={ProjectStyles.cardFilter}>
 <button className="btn"
-onClick= {() => filterResult("Dinner")}>
+onClick= {() => setCategory("DINNER")}>
 <MdDinnerDining className="lead me-2"/>
 Dinner
 </button>
@@ -163,7 +175,7 @@ Dinner
       <Slider {...settings}
       className={ProjectStyles.slider_outer}>
     {
-      foodmenu.map(item =>(
+      products.map(item =>(
       <div key={item.id}  className={ProjectStyles.slide_item}>
       <ProductCard item={item}/>
       </div>
