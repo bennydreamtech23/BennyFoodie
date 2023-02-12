@@ -31,6 +31,10 @@ const decrementItem = () =>{
   dispatch(cartActions.removeItem(id))
   }
 
+const deleteItem = () =>{
+  dispatch(cartActions.deleteItem(id))
+  }
+
   return(
     <ListGroup.Item className="border-0 cart_item">
 
@@ -65,7 +69,7 @@ gap-5 cart_product_price">{quantity}x <span>£{totalPrice}</span>
 </div>
   </div>
 
-<span className="delete_btn">
+<span className="delete_btn" onClick={deleteItem}>
 <AiOutlineClose/>
 </span>
 

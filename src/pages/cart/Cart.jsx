@@ -16,6 +16,9 @@ const Cart = () =>{
   const dispatch = useDispatch()
 const cartProducts = useSelector(state => state.cart.cartItems)
   
+  const totalAmount = useSelector(state => state.cart.totalAmount)
+  
+  
 const toggleCart = () =>{
 dispatch(cartListActions.toggle())
 }
@@ -43,7 +46,7 @@ cartProducts.length === 0 ? <h6 className="text-center mt-5"> No item, added to 
 justify-content-between 
 align-items-center">
 
-<h6>Subtotal: <span>300</span></h6>
+<h6>Subtotal: <span>£{totalAmount}</span></h6>
 <Link to="/checkout" className="cartLink">Checkout</Link>
 </div>
 
