@@ -57,5 +57,4 @@ removeItem(state, action){
 })
 
 export const cartActions = cartSlice.actions
-
 export default cartSlice
