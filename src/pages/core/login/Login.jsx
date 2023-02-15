@@ -1,15 +1,26 @@
-import {Container,  Col, Form, InputGroup, Row} from 'react-bootstrap';
+import {Container, 
+Col, 
+Form,
+InputGroup,
+Row , 
+Toast,
+ToastContainer} from 'react-bootstrap';
 import {useNavigate} from "react-router-dom";
 import styles from "./Login.module.scss";
  import { Formik } from 'formik';
  import * as Yup from 'yup';
+ import {useState} from "react"
 
 //icon
 import { RiLockPasswordFill } from "react-icons/ri";
 import {MdEmail,MdOutlinePhoneLocked, MdErrorOutline, MdPersonOutline} from "react-icons/md";
 
 
-function SignupPage() {
+function LoginPage() {
+  const [showToast, setShowToast] = useState(false)
+  const [errorType, setErrorType] = useState('')
+  const [messageType, setMessageType] = useState('')
+  
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
  
 const navigate = useNavigate()
@@ -42,11 +53,38 @@ navigate('/signup')
   .min(8, 'Password is too short - should be 8 chars minimum.')
   .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.'),
        })}
-       onSubmit={(values, { setSubmitting }) => {
-           alert(JSON.stringify(values, null, 2));
-           setSubmitting(true);
-         navigate('/')
-       }}
+       onSubmit={() => {
+          //e.preventDefault()
+          fetch('https://benny-foods.fly.dev/api/v1/users/login', {
+            method: 'POST',
+            //headers: {
+            //'Content-Type': 'application/json',
+            //'Accept': 'application/json'
+            // },
+            body: JSON.stringify({
+              email: email.value,
+              password: password.value,
+            }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              //alert(data.message)
+              if (data.status === 'success') {
+                alert(data.message)
+                setErrorType('success')
+                setMessageType(data.message)
+                setShowToast(true)
+             navigate('/menu', { replace: true })
+              } else {
+                alert(data.error.description)
+                setErrorType('danger')
+                setMessageType(data.error.description)
+                setShowToast(true)
+              }
+            })
+            .catch((error) => console.log(error))
+        }}
+
      >
        {formik => (
          <Form  noValidate
@@ -133,10 +171,27 @@ Password
      <button className={styles.btnLink} onClick={handleSignup}>Signup</button>
      </div>
     
-    
-    
+          <ToastContainer position={'top-center'}>
+        <Toast
+          bg={errorType}
+          show={showToast}
+          onClose={() => {
+            setShowToast(!showToast)
+          }}
+        >
+          <Toast.Header>
+            <img
+              src='holder.js/20x20?text=%20'
+              className='rounded me-2'
+              alt=''
+            />
+            <strong className='me-auto'>BennyFoodie</strong>
+          </Toast.Header>
+          <Toast.Body className='text-white'>{messageType}</Toast.Body>
+        </Toast>
+      </ToastContainer>
     </Container>
   );
 }
 
-export default SignupPage;
+export default LoginPage;

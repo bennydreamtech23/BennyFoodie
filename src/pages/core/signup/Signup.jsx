@@ -136,6 +136,7 @@ function SignupPage() {
                 setErrorType('success')
                 setMessageType(data.message)
                 setShowToast(true)
+             navigate('/menu', { replace: true })
               } else {
                 alert(data.error.description)
                 setErrorType('danger')
