@@ -1,8 +1,10 @@
-import {Container,  Col, Form, InputGroup, Row} from 'react-bootstrap';
+import {Container,  Col, Form, InputGroup, Row, Toast, ToastContainer} from 'react-bootstrap';
 import {useNavigate} from "react-router-dom";
+import {useState} from "react"
 import styles from "./Signup.module.scss";
  import { Formik } from 'formik';
  import * as Yup from 'yup';
+//import axios from 'axios'
 
 //icon
 import { RiLockPasswordFill } from "react-icons/ri";
@@ -10,13 +12,50 @@ import {MdEmail,MdOutlinePhoneLocked, MdErrorOutline, MdPersonOutline} from "rea
 
 
 function SignupPage() {
+ const [showToast, setShowToast]  = useState(false)
+ const [errorType, setErrorType]  = useState('')
+const [messageType, setMessageType] = useState('')
+    
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
  
 const navigate = useNavigate()
 
+  const handlesubmit = (e) =>{
+    e.preventDefault()
+fetch("benny-foods.fly.dev/api/v1/user", {
+    method: "POST",
+  //  headers: { 
+        //'Content-Type': 'application/json',
+        //'Accept': 'application/json'
+   // },
+    body: JSON.stringify({
+        email: email,
+        first_name: firstName,
+       last_name: lastName,
+       password: password,
+       phone_number: phoneNumber
+    })
+})
+    .then(response => response.json())
+    .then(data => {
+      if(data.success === "true"){
+        setErrorType("success")
+       setMessageType("Mail sent success")
+     setShowToast(true)
+      }else{
+       // alert("error")
+       setErrorType("danger")
+     setMessageType(data.message)
+       setShowToast(true)
+      }
+    }
+    )
+    .catch(error => console.log(error));
+  }
+  
 const handleLogin = (e) =>{
 e.preventDefault()
-navigate('/login')
+navigate('/login', { replace: true })
 }
 
   return (
@@ -52,12 +91,42 @@ navigate('/login')
   .min(8, 'Password is too short - should be 8 chars minimum.')
   .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.'),
        })}
-       onSubmit={(values, { setSubmitting }) => {
-           alert(JSON.stringify(values, null, 2));
-           setSubmitting(true);
-         navigate('/login')
+       
+onSubmit={(e) => {
+           e.preventDefault()
+           fetch("https://benny-foods.fly.dev/api/v1/users", {
+    method: "POST",
+  //  headers: { 
+        //'Content-Type': 'application/json',
+        //'Accept': 'application/json'
+   // },
+    body: JSON.stringify({
+        email: email,
+        first_name: firstName,
+       last_name: lastName,
+       password: password,
+       phone_number: phoneNumber
+    })
+})
+    .then(response => response.json())
+    .then(data => {
+    alert(data.message)
+      if(data.status === "success"){
+        setErrorType("success")
+       setMessageType("New User Found")
+     setShowToast(true)
+      }else{
+       // alert("error")
+       setErrorType("danger")
+     setMessageType(data.message)
+       setShowToast(true)
+      }
+    }
+    )
+    .catch(error => console.log(error));
        }}
-     >
+       
+       >
        {formik => (
          <Form  noValidate
          autoComplete='off'
@@ -224,8 +293,21 @@ Password
      </p>
      <button className={styles.btnLink} onClick={handleLogin}>login</button>
      </div>
-    
-    
+   
+ <ToastContainer position={"top-center"}>
+  <Toast  bg={errorType} show={showToast}  onClose={()=>{setShowToast(!showToast)}}>
+    <Toast.Header>
+      <img
+        src="holder.js/20x20?text=%20"
+        className="rounded me-2"
+        alt=""
+      />
+      <strong className="me-auto">BennyFoodie</strong>
+    </Toast.Header>
+    <Toast.Body className="text-white">{messageType}</Toast.Body>
+  </Toast>
+  </ToastContainer>
+
     
     </Container>
   );

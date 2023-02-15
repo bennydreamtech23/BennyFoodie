@@ -45,7 +45,7 @@ return(
            £{price}
         </p>
         
-              <div className={FavouriteFoodStyle.btnBox}>
+     <div className={FavouriteFoodStyle.btnBox}>
         <button className='secondarybtn' onClick={addToCart}>Add To Cart</button>
         </div>
                     </div>
