@@ -1,4 +1,4 @@
-//css for reset
+//css for otp
 .Container{
    margin-top: 6rem;
    padding: 2rem;
@@ -63,6 +63,7 @@ margin-bottom: 1rem;
 .labelfield{
   color: #fff;
   font-size: 18px;
+  text-align: center;
 } 
   
  .errorMsg {
@@ -114,6 +115,7 @@ margin-bottom: 1rem;
   justify-content: center;
   gap: 1rem;
   font-size: 18px;
+  
   .btnLink{
     border: none;
     background: transparent;
@@ -121,10 +123,20 @@ margin-bottom: 1rem;
     padding: 0;
     color: var(--green);
     cursor: pointer;
+    
     &:hover{
       font-weight: bold;
       color: #fff;
     }
   }
+}
+
+.link{
+  text-decoration: none;
+  color: var(--green);
+  text-align: right;
+  display: flex;
+  float: right;
+  font-size: 13px;
 }
 }

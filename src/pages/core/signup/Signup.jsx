@@ -23,48 +23,25 @@ import {
   MdPersonOutline,
 } from 'react-icons/md'
 
+import {AiOutlineEyeInvisible, 
+AiOutlineEye
+} from "react-icons/ai";
+
+
 function SignupPage() {
   const [showToast, setShowToast] = useState(false)
   const [errorType, setErrorType] = useState('')
   const [messageType, setMessageType] = useState('')
 
+//toggle
+  const [togglePassword, setTogglePassword] = useState(false)
+  
+  //const [toggleConFirmPassword, setToggleConfirmPassword] = useState(false)
+  
   const phoneRegExp =
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
   const navigate = useNavigate()
-
-  const handlesubmit = (e) => {
-    e.preventDefault()
-    fetch('https://benny-foods.fly.dev/api/v1/users', {
-      method: 'POST',
-      //  headers: {
-      //'Content-Type': 'application/json',
-      //'Accept': 'application/json'
-      // },
-      body: JSON.stringify({
-        email: email,
-        first_name: firstName,
-        last_name: lastName,
-        password: password,
-        phone_number: phoneNumber,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data)
-        if (data.success === 'success') {
-          setErrorType('success')
-          setMessageType(data.message)
-          setShowToast(true)
-        } else {
-          // alert("error")
-          setErrorType('danger')
-          setMessageType(data.message)
-          setShowToast(true)
-        }
-      })
-      .catch((error) => console.log(error))
-  }
 
   const handleLogin = (e) => {
     e.preventDefault()
@@ -275,17 +252,28 @@ function SignupPage() {
                     <RiLockPasswordFill />
                   </InputGroup.Text>
 
-                  <Form.Control
-                    size='md'
-                    type='password'
-                    name='password'
-                    placeholder='Set your password'
-                    id='password'
-                    className={styles.inputbox}
-                    {...formik.getFieldProps('password')}
-                  />
-                </InputGroup>
+     <Form.Control
+     size='md'
+    type={togglePassword ? 'text' : 'password'}
+    name='password'
+    placeholder='Set your password'
+    id='password'
+  className={styles.inputbox}
+    {...formik.getFieldProps('password')}
+             />
 
+        <InputGroup.Text id='inputGroupPrepend'  onClick={(e) => {
+                    e.preventDefault()
+                    setTogglePassword(!togglePassword)
+                  }}>
+                  {togglePassword ? (
+                    <AiOutlineEyeInvisible />
+                  ) : (
+                    <AiOutlineEye />
+                  )}
+                </InputGroup.Text>
+                  </InputGroup>
+                  
                 {formik.touched.password && formik.errors.password ? (
                   <div className={styles.errorMsg}>
                     <MdErrorOutline className='h6 mt-1' />{' '}

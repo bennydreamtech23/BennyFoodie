@@ -90,7 +90,7 @@ const handleLogin = (e) =>{
      
   
           <li className="nav-item">
-           <Link to="/menu" 
+           <Link to="/contact" 
           className="nav-link">
           Contact
           </Link>
@@ -170,7 +170,7 @@ aria-labelledby="offcanvasExampleLabel">
         </li>
         
           <li className="nav-item">
-           <Link to="/menu" 
+           <Link to="/contact" 
           className="nav-link">
           Contact
           </Link>

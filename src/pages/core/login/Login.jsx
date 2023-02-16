@@ -5,7 +5,7 @@ InputGroup,
 Row , 
 Toast,
 ToastContainer} from 'react-bootstrap';
-import {useNavigate} from "react-router-dom";
+import {useNavigate, Link} from "react-router-dom";
 import styles from "./Login.module.scss";
  import { Formik } from 'formik';
  import * as Yup from 'yup';
@@ -13,16 +13,25 @@ import styles from "./Login.module.scss";
 
 //icon
 import { RiLockPasswordFill } from "react-icons/ri";
-import {MdEmail,MdOutlinePhoneLocked, MdErrorOutline, MdPersonOutline} from "react-icons/md";
+import {
+  MdEmail,
+  MdOutlinePhoneLocked, 
+  MdErrorOutline, 
+  MdPersonOutline} from "react-icons/md";
 
+import {
+  AiOutlineEyeInvisible, 
+AiOutlineEye
+} from "react-icons/ai";
 
 function LoginPage() {
   const [showToast, setShowToast] = useState(false)
   const [errorType, setErrorType] = useState('')
   const [messageType, setMessageType] = useState('')
+
+//toggle
+  const [togglePassword, setTogglePassword] = useState(false)
   
-const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
- 
 const navigate = useNavigate()
 
 const handleSignup = (e) =>{
@@ -122,7 +131,7 @@ Email
 </div>
      </Form.Group>
       
-    {/*pasword and phone number section*/}  
+    {/*pasword section*/}  
       <Form.Group className={styles.group}>
      
      <div className={styles.subgroup}> 
@@ -136,15 +145,25 @@ Password
         <RiLockPasswordFill/></InputGroup.Text>
                  
               <Form.Control
-                size="md" 
-                type="password"
+          size="md" 
+          type={togglePassword ? 'text' : 'password'}
                 name="password"
                 placeholder="Set your password"
               id="password"
            className={styles.inputbox} 
              {...formik.getFieldProps('password')}
            />
-               </InputGroup>
+        <InputGroup.Text id='inputGroupPrepend'  onClick={(e) => {
+                    e.preventDefault()
+                    setTogglePassword(!togglePassword)
+                  }}>
+                  {togglePassword ? (
+                    <AiOutlineEyeInvisible />
+                  ) : (
+                    <AiOutlineEye />
+                  )}
+                </InputGroup.Text>
+           </InputGroup>
                
        {formik.touched.password && formik.errors.password ? (
              <div className={styles.errorMsg}><MdErrorOutline className="h6 mt-1"/> {formik.errors.password}</div>
@@ -152,13 +171,13 @@ Password
          
 </div>
      </Form.Group>
-      
+    
+    <Link to="/forgotpassword" className={styles.link}>Forget Password</Link>  
            <button className={styles.loginButton} 
            type="submit" 
         >
            Submit
            </button>
-           
          </Form>
        )}
      </Formik>
