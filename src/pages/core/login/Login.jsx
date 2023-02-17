@@ -97,7 +97,6 @@ navigate('/signup')
                   name,
                 })
                 )
-              
              
               navigate('/menu', { replace: true })
               } else {
