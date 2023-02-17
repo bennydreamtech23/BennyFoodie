@@ -83,7 +83,23 @@ navigate('/signup')
                 setErrorType('success')
                 setMessageType(data.message)
                 setShowToast(true)
-             navigate('/menu', { replace: true })
+                //set constants for local storage
+                const email = data.data.email
+                const access_token = data.data.access_token
+                const user_id = data.data.user_id
+                const name = data.data.name
+              localStorage.setItem(
+                "user",
+                JSON.stringify({
+                  email,
+                  access_token,
+                  user_id,
+                  name,
+                })
+                )
+              
+             
+              navigate('/menu', { replace: true })
               } else {
                 alert(data.error.description)
                 setErrorType('danger')
