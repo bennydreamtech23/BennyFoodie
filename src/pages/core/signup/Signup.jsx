@@ -114,6 +114,7 @@ function SignupPage() {
                 setMessageType(data.message)
                 setShowToast(true)
              navigate('/menu', { replace: true })
+             const user = localStorage.setItem('user',response.data)
               } else {
                 alert(data.error.description)
                 setErrorType('danger')

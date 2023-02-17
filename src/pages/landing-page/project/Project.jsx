@@ -64,7 +64,6 @@ const ProjectSection = (props) =>{
  }, [category])
 
    
- 
  //slack setting
      const settings = {
        autoplay: true,

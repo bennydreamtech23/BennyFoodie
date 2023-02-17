@@ -30,6 +30,11 @@ const handleLogin = (e) =>{
  
 }
 
+//localStorage
+const [items, setItems] = useState([]);
+useEffect(() => {
+  localStorage.setItem('items', JSON.stringify(items));
+}, [items]);
 
  const [stickyClass, setStickyClass] = useState('');
   
@@ -45,7 +50,8 @@ const handleLogin = (e) =>{
       windowHeight > 150 ? setStickyClass('sticky-nav') : setStickyClass('');
     }
   };
-   
+  const user = localStorage.getItem('user') 
+   console.log(user)
   return (
     <div 
     className={`${stickyClass} "navbar"`} >
@@ -108,20 +114,31 @@ const handleLogin = (e) =>{
      <form className="d-flex me-5">
         <span className="iconPlus" to="/cart" onClick={toggleCart}>
         <BsCart4 className="h3 text-light"/>
-        <Badge bg="secondary" className="badge__content">{totalQuantity}</Badge>
+        <Badge bg="secondary" className="badge__content">{user ? totalQuantity : 0}</Badge>
         </span>
       </form>
       
       <form className="d-flex gap-4">
       
+      {!user ? 
+      <>
         <button className="resumebtn" onClick={handleSignup}>
         Register
         </button>
         
-         <button className="resumebtn" 
+         <button className="resumebtn"
          onClick={handleLogin}>
-   Login
+          Login
         </button>
+        </>
+        :
+        <>
+         <button className="resumebtn">
+           Logout
+        </button>
+        </>
+      }
+      
       </form>
 
     </div>
