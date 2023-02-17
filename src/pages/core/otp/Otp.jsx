@@ -5,11 +5,11 @@ InputGroup,
 Row , 
 Toast,
 ToastContainer} from 'react-bootstrap';
-import {useNavigate, Link} from "react-router-dom";
+import {useNavigate, Link, useLocation} from "react-router-dom";
 import styles from "./Otp.module.scss";
  import { Formik } from 'formik';
  import * as Yup from 'yup';
- import {useState} from "react"
+ import {useState, useEffect} from "react"
 
 import {
   MdErrorOutline, 
@@ -17,13 +17,23 @@ import {
 
 
 function OtpPage() {
+const navigate = useNavigate()
+const location = useLocation()
 
   const [showToast, setShowToast] = useState(false)
   const [errorType, setErrorType] = useState('')
   const [messageType, setMessageType] = useState('')
+  const [token, setToken] = useState(location?.state?.token)
+    const [userId, setUserId] = useState(location?.state?.userId)
 
 
-const navigate = useNavigate()
+useEffect(() => {
+    if (token && userId) {
+      setToken(token)
+      setUserId(userId)
+    }
+  }, [token, userId])
+
 
 const handleSignup = (e) =>{
 e.preventDefault()
@@ -46,13 +56,42 @@ navigate('/signup')
        validationSchema={Yup.object({
          otp: Yup.string()
             .required('No OTP provided.')
-            .min(4, 'OTP Token is too short - should be 4 chars minimum.'),
+            .min(6, 'OTP Token is too short - should be 4 chars minimum.'),
        })}
        onSubmit={() => {
-          navigate("/resetpassword")
-        }}
-
-     >
+          //e.preventDefault()
+          fetch(`https://benny-foods.fly.dev/api/v1/users/reset-password/validate-token?token=${token}&user_id=${userId}`,
+          {
+            method: 'POST',
+            //headers: {
+            //'Content-Type': 'application/json',
+            //'Accept': 'application/json'
+            // },
+           body: JSON.stringify({
+            otp: otp.value,
+           }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+               if(otp === token){
+         //  if (data.status === 'success') {
+             //   alert(data.message)
+               // setErrorType('success')
+               // setMessageType(data.message)
+               // setShowToast(true)
+             //navigate('/resetpassword', { replace: true })
+        // }
+        alert('true')
+             }
+           else {
+               // alert(data.error.description)
+                setErrorType('danger')
+               setMessageType(data.error.description)
+                setShowToast(true)
+              }
+            })
+            .catch((error) => console.log(error))
+        }}>
        {formik => (
          <Form  noValidate
          autoComplete='off'
@@ -102,13 +141,13 @@ OTP
      <button className={styles.btnLink} onClick={handleSignup}>Signup</button>
      </div>
     
-          <ToastContainer position={'top-center'}>
         <Toast
           bg={errorType}
           show={showToast}
           onClose={() => {
             setShowToast(!showToast)
           }}
+           className={styles.toaster}
         >
           <Toast.Header>
             <img
@@ -120,7 +159,6 @@ OTP
           </Toast.Header>
           <Toast.Body className='text-white'>{messageType}</Toast.Body>
         </Toast>
-      </ToastContainer>
     </Container>
   );
 }

@@ -5,9 +5,27 @@ import HeroStyles from "./HeroSection.module.scss";
 const img = "https://res.cloudinary.com/dlst0ec4h/image/upload/v1673632501/Pngtree_healthy_food_3776802_nqbeku.webp";
 import {TbTruckDelivery, TbHandClick,TbAward} from "react-icons/tb";
 
+import {Link, useNavigate} from "react-router-dom";
+
 import {BsArrowDownRight} from "react-icons/bs"; 
 
 const HeroSection = () =>{
+  const user = localStorage.getItem('user')
+  
+  const navigate = useNavigate()
+  
+  const getStarted = () =>{
+    if(!user === true){
+      navigate("/signup")
+    }else{
+      navigate("/menu")
+    }
+  }
+  
+  const order = () =>{
+    navigate("/menu")
+  }
+
   return(
     <>
     <Container fluid 
@@ -41,10 +59,12 @@ Imagine you don't need to fear food poison because we provide healthy and delici
 className={HeroStyles.btnBox}>
 
 <button 
-className={`${HeroStyles.btn} ${HeroStyles.btnWhte} ${HeroStyles.btnAnimated}`}>
-Get Started </button>
+className={`${HeroStyles.btn} ${HeroStyles.btnWhte} ${HeroStyles.btnAnimated}`} 
+onClick={getStarted}>
+Get Started 
+</button>
 
-  <button className="secondarybtn">
+  <button className="secondarybtn" onClick={order}>
      Order Now <BsArrowDownRight className={HeroStyles.arrow}/>
     </button>
 </div>

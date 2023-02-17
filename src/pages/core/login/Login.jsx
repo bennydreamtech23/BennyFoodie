@@ -83,17 +83,34 @@ navigate('/signup')
                 setErrorType('success')
                 setMessageType(data.message)
                 setShowToast(true)
-             navigate('/menu', { replace: true })
+                //set constants for local storage
+                const email = data.data.email
+                const access_token = data.data.access_token
+                const user_id = data.data.user_id
+                const name = data.data.name
+              localStorage.setItem(
+                "user",
+                JSON.stringify({
+                  email,
+                  access_token,
+                  user_id,
+                  name,
+                })
+                )
+              
+              const user = JSON.parse(localStorage.getItem('user'))
+              console.log(user.email);
+              
+              navigate('/menu', { replace: true })
               } else {
-                alert(data.error.description)
+               // alert(data.error.description)
                 setErrorType('danger')
-                setMessageType(data.error.description)
+               setMessageType(data.error.description)
                 setShowToast(true)
               }
             })
             .catch((error) => console.log(error))
         }}
-
      >
        {formik => (
          <Form  noValidate
@@ -190,13 +207,14 @@ Password
      <button className={styles.btnLink} onClick={handleSignup}>Signup</button>
      </div>
     
-          <ToastContainer position={'top-center'}>
+
         <Toast
           bg={errorType}
           show={showToast}
           onClose={() => {
             setShowToast(!showToast)
           }}
+         className={styles.toaster}
         >
           <Toast.Header>
             <img
@@ -208,7 +226,6 @@ Password
           </Toast.Header>
           <Toast.Body className='text-white'>{messageType}</Toast.Body>
         </Toast>
-      </ToastContainer>
     </Container>
   );
 }

@@ -1,3 +1,4 @@
+
 import {
   Container,
   Col,
@@ -5,7 +6,6 @@ import {
   InputGroup,
   Row,
   Toast,
-  ToastContainer,
 } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
@@ -28,15 +28,13 @@ AiOutlineEye
 } from "react-icons/ai";
 
 
-function SignupPage() {
+function SignupPage(props) {
   const [showToast, setShowToast] = useState(false)
   const [errorType, setErrorType] = useState('')
   const [messageType, setMessageType] = useState('')
 
 //toggle
   const [togglePassword, setTogglePassword] = useState(false)
-  
-  //const [toggleConFirmPassword, setToggleConfirmPassword] = useState(false)
   
   const phoneRegExp =
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
@@ -49,6 +47,7 @@ function SignupPage() {
   }
 
   return (
+    <>
     <Container fluid className={styles.Container}>
       <h1 className={styles.title}>
         Welcome to <span className={styles.color}>Bennyfoodie!</span>
@@ -113,13 +112,12 @@ function SignupPage() {
                 setErrorType('success')
                 setMessageType(data.message)
                 setShowToast(true)
-             navigate('/menu', { replace: true })
-             const user = localStorage.setItem('user',response.data)
+            navigate('/login', { replace: true })
               } else {
-                alert(data.error.description)
+                //alert(data.error.description)
                 setErrorType('danger')
-                setMessageType(data.error.description)
-                setShowToast(true)
+               setMessageType(data.error.description)
+              setShowToast(true)
               }
             })
             .catch((error) => console.log(error))
@@ -298,15 +296,16 @@ function SignupPage() {
           login
         </button>
       </div>
+</Container>
 
-      <ToastContainer position={'top-center'}>
+
         <Toast
           bg={errorType}
           show={showToast}
           onClose={() => {
             setShowToast(!showToast)
           }}
-        >
+        className={styles.toaster}>
           <Toast.Header>
             <img
               src='holder.js/20x20?text=%20'
@@ -317,8 +316,7 @@ function SignupPage() {
           </Toast.Header>
           <Toast.Body className='text-white'>{messageType}</Toast.Body>
         </Toast>
-      </ToastContainer>
-    </Container>
+    </>
   )
 }
 

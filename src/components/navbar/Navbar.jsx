@@ -11,13 +11,18 @@ import {cartListActions} from '../../store/shopping-cart/cartListSlice'
 function NavbarTool() {
 const navigate = useNavigate()
 const totalQuantity = useSelector(state => state.cart.totalQuantity)
- 
+
+   const user = localStorage.getItem('user')
+   
  const dispatch = useDispatch()
  
  const toggleCart = () =>{
-   dispatch(cartListActions.toggle())
- }
- 
+   if(!user === "true"){
+     navigate('/signup')
+   }else{
+       dispatch(cartListActions.toggle())
+   }
+   }
  
 const handleSignup = (e) =>{
   e.preventDefault()
@@ -30,11 +35,12 @@ const handleLogin = (e) =>{
  
 }
 
-//localStorage
-const [items, setItems] = useState([]);
-useEffect(() => {
-  localStorage.setItem('items', JSON.stringify(items));
-}, [items]);
+  const logout = (e) =>{
+    e.preventDefault()
+    localStorage.removeItem('user')
+    navigate('/')
+//console.log(logout)
+  }
 
  const [stickyClass, setStickyClass] = useState('');
   
@@ -50,8 +56,7 @@ useEffect(() => {
       windowHeight > 150 ? setStickyClass('sticky-nav') : setStickyClass('');
     }
   };
-  const user = localStorage.getItem('user') 
-   console.log(user)
+  
   return (
     <div 
     className={`${stickyClass} "navbar"`} >
@@ -77,7 +82,8 @@ useEffect(() => {
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
     
       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-      
+      {!user ?
+      <>
         <li className="nav-item">
         
           <Link to="/about" 
@@ -101,7 +107,9 @@ useEffect(() => {
           Contact
           </Link>
         </li>
-
+        </>
+:
+<>
       <li className="nav-item">
            <Link  to="/menu" 
           className="nav-link">
@@ -109,13 +117,29 @@ useEffect(() => {
           </Link>
         </li>
         
+        
+         <li className="nav-item">
+           <Link  to="/cart" 
+          className="nav-link">
+          Cart
+          </Link>
+        </li>
+        
+        </>
+      }
     </ul>
     
      <form className="d-flex me-5">
-        <span className="iconPlus" to="/cart" onClick={toggleCart}>
+        <span className="iconPlus" to="/cart" onClick={user ? toggleCart : ''}>
         <BsCart4 className="h3 text-light"/>
-        <Badge bg="secondary" className="badge__content">{user ? totalQuantity : 0}</Badge>
+        <Badge bg="secondary" className="badge__content">{user ? totalQuantity : 0}
+        </Badge>
         </span>
+        
+        {user ?
+        <BsPerson className="h3 text-light ms-4" /> 
+        :
+        ""}
       </form>
       
       <form className="d-flex gap-4">
@@ -133,7 +157,8 @@ useEffect(() => {
         </>
         :
         <>
-         <button className="resumebtn">
+         <button className="resumebtn"
+         onClick={logout}>
            Logout
         </button>
         </>
@@ -162,7 +187,8 @@ aria-labelledby="offcanvasExampleLabel">
   
   <div className="offcanvas-body">
     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-      
+      {!user ?
+      <>
         <li className="nav-item">
         
           <Link to="/about" 
@@ -171,47 +197,77 @@ aria-labelledby="offcanvasExampleLabel">
           </Link>
           
         </li>
-        
-        <li className="nav-item">
-           <Link to="/menu" 
-          className="nav-link">
-          Menu
-          </Link>
-        </li>
-        
-          <li className="nav-item">
-           <Link to="/services" 
+     
+     <li className="nav-item">
+           <Link  to="/services" 
           className="nav-link">
     Services
           </Link>
         </li>
-        
+     
+  
           <li className="nav-item">
            <Link to="/contact" 
           className="nav-link">
           Contact
           </Link>
         </li>
+        </>
+:
+<>
+      <li className="nav-item">
+           <Link  to="/menu" 
+          className="nav-link">
+          Menu
+          </Link>
+        </li>
+        
+        
+         <li className="nav-item">
+           <Link  to="/cart" 
+          className="nav-link">
+          Cart
+          </Link>
+        </li>
+        </>
+      }
+
      
-  <form className="d-flex me-5 mt-3">
-        <span className="iconPlus" to="/cart" onClick={toggleCart}>
-        <BsCart4 className="h3"/>
-        <Badge bg="secondary" className="badge__content">{totalQuantity}</Badge>
+  <form className="d-flex me-5">
+        <span className="iconPlus" to="/cart" onClick={user ? toggleCart : ''}>
+        <BsCart4 className="h3 text-dark"/>
+        <Badge bg="secondary" className="badge__content">{user ? totalQuantity : 0}
+        </Badge>
         </span>
+        
+        {user ?
+        <BsPerson className="h3 text-light ms-4" /> 
+        :
+        ""}
       </form>
      
-      <form className="d-flex flex-column gap-4 mt-3">
+       <form className="d-flex gap-4">
       
-        <button className="resumebtn"
-        onClick={handleSignup}>
+      {!user ? 
+      <>
+        <button className="resumebtn" onClick={handleSignup}>
         Register
         </button>
         
          <button className="resumebtn"
          onClick={handleLogin}>
-   Login
+          Login
         </button>
-      </form>
+        </>
+        :
+        <>
+         <button className="resumebtn"
+         onClick={logout}>
+           Logout
+        </button>
+        </>
+      }
+  </form>
       </ul>
     
   </div>

@@ -4,7 +4,7 @@ Form,
 InputGroup,
 Row , 
 Toast,
-ToastContainer} from 'react-bootstrap';
+} from 'react-bootstrap';
 import {useNavigate, Link} from "react-router-dom";
 import styles from "./ForgotPassword.module.scss";
  import { Formik } from 'formik';
@@ -48,11 +48,41 @@ navigate('/signup')
        validationSchema={Yup.object({
          email: Yup.string().email('Invalid email address').required('Required'),
        })}
-       onSubmit={() => {
-          navigate("/otp")
-        }}
-
-     >
+      onSubmit={() => {
+          //e.preventDefault()
+          fetch('https://benny-foods.fly.dev/api/v1/users/reset-password', {
+            method: 'POST',
+            //headers: {
+            //'Content-Type': 'application/json',
+            //'Accept': 'application/json'
+            // },
+            body: JSON.stringify({
+              email: email.value,
+            }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              //alert(data.message)
+              if (data.status === 'success') {
+                alert(data.message)
+                setErrorType('success')
+                setMessageType(data.message)
+                setShowToast(true)
+                
+                //set constants for state variable
+                const userId = data.data.user_id
+                const token = data.data.token
+                
+              navigate('/otp', {state: {token: token, userId: userId }})
+              } else {
+               // alert(data.error.description)
+                setErrorType('danger')
+               setMessageType(data.error.description)
+                setShowToast(true)
+              }
+            })
+            .catch((error) => console.log(error))
+        }} >
        {formik => (
          <Form  noValidate
          autoComplete='off'
@@ -105,13 +135,14 @@ Email
      <button className={styles.btnLink} onClick={handleSignup}>Signup</button>
      </div>
     
-          <ToastContainer position={'top-center'}>
+    
         <Toast
           bg={errorType}
           show={showToast}
           onClose={() => {
             setShowToast(!showToast)
           }}
+          className={styles.toaster}
         >
           <Toast.Header>
             <img
@@ -123,7 +154,6 @@ Email
           </Toast.Header>
           <Toast.Body className='text-white'>{messageType}</Toast.Body>
         </Toast>
-      </ToastContainer>
     </Container>
   );
 }

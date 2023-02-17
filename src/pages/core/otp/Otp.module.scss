@@ -139,4 +139,14 @@ margin-bottom: 1rem;
   float: right;
   font-size: 13px;
 }
+
+.toaster{
+position: fixed;
+top: 120px;
+left: 0px;
+right: 0px;
+display: flex;
+flex-direction: column;
+margin: auto;
+}
 }
