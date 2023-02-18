@@ -5,7 +5,6 @@ import {
   InputGroup,
   Row,
   Toast,
-  ToastContainer,
 } from "react-bootstrap";
 import { useNavigate, useLocation } from "react-router-dom";
 import styles from "./Reset.module.scss";
@@ -22,7 +21,6 @@ import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 function ResetPage() {
   const location = useLocation();
 
-  const [token, setToken] = useState(location?.state?.token);
   const [userId, setUserId] = useState(location?.state?.userId);
   const [showToast, setShowToast] = useState(false);
   const [errorType, setErrorType] = useState("");
@@ -41,7 +39,7 @@ function ResetPage() {
     } else {
       navigate("/forgotpassword")
     }
-  }, [token, userId]);
+  }, [userId]);
 
   const handleSignup = (e) => {
     e.preventDefault();
@@ -79,8 +77,34 @@ function ResetPage() {
             ),
           }),
         })}
-        onSubmit={(values) => {
-          navigate("/login");
+   onSubmit={() => {
+          //e.preventDefault()
+          fetch(
+            `https://benny-foods.fly.dev/api/v1/users/reset-password/change-password?user_id=${userId}`,
+            {
+              method: "PATCH",
+              //headers: {
+              //'Content-Type': 'application/json',
+              //'Accept': 'application/json'
+              // },
+              body: JSON.stringify({
+                confirm_password: confirmPassword.value,
+                password: password.value,
+              }),
+            })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.status === "success") {
+                alert(data.message);
+                navigate("/login", { replace: true });
+              } else {
+                // alert(data.error.description)
+                setErrorType("danger");
+                setMessageType(data.error.description);
+                setShowToast(true);
+              }
+            })
+            .catch((error) => console.log(error));
         }}
       >
         {(formik) => (
@@ -146,6 +170,10 @@ function ResetPage() {
                     name="confirmPassword"
                     placeholder="confirm your password"
                     id="confirmPassword"
+                    onPaste={(e) => {
+                    e.preventDefault()
+                    return false
+                  }}
                     className={styles.inputbox}
                     {...formik.getFieldProps("confirmPassword")}
                   />
@@ -189,7 +217,6 @@ function ResetPage() {
         </button>
       </div>
 
-      <ToastContainer position={"top-center"}>
         <Toast
           bg={errorType}
           show={showToast}
@@ -207,7 +234,6 @@ function ResetPage() {
           </Toast.Header>
           <Toast.Body className="text-white">{messageType}</Toast.Body>
         </Toast>
-      </ToastContainer>
     </Container>
   );
 }

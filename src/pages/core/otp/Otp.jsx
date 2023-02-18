@@ -50,7 +50,7 @@ function OtpPage() {
         validationSchema={Yup.object({
           otp: Yup.string()
             .required("No OTP provided.")
-            .min(6, "OTP Token is too short - should be 4 chars minimum."),
+            .min(4, "OTP Token is too short - should be 4 chars minimum."),
         })}
         onSubmit={() => {
           //e.preventDefault()

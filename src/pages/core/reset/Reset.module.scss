@@ -127,4 +127,14 @@ margin-bottom: 1rem;
     }
   }
 }
+
+.toaster{
+position: fixed;
+top: 120px;
+left: 0px;
+right: 0px;
+display: flex;
+flex-direction: column;
+margin: auto;
+}
 }
