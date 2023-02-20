@@ -65,8 +65,7 @@ function OtpPage() {
               body: JSON.stringify({
                 otp: otp.value,
               }),
-            }
-          )
+            })
             .then((response) => response.json())
             .then((data) => {
               if (data.status === "success") {

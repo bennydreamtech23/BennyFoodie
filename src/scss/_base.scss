@@ -148,44 +148,6 @@ text-decoration: none;
   background-color: var(--dark-blue);
 }
 
-
-  .resumebtn{
-border: var(--border);
- border-radius: 5px;
-font-family: var(--font);
-font-style: normal;
-font-weight: 600;
-font-size: 14px;
-line-height: 20px;
-text-align: center;
-letter-spacing: 0.1px;
-color: var(--green);
-padding: 10px 24px;
-background: transparent;
-width: 100%;
-text-decoration: none;
-  }
-  
-  .resumebtn:hover{
-  border: 2px solid var(--purple);
-  cursor: pointer;
-  color: white;
-  background: var(--green);
-}  
-
-
-   .nav-link{
-font-family: var(--font);
-  color: var(--black);
-  text-decoration: none;
-  font-size: 20px;
-  font-weight: bold;
-   @media only screen and (min-width: 320px) and (max-width: 768px){
-        margin-right: 0rem;
-          margin-left: 0rem;
-  }
-  
-}
    .nav-link:hover{
         color: var(--green);
    }
@@ -193,3 +155,40 @@ font-family: var(--font);
    .nav-link:active{
        color: var(--green);
    }
+   
+   .searchContainer{
+     padding: 7px 15px;
+     border: 1.5px solid var(--green);
+     border-radius: 10%;
+     curor: pointer;
+   }
+   
+   .Pagination{
+  width: 80%;
+  height: 40px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+align-items: center;
+justify-content: center;
+column-gap: 2rem;
+list-style: none;
+}
+
+.Pagination a{
+padding: 5px 13px;
+background: var(--green);
+color: white !important;
+border-radius: 50px;
+text-decoration: none;
+font-weight: bold;
+text-align: center;
+align-items: center;
+display: flex;
+justify-content: center;
+&:hover{
+  background: transparent;
+  border: 1px solid var(--green);
+  color: var(--green) !important;
+}
+}

@@ -1,0 +1,19 @@
+.Container{
+     background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.5)), url("https://res.cloudinary.com/dlst0ec4h/image/upload/v1673721888/pngwing.com_13_gfuhxr.webp");
+     background-size: cover;
+     background-repeat: no-repeat;
+     background-position: center center;
+     padding: 120px 64px;
+     object-fit: cover;
+     font-family: var(--font);
+ @media only screen and (min-width: 320px) and (max-width: 768px){
+  padding: 120px 32px;
+}
+.title{
+  color: white;
+  font-weight: bold;
+  font-size: 3rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+}

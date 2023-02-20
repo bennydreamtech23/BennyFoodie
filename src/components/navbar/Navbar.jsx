@@ -146,11 +146,11 @@ const handleLogin = (e) =>{
       
       {!user ? 
       <>
-        <button className="resumebtn" onClick={handleSignup}>
+        <button className="signup" onClick={handleSignup}>
         Register
         </button>
         
-         <button className="resumebtn"
+         <button className="login"
          onClick={handleLogin}>
           Login
         </button>

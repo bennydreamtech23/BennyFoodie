@@ -14,7 +14,8 @@ import LandingPage from "./pages/landing-page/Landingpage";
  import ForgetPasswordPage from "./pages/core/forgotpassword/ForgotPassword"
 import OtpPage from "./pages/core/otp/Otp"
 import ResetPasswordPage from "./pages/core/reset/Reset"
-  
+import Allfoods from "./pages/allfoods/AllFoods"
+
 //cart stuff
 import Carts from './pages/cart/Cart'
 import { useSelector } from "react-redux"
@@ -30,7 +31,8 @@ function App() {
       <Routes>
         {/* pages */}
         <Route path="/" element={<LandingPage />} />
-            
+        <Route path="/menu" element={<Allfoods />} />
+        
             {/*core*/}
      <Route path="/signup" element={<SignupPage />} />
  <Route path="/login" element={<LoginPage />} />

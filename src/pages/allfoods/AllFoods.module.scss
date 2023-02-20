@@ -1,0 +1,42 @@
+.Container{
+font-family: var(--font);
+
+.searchbar{
+  border: none;
+  width: 80%;
+  outline: none;
+  .searchbar:focus{
+  outline: none;
+}
+}
+
+.searchOption select{
+   padding: 7px 15px;
+     border: 1.5px solid var(--green);
+     border-radius: 10%;
+     background: transparent;
+     curor: pointer;
+     width: 25%;
+    &:focus{
+     outline: none;
+}
+}
+.foodContainer{
+   max-width: 1200px;
+ display: grid; 
+ grid-gap: 1rem; 
+ /* Screen larger than 600px? 2 column */ @media (min-width: 768px) {  
+   grid-template-columns: repeat(2, 1fr);
+   } 
+   /* Screen larger than 900px? 4 columns */ @media (min-width: 1200px) {
+     grid-template-columns: repeat(3, 1fr);
+}
+}
+
+.PageContainer{
+  width: 80%;
+  height: 40px;
+  margin: auto;
+  display: flex;
+}
+}

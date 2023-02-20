@@ -42,7 +42,7 @@ text-decoration: none;
   }
   }
   
-  .resumebtn{
+  .signup{
 border: var(--border);
  border-radius: 5px;
 font-family: var(--font);
@@ -59,12 +59,38 @@ width: 9.5rem;
 text-decoration: none;
   }
   
-  .resumebtn:hover{
+  .signup:hover{
   border: 2px solid var(--purple);
   cursor: pointer;
   color: white;
   background: var(--green);
 }  
+
+.login{
+border: var(--border);
+ border-radius: 5px;
+font-family: var(--font);
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 20px;
+text-align: center;
+letter-spacing: 0.1px;
+color: #fff;
+padding: 10px 24px;
+background: var(--green);
+width: 9.5rem;
+text-decoration: none;
+  }
+  
+  .login:hover{
+  border: 2px solid var(--green);
+  cursor: pointer;
+  color: var(--green);
+  background: transparent;
+}  
+
+
 
  .navbar-toggler{
   @media only screen and (min-width: 320px) and (max-width: 768px){
