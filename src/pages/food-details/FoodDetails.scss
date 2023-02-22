@@ -1,3 +1,92 @@
-.FoodDetails.container{
- font-family: var(--font);
-}
+
+ .single_product-content{
+   padding-left: 50px;
+  font-family: var(--font);
+  
+   .product_title{
+     font-weight: bold;
+     font-size: 30px;
+   }
+   
+   .product_price{
+  color: var(--green);
+  display: flex;
+  align-items: center;
+  column-gap: 1rem;
+  margin-bottom: 0px;
+font-weight: bold;
+    span{
+     font-size: 25px;
+   }
+   }
+   .category{
+     font-weight: 500;
+     color: #181818;
+     display: flex;
+     align-items: center;
+     column-gap: 1rem;
+     margin-top: 10px;
+     span{
+       padding: 3px 7px;
+       background: rgba(0, 0, 0, 0.5);
+       border-radius: 3px;
+       color: #fff;
+     }
+   }
+   
+ }
+
+ .tabs{
+   border-bottom: 1px solid rgba(80,200,120, 0.3);
+   h6{
+     cursor: pointer;
+   }
+   .tab_active{
+     color: var(--green);
+   }
+ }
+ 
+  .tab_content{
+     padding: 30px 0px;
+     p{
+       color: #181818;
+     }
+   }
+   
+   .form{
+     width: 60%;
+     margin: auto;
+     background-color: rgba(80,200,120, 0.2);
+     padding: 20px;
+     border-radius: 5px;
+     
+     .form_group{
+       margin-bottom: 2rem;
+       
+       .inputfield{
+         background: transparent;
+         padding: 7px 20px;
+         border: none;
+         border-bottom: 1.5px solid #ccc;
+         outline: none;
+       }
+       .inputfield:focus{
+           outline: none;
+           border: none;
+         }
+     }
+   }
+   
+   .user_name{
+     font-weight: bold;
+     color: 212245;
+   }
+   
+   .user_email{
+     font-size: 0.8rem;
+   }
+   
+   .review_text{
+     color: #504B4B;
+     font-size: 0.9rem;
+   }
