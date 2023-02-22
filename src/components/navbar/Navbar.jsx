@@ -157,7 +157,7 @@ const handleLogin = (e) =>{
         </>
         :
         <>
-         <button className="resumebtn"
+         <button className="signup"
          onClick={logout}>
            Logout
         </button>

@@ -1,47 +1,4 @@
-import {useState, useEffect} from 'react'
-import "./FoodDetails.scss"
-import allfoods from "../../components/foodMenu/allfoods"
-import { useParams } from "react-router-dom"
-import HeaderSection from '../../components/headerSection/HeaderSection'
-import {Container, Row, Col, Form, InputGroup} from "react-bootstrap"
 
-const FoodDetails = () =>{
-  const food = "https://res.cloudinary.com/dlst0ec4h/image/upload/v1675289357/pngwing.com_vnmees.png";
-
-  const [tabs, setTabs] = useState('desc')
-  const {id} = useParams()
-  
-  
-  const product = allfoods.find(product => {
-return product.id === id;
-  });
-
-alert(product)
-
-  const [previewImg, setPreviewImg] = useState(product.image)
-  console.log(previewImg)
-  
-  return(
-    <section className='container-box'>
-<HeaderSection title='product 01'/>
-
-<Container className="py-5">
-<Row>
-<Col lg='2' md='2'>
-<div className="product_images">
-<div className='img__item' onClick={() => setPreviewImg(product.image)}>
-<img src={previewImg} alt='product images' className='w-100'/>
-</div>
-
-<div className='img__item' onClick={() => setPreviewImg(product.image)}>
-<img src={previewImg} alt='product images' className='w-100'/>
-</div>
-
-<div className='img__item' onClick={() => setPreviewImg(product.image)}>
-<img src={previewImg} alt='product images' className='w-100'/>
-</div>
-</div>
-</Col>
 
 <Col lg='4' md='4'>
 <div className='product__main_img'>
@@ -157,12 +114,3 @@ submit
 
 
 </Col>
-
-</Row>
-</Container>
-    </section>
-    
-    )
-}
-
-export default FoodDetails
