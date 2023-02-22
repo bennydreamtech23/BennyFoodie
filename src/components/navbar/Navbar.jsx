@@ -130,9 +130,9 @@ const handleLogin = (e) =>{
     </ul>
     
      <form className="d-flex me-5">
-        <span className="iconPlus" to="/cart" onClick={user ? toggleCart : ''}>
+        <span className="iconPlus" to="/cart" onClick={toggleCart}>
         <BsCart4 className="h3 text-light"/>
-        <Badge bg="secondary" className="badge__content">{user ? totalQuantity : 0}
+        <Badge bg="secondary" className="badge__content">{totalQuantity}
         </Badge>
         </span>
         

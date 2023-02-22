@@ -7,6 +7,9 @@ import Footer from "./components/footer/Footer";
 
 //pages
 import LandingPage from "./pages/landing-page/Landingpage";
+import Allfoods from "./pages/allfoods/AllFoods"
+import FoodDetails from './pages/food-details/FoodDetails'
+import Checkout from './pages/checkout/Checkout'
 
 //core
  import LoginPage from "./pages/core/login/Login"
@@ -14,7 +17,7 @@ import LandingPage from "./pages/landing-page/Landingpage";
  import ForgetPasswordPage from "./pages/core/forgotpassword/ForgotPassword"
 import OtpPage from "./pages/core/otp/Otp"
 import ResetPasswordPage from "./pages/core/reset/Reset"
-import Allfoods from "./pages/allfoods/AllFoods"
+
 
 //cart stuff
 import Carts from './pages/cart/Cart'
@@ -30,9 +33,13 @@ function App() {
    {showCart && <Carts/>}
       <Routes>
         {/* pages */}
-        <Route path="/" element={<LandingPage />} />
+        <Route 
+        path="/" element={<LandingPage />} />
         <Route path="/menu" element={<Allfoods />} />
-        
+                <Route path="/menu/:id" element={<FoodDetails />} />
+         <Route path="/checkout" element={<Checkout/>} />
+         
+         
             {/*core*/}
      <Route path="/signup" element={<SignupPage />} />
  <Route path="/login" element={<LoginPage />} />

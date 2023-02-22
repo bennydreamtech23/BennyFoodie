@@ -1,7 +1,7 @@
 
-import ProductCardStyle from "./ProductCad.module.scss"
- import {BsFillSuitHeartFill} from "react-icons/bs"
- 
+import ProductCardStyle from "./ProductCad.module.scss";
+ import {BsFillSuitHeartFill} from "react-icons/bs";
+ import {Link} from 'react-router-dom';
 //redux
 import { useDispatch } from "react-redux";
 import {cartActions} from "../../store/shopping-cart/cartSlice"
@@ -39,7 +39,13 @@ return(
                     </div>
 
               <div className={ProductCardStyle.boxText}>
-        <h2 className="text-center h5">{name}</h2>
+        <Link to={`/menu/${id}`}
+        className="text-center h5 text-dark text-decoration-none
+        d-flex 
+        align-items-center 
+        justify-content-center">
+        {name}
+        </Link>
         
         <p className="text-center lead">
             £{price}

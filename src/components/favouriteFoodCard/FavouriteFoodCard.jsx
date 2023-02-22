@@ -1,4 +1,4 @@
-
+import {Link} from 'react-router-dom'
 import FavouriteFoodStyle from "./FavouriteFood.module.scss"
  import {BsFillSuitHeartFill} from "react-icons/bs"
  
@@ -39,7 +39,13 @@ return(
                     </div>
 
               <div className={FavouriteFoodStyle.boxText}>
-        <h2 className="text-center h5">{name}</h2>
+        <Link to={`/menu/${id}`}
+        className="text-center h5 text-dark text-decoration-none
+        d-flex 
+        align-items-center 
+        justify-content-center">
+        {name}
+        </Link>
         
         <p className="text-center lead">
            £{price}

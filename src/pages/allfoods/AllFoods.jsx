@@ -17,10 +17,19 @@ const AllfoodsPage = () =>{
   //const [productData, setProductData] = useState(allfoods)
 const [pageNumber, setPageNumber] = useState(0)
   
+  const searchedPage = allfoods.filter((item) => {
+  if(searchItem.value === '') return item;
+    if(
+    item.name
+    .toLowerCase()
+    .includes(searchItem.toLowerCase())) 
+    return item;
+  });
+  
   const ProductPerPage = 6;
   const visitedPage = pageNumber * ProductPerPage;
   
-  const displayPage = allfoods.slice(visitedPage, visitedPage + ProductPerPage)
+  const displayPage = searchedPage.slice(visitedPage, visitedPage + ProductPerPage)
   
   const pageCount = Math.ceil(allfoods.length / ProductPerPage)
   
@@ -64,15 +73,7 @@ onChange={(e) => setSearchItem(e.target.value)}/>
 <Row className={FoodStyles.foodContainer}>
 {
 displayPage
-  ?.filter((item) => {
-  if(searchItem.value === '') return item;
-    if(
-    item.name
-    .toLowerCase()
-    .includes(searchItem.toLowerCase())) 
-    return item;
-  })
-  .map(item => 
+.map(item => 
   <AllProductCard item={item}
   key={item.id}/>
   )
