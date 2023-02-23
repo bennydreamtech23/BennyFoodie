@@ -44,8 +44,8 @@ const [pageNumber, setPageNumber] = useState(0)
  <Container>
 <Row>
 
-<Col lg='6' md='6' sm='6'>
-<div className="mt-5 mb-5 d-flex align-items-center justify-content-between searchContainer">
+<Col lg='6' md='6' sm='6' xs='12'>
+<div className="d-flex align-items-center justify-content-between searchContainer">
 <input type='text'
 className={FoodStyles.searchbar}
 placeholder='food search'
@@ -57,15 +57,16 @@ onChange={(e) => setSearchItem(e.target.value)}/>
 </div>
 </Col>
 
-<Col lg='6' md='6' sm='6' className='mt-5 mb-5 text-end'>
+<Col lg='6' md='6' sm='6' xs='12' className='text-end'>
 <div className={FoodStyles.searchOption}>
-<select>
+<select className='bg-success text-white'>
 <option>Default</option>
 <option value='ascending'>A-Z</option>
 <option value='descending'>Z-A</option>
 <option value='high-price'>High Price</option>
 <option value='low-price'>Low Price </option>
 </select>
+<span className={FoodStyles.focus}></span>
 </div>
 </Col>
 </Row>

@@ -16,11 +16,17 @@ font-family: var(--font);
      border-radius: 10%;
      background: transparent;
      curor: pointer;
-     width: 25%;
+     width: 50%;
+    margin: 3rem 0rem;
     &:focus{
      outline: none;
 }
+   @media only screen and (min-width: 320px) and (max-width: 768px){
+width: 100%;
+margin-top: 0rem;
+     }
 }
+
 .foodContainer{
    max-width: 1200px;
  display: grid; 

@@ -4,18 +4,56 @@ import allfoods from "../../components/foodMenu/allfoods";
 import { useParams, Link } from "react-router-dom";
 import HeaderSection from "../../components/headerSection/HeaderSection";
 import { Container, Row, Col, Form, InputGroup } from "react-bootstrap";
+import ProductCard from '../../components/favouriteFoodCard/FavouriteFoodCard'
+import {useDispatch} from 'react-redux'
+import {cartActions} from "../../store/shopping-cart/cartSlice"
+
 const FoodDetails = () => {
-  const food =
-    "https://res.cloudinary.com/dlst0ec4h/image/upload/v1675289357/pngwing.com_vnmees.png";
-
+const dispatch = useDispatch()
   const [tabs, setTabs] = useState("desc");
+  const [enteredName, setEnteredName] = useState('')
+  const[enteredMail, setEnteredMail] =  useState('')
+  const [enteredMessage, SetEnteredMessage] = useState('')
+  const [submittedName, setSubmittedName] = useState(null);
+  const [submittedEmail, setSubmittedEmail] = useState(null);
+  const [submittedMsg, setSubmittedMsg] = useState(null);
+  
   const { id } = useParams();
-  // const [foodid, setFoodId] = useState({ id });
-
+  
   const product = allfoods.find((product) => {
     return product.id === Number(id);
   });
 
+const [previewImg,setPreviewImg] =useState(product.image)
+const{name,price,category,desc,image} = product
+const relatedProduct = allfoods.filter((item) => product.category === item.category )
+
+ const  addToCart = () =>{
+    dispatch(cartActions.addItem({
+      id,
+      name,
+      image,
+      price
+    }))
+  }
+  
+useEffect(()=>{
+setPreviewImg(product.image)
+},[product.image])
+
+useEffect(()=>{
+window.scrollTo(0,0)
+},[product])
+
+const submittedHandler = (e) =>{
+  e.preventDefault()
+  setSubmittedName(enteredName)
+  setSubmittedEmail(enteredMail)
+  setSubmittedMsg(enteredMessage)
+  setEnteredName('')
+  setEnteredMail('')
+  SetEnteredMessage('')
+}
   if (!product) {
     //If no product with the given ID is found, render an error message
     return (
@@ -37,105 +75,102 @@ const FoodDetails = () => {
 
   return (
     <section className="container-box">
-      <HeaderSection title={`Product ${product.id}`} />
+      <HeaderSection title= {name} />
 
       <Container className="py-5">
         <Row>
           <Col lg="2" md="2">
             <div className="product_images">
               <div
-                className="img__item"
-                //onClick={() => setproduct.image(product.image)}
-              >
+                className="img__item">
                 <img
-                  src={product.image}
+                  src={previewImg}
                   alt="product images"
                   className="w-100"
                 />
               </div>
-
-              <div
-                className="img__item"
-                //onClick={() => setproduct.image(product.image)}
-              >
+           <div
+                className="img__item mt-3 mb-3">
                 <img
-                  src={product.image}
+                  src={previewImg}
                   alt="product images"
                   className="w-100"
                 />
               </div>
-
-              <div
-                className="img__item"
-                //onClick={() => setproduct.image(product.image)}
-              >
+           <div
+                className="img__item">
                 <img
-                  src={product.image}
+                  src={previewImg}
                   alt="product images"
                   className="w-100"
                 />
-              </div>
+           </div>
             </div>
           </Col>
-
+          
           <Col lg="4" md="4">
             <div className="product__main_img">
-              <img src={product.image} alt="main img" className="w-100" />
+              <img src={previewImg} alt="main img" className="w-100" />
             </div>
           </Col>
-
+          
           <Col lg="6" md="6">
             <div className="single_product-content">
-              <h2 className="product_title mb-3">{product.name}</h2>
+              <h2 className="product_title mb-3">
+              {name}
+              </h2>
               <p className="product_price">
                 {" "}
-                Price: <span>{product.price}</span>
+                Price: <span>£{price}</span>
               </p>
               <p className="category mb-5">
-                Category: <span> {product.category}</span>
+                Category: <span> {category}</span>
               </p>
 
-              <button className="btn">Add to Cart</button>
+              <button className="btn" onClick={addToCart}>
+              Add to Cart
+              </button>
             </div>
           </Col>
 
           <Col lg="12">
             <div className="tabs d-flex align-items-center gap-3 py-2">
-              <h6 className="tab_active">Description</h6>
-              <h6>Review</h6>
+              <h6 className={`${tabs === 'desc' ? "tab_active" : ''}`}
+              onClick={()=>setTabs('desc')}>
+              Description
+              </h6>
+              <h6 onClick={()=>setTabs('rev')}
+               className={`${tabs === 'rev' ? "tab_active" : ''}`}>
+              Review
+              </h6>
             </div>
-
-            <div className="tab_content">
-              <p>{product.desc}</p>
-            </div>
-
-            <div className="tab_form mb-3">
+{
+  tabs === 'desc' ? <div className="tab_content">
+          <p>{desc}</p>
+            </div> :
+            <div className="tab_form mb-3 pt-5">
+            <div>
               <div className="review">
-                <p className="user_name mb-0">williams blake</p>
-                <p className="user_email mb-0">jhnon01@gmail.user</p>
-                <p className="review_text mt-2">i love the food</p>
+                <p className="user_name mb-0">
+                {submittedName}</p>
+                <p className="user_email mb-0">
+                {submittedEmail}
+                </p>
+                <p className="review_text mt-2">
+                {submittedMsg}
+                </p>
               </div>
-
-              <div className="review">
-                <p className="user_name mb-0">williams blake</p>
-                <p className="user_email mb-0">jhnon01@gmail.user</p>
-                <p className="review_text mt-2">i love the food</p>
-              </div>
-
-              <div className="review">
-                <p className="user_name mb-0">williams blake</p>
-                <p className="user_email mb-0">jhnon01@gmail.user</p>
-                <p className="review_text mt-2">i love the food</p>
-              </div>
-
-              <Form className="form">
+</div>
+              <Form className="form" onSubmit={submittedHandler}>
                 <Form.Group className="form_group">
                   <InputGroup>
                     <Form.Control
                       type="text"
                       placeholder="Enter your Name"
                       className="inputfield"
-                    />
+                      value={enteredName}
+                      onChange={(e)=> setEnteredName(e.target.value)}
+                    required/>
                   </InputGroup>
                 </Form.Group>
 
@@ -145,7 +180,9 @@ const FoodDetails = () => {
                       type="email"
                       className="inputfield"
                       placeholder="Enter your Email"
-                    />
+                       value={enteredMail}
+                      onChange={(e)=> setEnteredMail(e.target.value)}
+                    required/>
                   </InputGroup>
                 </Form.Group>
 
@@ -156,8 +193,10 @@ const FoodDetails = () => {
                       rows={6}
                       type="text"
                       className="inputfield"
-                      placeholder="Enter your Message"
-                    />
+                      placeholder="Write your Message"
+                        value={enteredMessage}
+                      onChange={(e)=> SetEnteredMessage(e.target.value)}
+                    required/>
                   </InputGroup>
                 </Form.Group>
 
@@ -166,7 +205,22 @@ const FoodDetails = () => {
                 </button>
               </Form>
             </div>
+}
           </Col>
+          
+          <Col lg='12' className='my-4'>
+          <h2 className='related_product_title'>
+          You might also like
+          </h2>
+        </Col>
+          {
+            relatedProduct.map(item =>(
+            <Col  key={item.id}>
+            <ProductCard item={item}/>
+            </Col>
+            ))
+          }
+     
         </Row>
       </Container>
     </section>

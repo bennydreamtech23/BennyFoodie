@@ -6,6 +6,7 @@ const allfoods = [
    image: 'https://res.cloudinary.com/dlst0ec4h/image/upload/v1673722321/pngwing.com_22_jp2sqx.png',
     name: 'Basmati Jollof rice',
     price: 40,
+    desc: 'Slow-cooked for eight hours, this intensely flavored and juicy lamb shank, infused with fresh rosemary and sage, is a house specialty. Served with smooth mashed potatoes and char-grilled, crispy asparagus, topped with a tangy golden-brown glaze for a meal hard to forget.'
   },
     {
       id: 2,
@@ -206,7 +207,7 @@ const allfoods = [
   image: "https://res.cloudinary.com/dlst0ec4h/image/upload/v1673701487/fast-food-png-41613_rj94kr.webp",
     name: 'American Hamburger',
    price: 15,
-    desc: 'Slow-cooked for eight hours, this intensely flavored and juicy lamb shank, infused with fresh rosemary and sage, is a house specialty. Served with smooth mashed potatoes and char-grilled, crispy asparagus, topped with a tangy golden-brown glaze for a meal hard to forget.'
+    desc: 'Hamburgers are traditionally made with ground beef and served with onions, tomatoes, lettuce, ketchup, and other garnishes. You can also make a hamburger with turkey or other kinds of meat — although rarely, if ever, is ham used in a hamburger. Hamburgers were originally called "hamburg steak," named for the German city of Hamburg, although no actual connection between the place and the food has ever been documented.'
   },
    {
       id: 27,
