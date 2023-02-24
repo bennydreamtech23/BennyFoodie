@@ -1,16 +1,23 @@
 import { useState, useEffect } from "react";
-import "./FoodDetails.scss";
-import allfoods from "../../components/foodMenu/allfoods";
 import { useParams, Link } from "react-router-dom";
+import "./FoodDetails.scss";
+
+//all food dummy data
+import allFoodData from "../../components/data/allFoodData";
+
+//components from folder and react
 import HeaderSection from "../../components/headerSection/HeaderSection";
 import { Container, Row, Col, Form, InputGroup } from "react-bootstrap";
-import ProductCard from '../../components/favouriteFoodCard/FavouriteFoodCard'
+import ProductCard from '../../components/productCard/ProductCard'
 import {useDispatch} from 'react-redux'
 import {cartActions} from "../../store/shopping-cart/cartSlice"
 
 const FoodDetails = () => {
 const dispatch = useDispatch()
+//data for desc section
   const [tabs, setTabs] = useState("desc");
+  
+  //data for review form
   const [enteredName, setEnteredName] = useState('')
   const[enteredMail, setEnteredMail] =  useState('')
   const [enteredMessage, SetEnteredMessage] = useState('')
@@ -20,13 +27,16 @@ const dispatch = useDispatch()
   
   const { id } = useParams();
   
-  const product = allfoods.find((product) => {
-    return product.id === Number(id);
+  const food = allFoodData.find((food) => {
+    return food.id === Number(id);
   });
 
-const [previewImg,setPreviewImg] =useState(product.image)
-const{name,price,category,desc,image} = product
-const relatedProduct = allfoods.filter((item) => product.category === item.category )
+//food data fetching
+const [previewImg,setPreviewImg] =useState(food.image)
+
+const{name,price,category,desc,image} = food;
+
+const relatedFood = allFoodData.filter((item) => food.category === item.category )
 
  const  addToCart = () =>{
     dispatch(cartActions.addItem({
@@ -38,12 +48,12 @@ const relatedProduct = allfoods.filter((item) => product.category === item.categ
   }
   
 useEffect(()=>{
-setPreviewImg(product.image)
-},[product.image])
+setPreviewImg(food.image)
+},[food.image])
 
 useEffect(()=>{
 window.scrollTo(0,0)
-},[product])
+},[food])
 
 const submittedHandler = (e) =>{
   e.preventDefault()
@@ -54,11 +64,11 @@ const submittedHandler = (e) =>{
   setEnteredMail('')
   SetEnteredMessage('')
 }
-  if (!product) {
+  if (!food) {
     //If no product with the given ID is found, render an error message
     return (
       <section className="container-box">
-        <HeaderSection title={`Product not found`} />
+        <HeaderSection title={`Food not found`} />
         <Container className="py-5">
           <Row>
             <Link className="text-center my-4" to="/menu">
@@ -214,7 +224,7 @@ const submittedHandler = (e) =>{
           </h2>
         </Col>
           {
-            relatedProduct.map(item =>(
+            relatedFood.map(item =>(
             <Col  key={item.id}>
             <ProductCard item={item}/>
             </Col>

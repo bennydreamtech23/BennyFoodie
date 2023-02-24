@@ -1,5 +1,5 @@
 
-const foodmenu = [
+const popularmenuData = [
   {
     id: 1,
     category: 'Dinner',
@@ -44,4 +44,4 @@ const foodmenu = [
   }
   ]
   
-  export default foodmenu
+  export default popularmenuData

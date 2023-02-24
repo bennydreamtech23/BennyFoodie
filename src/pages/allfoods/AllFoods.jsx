@@ -1,12 +1,14 @@
 import {useState, useEffect} from 'react';
 import ReactPaginate from 'react-paginate';
-
-//components
 import FoodStyles from "./AllFoods.module.scss";
+
+//dummy data for all item
+import allfoods from "../../components/data/allFoodData"
+
+//components from react and folder
 import {Container, Row, Col} from "react-bootstrap"
 import HeaderSection from '../../components/headerSection/HeaderSection'
-import allfoods from "../../components/foodMenu/allfoods"
-import AllProductCard from '../../components/allProductCard/AllProductCard'
+import ProductCard from '../../components/productCard/ProductCard'
 
 //icons
 import {BsSearch} from "react-icons/bs";
@@ -75,7 +77,7 @@ onChange={(e) => setSearchItem(e.target.value)}/>
 {
 displayPage
 .map(item => 
-  <AllProductCard item={item}
+  <ProductCard item={item}
   key={item.id}/>
   )
 }

@@ -1,12 +1,10 @@
-
+import {Link, useNavigate} from "react-router-dom";
+//container
 import {Container, Row, Col, Card} from 'react-bootstrap';
 import HeroStyles from "./HeroSection.module.scss";
-//import { Link } from "react-router-dom";
-const img = "https://res.cloudinary.com/dlst0ec4h/image/upload/v1673632501/Pngtree_healthy_food_3776802_nqbeku.webp";
+
+//icons
 import {TbTruckDelivery, TbHandClick,TbAward} from "react-icons/tb";
-
-import {Link, useNavigate} from "react-router-dom";
-
 import {BsArrowDownRight} from "react-icons/bs"; 
 
 const HeroSection = () =>{
@@ -25,6 +23,9 @@ const HeroSection = () =>{
   const order = () =>{
     navigate("/menu")
   }
+
+const img = "https://res.cloudinary.com/dlst0ec4h/image/upload/v1673632501/Pngtree_healthy_food_3776802_nqbeku.webp";
+
 
   return(
     <>

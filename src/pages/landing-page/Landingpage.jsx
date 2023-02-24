@@ -1,14 +1,14 @@
 
 import HeroSection from './hero-section/HeroSection';
-import AboutSection from './about-section/AboutSection';
-import WorkSection from './project/Project';
+import FavouriteFoodSection from './favouriteFoodSection/FavouriteFood';
+import PopularFoodSection from './popularMenu/PopularMenuSection';
 import Testimonies from './testimonies/Testimonies';
 const LandingPage = () =>{
   return(
     <>
     <HeroSection/>
-    <AboutSection/>
-     <WorkSection/>
+    <FavouriteFoodSection/>
+     <PopularFoodSection/>
    <Testimonies/>
     </>
     )

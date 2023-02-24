@@ -1,5 +1,5 @@
 
-const allfoods = [
+const allfoodData = [
   {
     id: 1,
     category: 'Dinner',
@@ -219,4 +219,4 @@ const allfoods = [
   }
   ]
   
-  export default allfoods
+  export default allfoodData

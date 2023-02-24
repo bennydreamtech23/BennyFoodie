@@ -130,7 +130,7 @@ const handleLogin = (e) =>{
     </ul>
     
      <form className="d-flex me-5">
-        <span className="iconPlus" to="/cart" onClick={toggleCart}>
+        <span className="iconPlus" to="/cart" onClick={(e) =>toggleCart(e)}>
         <BsCart4 className="h3 text-light"/>
         <Badge bg="secondary" className="badge__content">{totalQuantity}
         </Badge>
@@ -146,26 +146,25 @@ const handleLogin = (e) =>{
       
       {!user ? 
       <>
-        <button className="signup" onClick={handleSignup}>
+        <button className="signup" onClick={(e) => handleSignup(e)}>
         Register
         </button>
         
          <button className="login"
-         onClick={handleLogin}>
+         onClick={(e) => handleLogin(e)}>
           Login
         </button>
         </>
         :
         <>
          <button className="signup"
-         onClick={logout}>
+         onClick={(e) => logout(e)}>
            Logout
         </button>
         </>
       }
       
       </form>
-
     </div>
   </Container>
   
@@ -250,19 +249,19 @@ aria-labelledby="offcanvasExampleLabel">
       
       {!user ? 
       <>
-        <button className="resumebtn" onClick={handleSignup}>
+        <button className="resumebtn" onClick={(e) => handleSignup(e)}>
         Register
         </button>
         
          <button className="resumebtn"
-         onClick={handleLogin}>
+         onClick={(e) => handleLogin(e)}>
           Login
         </button>
         </>
         :
         <>
          <button className="resumebtn"
-         onClick={logout}>
+         onClick={(e) => logout(e)}>
            Logout
         </button>
         </>

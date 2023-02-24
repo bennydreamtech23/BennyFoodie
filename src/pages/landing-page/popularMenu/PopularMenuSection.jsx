@@ -1,11 +1,13 @@
 
 import {useState, useEffect} from "react";
 import Slider from "react-slick";
-import ProjectStyles from "./Project.module.scss";
+import PopularFoodStyle from "./PopularMenuSection.module.scss";
 //import { Link } from "react-router-dom";
 
-//components
-import foodmenu from "../../../components/foodMenu/foodmenu.js";
+//dummy data for popular food
+import popularfoodData from "../../../components/data/popularMenuData.js";
+
+//components from folder and bootstrap
 import ProductCard from "../../../components/productCard/ProductCard"
 import {Container, Row, Col,Card} from 'react-bootstrap';
 
@@ -36,30 +38,30 @@ function SamplePrevArrow(props) {
   );
 }
 
-const ProjectSection = (props) =>{
+const PopularMenuSection = (props) =>{
   const chefanime = "https://res.cloudinary.com/dlst0ec4h/image/upload/v1673719201/pngwing.com-_1__ls7bfm.webp";
   
   const [category, setCategory] = useState("ALL")
   
- const[products, setProducts] = useState(foodmenu)
+ const[menu, setMenu] = useState(popularfoodData)
  
   //filter function
  useEffect(() =>{
    if(category === "ALL"){
-     setProducts(foodmenu)
+     setMenu(popularfoodData)
    }
    if(category === 'BREAKFAST'){
-     const filteredProducts = products.filter(item => item.category === "Breakfast")
-     setProducts(filteredProducts)
+     const filteredProducts = menu.filter(item => item.category === "Breakfast")
+     setMenu(filteredProducts)
    }
     if(category === 'LUNCH'){
-     const filteredProducts = products.filter(item => item.category === "Lunch")
-     setProducts(filteredProducts)
+     const filteredProducts = menu.filter(item => item.category === "Lunch")
+     setMenu(filteredProducts)
    }
    
      if(category === 'DINNER'){
-     const filteredProducts = products.filter(item => item.category === "Dinner")
-     setProducts(filteredProducts)
+     const filteredProducts = menu.filter(item => item.category === "Dinner")
+     setMenu(filteredProducts)
    }
  }, [category])
 
@@ -109,33 +111,33 @@ const ProjectSection = (props) =>{
     };
  
   return(
-    <Container fluid className={ProjectStyles.Container}>
+    <Container fluid className={PopularFoodStyle.Container}>
     
-<Row className={ProjectStyles.row}>
+<Row className={PopularFoodStyle.row}>
 
 <Col>
-    <h1 className={ProjectStyles.aboutTitle}>Our Popular Menu</h1>
+    <h1 className={PopularFoodStyle.Title}>Our Popular Menu</h1>
     
-    <p className={ProjectStyles.subHeading}>
+    <p className={PopularFoodStyle.subHeading}>
     Our Love for food and our desire for everyone to be healthy, always keep us in check when preparing our Dishes for you, Our lovely and outstanding Customers.
     </p>
   </Col>
   
      <Col
-   className={ProjectStyles.col}>
+   className={PopularFoodStyle.col}>
       <img 
       src={chefanime} 
       loading="lazy"
-      className={ProjectStyles.Img}/>
+      className={PopularFoodStyle.Img}/>
       </Col>
   </Row>
   
   
    {/*header button for filter*/}  
    
-     <header className ={ProjectStyles.containerFilter}>
+     <header className ={PopularFoodStyle.containerFilter}>
   
-  <div className={ProjectStyles.cardFilter}>
+  <div className={PopularFoodStyle.cardFilter}>
    <button className="btn"
 onClick= {() => setCategory("ALL")}>
 <MdOutlineFastfood className="lead me-2"/>
@@ -143,7 +145,7 @@ All
 </button>
 </div>
 
-<div className={ProjectStyles.cardFilter}>
+<div className={PopularFoodStyle.cardFilter}>
 <button className="btn" onClick= {() => setCategory("BREAKFAST")}>
 
 <MdOutlineFreeBreakfast className="lead me-2"/>
@@ -151,7 +153,7 @@ Breakfast
 </button>
 </div>
 
-  <div className={ProjectStyles.cardFilter}>
+  <div className={PopularFoodStyle.cardFilter}>
 <button className="btn"
 onClick= {() => setCategory("LUNCH")}>
 <MdLunchDining className="lead me-2"/>
@@ -159,7 +161,7 @@ Lunch
 </button>
 </div>
 
-<div className={ProjectStyles.cardFilter}>
+<div className={PopularFoodStyle.cardFilter}>
 <button className="btn"
 onClick= {() => setCategory("DINNER")}>
 <MdDinnerDining className="lead me-2"/>
@@ -169,13 +171,13 @@ Dinner
 
 </header>
 
-        <div className={ProjectStyles.tranding_product_inn}>
+        <div className={PopularFoodStyle.tranding_product_inn}>
         
       <Slider {...settings}
-      className={ProjectStyles.slider_outer}>
+      className={PopularFoodStyle.slider_outer}>
     {
-      products.map(item =>(
-      <div key={item.id}  className={ProjectStyles.slide_item}>
+       menu.map(item =>(
+      <div key={item.id}  className={PopularFoodStyle.slide_item}>
       <ProductCard item={item}/>
       </div>
       ))
@@ -193,4 +195,4 @@ Dinner
     )
 }
 
-export default ProjectSection
+export default PopularMenuSection

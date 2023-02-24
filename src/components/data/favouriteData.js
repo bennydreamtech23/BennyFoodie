@@ -1,5 +1,5 @@
 
-const favouritefood = [ 
+const favouritefoodData = [ 
   {
     id: 25,
    image: "https://res.cloudinary.com/dlst0ec4h/image/upload/v1673701234/food-png-2957_so38ol.webp",
@@ -21,4 +21,4 @@ const favouritefood = [
  
   ]
   
-  export default favouritefood
+  export default favouritefoodData
