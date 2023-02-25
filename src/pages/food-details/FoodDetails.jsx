@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import "./FoodDetails.scss";
-
 //all food dummy data
 import allFoodData from "../../components/data/allFoodData";
-
 //components from folder and react
 import HeaderSection from "../../components/headerSection/HeaderSection";
 import { Container, Row, Col, Form, InputGroup } from "react-bootstrap";
@@ -32,7 +30,7 @@ const dispatch = useDispatch()
   });
 
 //food data fetching
-const [previewImg,setPreviewImg] =useState(food.image)
+const [previewImg,setPreviewImg] = useState(food.image)
 
 const{name,price,category,desc,image} = food;
 
@@ -64,7 +62,7 @@ const submittedHandler = (e) =>{
   setEnteredMail('')
   SetEnteredMessage('')
 }
-  if (!food) {
+  if (!food){
     //If no product with the given ID is found, render an error message
     return (
       <section className="container-box">

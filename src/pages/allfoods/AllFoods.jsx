@@ -1,10 +1,8 @@
 import {useState, useEffect} from 'react';
 import ReactPaginate from 'react-paginate';
 import FoodStyles from "./AllFoods.module.scss";
-
 //dummy data for all item
 import allfoods from "../../components/data/allFoodData"
-
 //components from react and folder
 import {Container, Row, Col} from "react-bootstrap"
 import HeaderSection from '../../components/headerSection/HeaderSection'
@@ -12,7 +10,6 @@ import ProductCard from '../../components/productCard/ProductCard'
 
 //icons
 import {BsSearch} from "react-icons/bs";
-
 
 const AllfoodsPage = () =>{
  const [searchItem, setSearchItem] = useState('')
@@ -44,9 +41,9 @@ const [pageNumber, setPageNumber] = useState(0)
  <HeaderSection title='All Dishes'/>
  
  <Container>
-<Row>
+<Row className="d-flex align-items-center justify-content-between my-5">
 
-<Col lg='6' md='6' sm='6' xs='12'>
+<Col>
 <div className="d-flex align-items-center justify-content-between searchContainer">
 <input type='text'
 className={FoodStyles.searchbar}
@@ -59,7 +56,7 @@ onChange={(e) => setSearchItem(e.target.value)}/>
 </div>
 </Col>
 
-<Col lg='6' md='6' sm='6' xs='12' className='text-end'>
+<Col  className='text-end'>
 <div className={FoodStyles.searchOption}>
 <select className='bg-success text-white'>
 <option>Default</option>

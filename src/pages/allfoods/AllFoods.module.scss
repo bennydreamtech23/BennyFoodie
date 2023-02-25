@@ -17,13 +17,13 @@ font-family: var(--font);
      background: transparent;
      curor: pointer;
      width: 50%;
-    margin: 3rem 0rem;
+   // margin: 3rem 0rem;
     &:focus{
      outline: none;
 }
    @media only screen and (min-width: 320px) and (max-width: 768px){
 width: 100%;
-margin-top: 0rem;
+//margin-top: 0rem;
      }
 }
 

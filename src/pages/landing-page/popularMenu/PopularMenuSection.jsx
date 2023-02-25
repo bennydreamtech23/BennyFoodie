@@ -1,16 +1,12 @@
-
+import { Link } from "react-router-dom";
 import {useState, useEffect} from "react";
 import Slider from "react-slick";
 import PopularFoodStyle from "./PopularMenuSection.module.scss";
-//import { Link } from "react-router-dom";
-
 //dummy data for popular food
 import popularfoodData from "../../../components/data/popularMenuData.js";
-
 //components from folder and bootstrap
 import ProductCard from "../../../components/productCard/ProductCard"
 import {Container, Row, Col,Card} from 'react-bootstrap';
-
 //icon
 import {MdOutlineFastfood, MdOutlineFreeBreakfast, MdLunchDining, MdDinnerDining} from "react-icons/md";
 
@@ -41,31 +37,16 @@ function SamplePrevArrow(props) {
 const PopularMenuSection = (props) =>{
   const chefanime = "https://res.cloudinary.com/dlst0ec4h/image/upload/v1673719201/pngwing.com-_1__ls7bfm.webp";
   
-  const [category, setCategory] = useState("ALL")
-  
  const[menu, setMenu] = useState(popularfoodData)
  
-  //filter function
- useEffect(() =>{
-   if(category === "ALL"){
-     setMenu(popularfoodData)
-   }
-   if(category === 'BREAKFAST'){
-     const filteredProducts = menu.filter(item => item.category === "Breakfast")
-     setMenu(filteredProducts)
-   }
-    if(category === 'LUNCH'){
-     const filteredProducts = menu.filter(item => item.category === "Lunch")
-     setMenu(filteredProducts)
-   }
-   
-     if(category === 'DINNER'){
-     const filteredProducts = menu.filter(item => item.category === "Dinner")
-     setMenu(filteredProducts)
-   }
- }, [category])
-
-   
+ const filterResult = (catItem)=>{
+   const result = popularfoodData.filter((CurDate) =>{
+     return CurDate.category === catItem
+   })
+   setMenu(result)
+ }
+ 
+ 
  //slack setting
      const settings = {
        autoplay: true,
@@ -111,14 +92,20 @@ const PopularMenuSection = (props) =>{
     };
  
   return(
-    <Container fluid className={PopularFoodStyle.Container}>
+    <Container fluid 
+    className={PopularFoodStyle.Container}>
     
-<Row className={PopularFoodStyle.row}>
+<Row 
+className={PopularFoodStyle.row}>
 
 <Col>
-    <h1 className={PopularFoodStyle.Title}>Our Popular Menu</h1>
+    <h1 
+    className={PopularFoodStyle.Title}>
+    Our Popular Menu
+    </h1>
     
-    <p className={PopularFoodStyle.subHeading}>
+    <p 
+    className={PopularFoodStyle.subHeading}>
     Our Love for food and our desire for everyone to be healthy, always keep us in check when preparing our Dishes for you, Our lovely and outstanding Customers.
     </p>
   </Col>
@@ -134,62 +121,82 @@ const PopularMenuSection = (props) =>{
   
   
    {/*header button for filter*/}  
-   
-     <header className ={PopularFoodStyle.containerFilter}>
+     <header 
+     className ={PopularFoodStyle.containerFilter}>
   
-  <div className={PopularFoodStyle.cardFilter}>
-   <button className="btn"
-onClick= {() => setCategory("ALL")}>
-<MdOutlineFastfood className="lead me-2"/>
+  <div 
+  className={PopularFoodStyle.cardFilter}>
+   <button 
+   className="btn"
+onClick= {() => setMenu(popularfoodData)}>
+<MdOutlineFastfood 
+className="lead me-2"/>
 All
 </button>
 </div>
 
-<div className={PopularFoodStyle.cardFilter}>
-<button className="btn" onClick= {() => setCategory("BREAKFAST")}>
+<div
+className={PopularFoodStyle.cardFilter}>
+<button 
+className="btn" 
+onClick= {() => filterResult("Breakfast")}>
 
-<MdOutlineFreeBreakfast className="lead me-2"/>
+<MdOutlineFreeBreakfast 
+className="lead me-2"/>
 Breakfast
 </button>
 </div>
 
-  <div className={PopularFoodStyle.cardFilter}>
-<button className="btn"
-onClick= {() => setCategory("LUNCH")}>
-<MdLunchDining className="lead me-2"/>
+  <div 
+  className={PopularFoodStyle.cardFilter}>
+<button
+className="btn"
+onClick= {() => filterResult("Lunch")}>
+<MdLunchDining 
+className="lead me-2"/>
 Lunch
 </button>
 </div>
 
-<div className={PopularFoodStyle.cardFilter}>
-<button className="btn"
-onClick= {() => setCategory("DINNER")}>
-<MdDinnerDining className="lead me-2"/>
+<div 
+className={PopularFoodStyle.cardFilter}>
+<button 
+className="btn"
+onClick= {() => filterResult("Dinner")}>
+<MdDinnerDining 
+className="lead me-2"/>
 Dinner
 </button>
 </div>
 
 </header>
 
-        <div className={PopularFoodStyle.tranding_product_inn}>
+        <div 
+        className={PopularFoodStyle.tranding_product_inn}>
         
       <Slider {...settings}
       className={PopularFoodStyle.slider_outer}>
     {
        menu.map(item =>(
-      <div key={item.id}  className={PopularFoodStyle.slide_item}>
-      <ProductCard item={item}/>
+      <div 
+      key={item.id}  
+      className={PopularFoodStyle.slide_item}>
+      <ProductCard 
+      item={item}
+      category={item.category}/>
       </div>
       ))
     }
+  </Slider>
+</div>
 
-          </Slider>
-        </div>
-
-      <div className="mt-5 d-flex align-items-center justify-content-center">
-  <button className="secondarybtn">
+      <div 
+      className="mt-5 d-flex align-items-center justify-content-center">
+  <Link 
+  to='/menu'
+  className="secondarybtn">
   Explore All
-  </button>
+  </Link>
    </div>
     </Container>
     )

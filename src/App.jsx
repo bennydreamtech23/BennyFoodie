@@ -10,6 +10,8 @@ import LandingPage from "./pages/landing-page/Landingpage";
 import Allfoods from "./pages/allfoods/AllFoods"
 import FoodDetails from './pages/food-details/FoodDetails'
 import Checkout from './pages/checkout/Checkout'
+import CartPage from './pages/cartPage/CartPage'
+
 
 //core
  import LoginPage from "./pages/core/login/Login"
@@ -36,7 +38,8 @@ function App() {
         <Route 
         path="/" element={<LandingPage />} />
         <Route path="/menu" element={<Allfoods />} />
-                <Route path="/menu/:id" element={<FoodDetails />} />
+        <Route path="/menu/:id" element={<FoodDetails />} />
+        <Route path="/cart" element={<CartPage/>} />
          <Route path="/checkout" element={<Checkout/>} />
          
          

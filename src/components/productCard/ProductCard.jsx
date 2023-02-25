@@ -1,10 +1,11 @@
-
-import ProductCardStyle from "./ProductCad.module.scss";
- import {BsFillSuitHeartFill} from "react-icons/bs";
  import {Link} from 'react-router-dom';
+import ProductCardStyle from "./ProductCad.module.scss";
+//icon
+ import {BsFillSuitHeartFill} from "react-icons/bs";
 //redux
 import { useDispatch } from "react-redux";
 import {cartActions} from "../../store/shopping-cart/cartSlice"
+
 
 const ProductCard = (props) =>{
   const { id, name, price, image} = props.item
@@ -23,7 +24,7 @@ const dispatch = useDispatch()
 return(
           <div
           className={ProductCardStyle.product_container}>
-                
+         
             <div 
          className={ProductCardStyle.product_inn}>
                 

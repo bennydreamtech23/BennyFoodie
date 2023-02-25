@@ -1,15 +1,14 @@
 import {Link, useNavigate} from "react-router-dom";
-//container
-import {Container, Row, Col, Card} from 'react-bootstrap';
 import HeroStyles from "./HeroSection.module.scss";
 
+//container from bootstrap
+import {Container, Row, Col, Card} from 'react-bootstrap';
 //icons
 import {TbTruckDelivery, TbHandClick,TbAward} from "react-icons/tb";
 import {BsArrowDownRight} from "react-icons/bs"; 
 
 const HeroSection = () =>{
   const user = localStorage.getItem('user')
-  
   const navigate = useNavigate()
   
   const getStarted = () =>{
@@ -26,7 +25,6 @@ const HeroSection = () =>{
 
 const img = "https://res.cloudinary.com/dlst0ec4h/image/upload/v1673632501/Pngtree_healthy_food_3776802_nqbeku.webp";
 
-
   return(
     <>
     <Container fluid 
@@ -40,15 +38,15 @@ const img = "https://res.cloudinary.com/dlst0ec4h/image/upload/v1673632501/Pngtr
       <img src={img} 
       className={HeroStyles.heroimg} 
       loading="lazy"/>
-      
-      </Col>
+   </Col>
       
     <Col 
     className={HeroStyles.heroText}>
-    
   <h1 
   className={HeroStyles.title}>
-  Our food site makes it easy to find your <span className={HeroStyles.color}> Craving </span>
+  Our food site makes it easy to find your <span 
+  className={HeroStyles.color}> Craving 
+  </span>
   </h1>
   
 <p 
@@ -58,15 +56,17 @@ Imagine you don't need to fear food poison because we provide healthy and delici
 
 <div 
 className={HeroStyles.btnBox}>
-
 <button 
 className={`${HeroStyles.btn} ${HeroStyles.btnWhte} ${HeroStyles.btnAnimated}`} 
 onClick={getStarted}>
 Get Started 
 </button>
 
-  <button className="secondarybtn" onClick={order}>
-     Order Now <BsArrowDownRight className={HeroStyles.arrow}/>
+  <button 
+  className="secondarybtn" 
+  onClick={order}>
+     Order Now <BsArrowDownRight 
+     className={HeroStyles.arrow}/>
     </button>
 </div>
 </Col>
@@ -76,19 +76,19 @@ Get Started
 className="d-flex flex-row-reverse justify-content-center">
 
 {/*card 1*/}
-
      <Card
      className={HeroStyles.card}>
   <TbHandClick 
   className={HeroStyles.Icon}/>
   
       <Card.Body>
-      
-        <Card.Title className={HeroStyles.smallTitle}>
+        <Card.Title 
+        className={HeroStyles.smallTitle}>
         Easy To Order
         </Card.Title>
         
-        <Card.Text className={HeroStyles.text}>
+        <Card.Text 
+        className={HeroStyles.text}>
         We take your time and patience into consideration, that is why our platform is designed to just be a click when you want to place an order.
         </Card.Text>
       </Card.Body>
@@ -96,33 +96,36 @@ className="d-flex flex-row-reverse justify-content-center">
 
       {/* card 2*/}
       
-     <Card className={HeroStyles.card}>
-  <TbAward className={HeroStyles.Icon}/>
-  
+     <Card
+     className={HeroStyles.card}>
+  <TbAward 
+  className={HeroStyles.Icon}/>
       <Card.Body>
-      
-        <Card.Title 
+     <Card.Title 
         className={HeroStyles.smallTitle}>
         Best Quality
         </Card.Title>
-        
-        <Card.Text className={HeroStyles.text}>
+
+        <Card.Text 
+        className={HeroStyles.text}>
           Been Affoardable doesn't mean we shouldn't consider  quality and food hygiene in our preparation. Our Dishes are affordable and healthy...
         </Card.Text>
       </Card.Body>
     </Card>
 
       {/*card 3*/}
-      
-     <Card className={HeroStyles.card}>
-    <TbTruckDelivery className={HeroStyles.Icon}/>
+     <Card 
+     className={HeroStyles.card}>
+    <TbTruckDelivery 
+    className={HeroStyles.Icon}/>
       <Card.Body>
-      
-        <Card.Title className={HeroStyles.smallTitle}>
+        <Card.Title 
+        className={HeroStyles.smallTitle}>
         Fastest Delivery
         </Card.Title>
         
-        <Card.Text className={HeroStyles.text}>
+        <Card.Text 
+        className={HeroStyles.text}>
          Food should be eaten on time and slow delivery services hinder this, that why we provide the fastest delivery services. We are <strong> one step from your away Doorstep</strong>
         </Card.Text>
       </Card.Body>

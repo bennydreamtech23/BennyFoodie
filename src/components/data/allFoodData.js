@@ -14,7 +14,7 @@ const allfoodData = [
   image: 'https://res.cloudinary.com/dlst0ec4h/image/upload/v1673721735/pngwing.com_16_zurgty.webp',
     name: 'Burger and Cola',
    price: 35,
-   desc: 'Slow-cooked for eight hours, this intensely flavored and juicy lamb shank, infused with fresh rosemary and sage, is a house specialty. Served with smooth mashed potatoes and char-grilled, crispy asparagus, topped with a tangy golden-brown glaze for a meal hard to forget.'
+   desc: 'Hamburgers are traditionally made with ground beef and served with onions, tomatoes, lettuce, ketchup, and other garnishes. You can also make a hamburger with turkey or other kinds of meat — although rarely, if ever, is ham used in a hamburger. Hamburgers were originally called "hamburg steak," named for the German city of Hamburg, although no actual connection between the place and the food has ever been documented.'
   },
    {
       id: 3,
@@ -34,7 +34,7 @@ const allfoodData = [
   },
   {
       id: 5,
-    category: 'Breakfast',
+    category: 'Lunch',
     image: 'https://res.cloudinary.com/dlst0ec4h/image/upload/v1673720837/pngwing.com_10_mexzxw.webp',
     name: 'Macaronni and Chicken Sauce',
     price: 65,
@@ -42,11 +42,11 @@ const allfoodData = [
   },
     {
       id: 6,
-    category: 'Lunch',
+    category: 'Breakfast',
     image: 'https://res.cloudinary.com/dlst0ec4h/image/upload/v1673721018/pngwing.com_11_u01hre.webp',
     name: 'French Fries',
     price: 30,
-     desc: 'Slow-cooked for eight hours, this intensely flavored and juicy lamb shank, infused with fresh rosemary and sage, is a house specialty. Served with smooth mashed potatoes and char-grilled, crispy asparagus, topped with a tangy golden-brown glaze for a meal hard to forget.'
+     desc: 'french fries, also called chips, finger chips, fries, or French pommes frites, side dish or snack typically made from deep-fried potatoes that have been cut into various shapes, especially thin strips. Fries are often salted and served with other items, including ketchup, mayonnaise, or vinegar. '
   },
    {
       id: 7,
@@ -54,7 +54,7 @@ const allfoodData = [
     image: 'https://res.cloudinary.com/dlst0ec4h/image/upload/v1675289357/pngwing.com_vnmees.png',
     name: 'Noodles and Egg',
     price: 20,
-     desc: 'Slow-cooked for eight hours, this intensely flavored and juicy lamb shank, infused with fresh rosemary and sage, is a house specialty. Served with smooth mashed potatoes and char-grilled, crispy asparagus, topped with a tangy golden-brown glaze for a meal hard to forget.'
+     desc: 'This dish is finished with a unique type of omelette. You use a spray bottle to spray the egg mixture into a hot pan, creating an egg net. When placed on top of the noodles, you can still see the noodle dish underneath.'
   },
   {
       id: 8,
@@ -126,7 +126,7 @@ const allfoodData = [
     image: 'https://res.cloudinary.com/dlst0ec4h/image/upload/v1673720736/pngwing.com_9_a4g9pe.webp',
     name: 'Double Burger',
     price: 25,
-     desc: 'Slow-cooked for eight hours, this intensely flavored and juicy lamb shank, infused with fresh rosemary and sage, is a house specialty. Served with smooth mashed potatoes and char-grilled, crispy asparagus, topped with a tangy golden-brown glaze for a meal hard to forget.'
+     desc: 'Hamburgers are traditionally made with ground beef and served with onions, tomatoes, lettuce, ketchup, and other garnishes. You can also make a hamburger with turkey or other kinds of meat — although rarely, if ever, is ham used in a hamburger. Hamburgers were originally called "hamburg steak," named for the German city of Hamburg, although no actual connection between the place and the food has ever been documented.'
     
   },
   {
@@ -143,7 +143,7 @@ const allfoodData = [
     image: 'https://res.cloudinary.com/dlst0ec4h/image/upload/v1673720365/pngwing.com-_7__emy3te.webp',
     name: 'Hot Dog Crunchies',
     price: 20,
-     desc: 'Slow-cooked for eight hours, this intensely flavored and juicy lamb shank, infused with fresh rosemary and sage, is a house specialty. Served with smooth mashed potatoes and char-grilled, crispy asparagus, topped with a tangy golden-brown glaze for a meal hard to forget.'
+     desc: 'A hot dog (uncommonly spelled hotdog) is a food consisting of a grilled or steamed sausage served in the slit of a partially sliced bun. The term hot dog can refer to the sausage itself. '
   },
    {
       id: 19,
@@ -159,7 +159,7 @@ const allfoodData = [
     image: 'https://res.cloudinary.com/dlst0ec4h/image/upload/v1673720157/pngwing.com-_5__ofmeey.webp',
     name: 'Omelette Paratti',
     price: 15,
-     desc: 'Slow-cooked for eight hours, this intensely flavored and juicy lamb shank, infused with fresh rosemary and sage, is a house specialty. Served with smooth mashed potatoes and char-grilled, crispy asparagus, topped with a tangy golden-brown glaze for a meal hard to forget.'
+     desc: 'A good omelet is a little bit fluffy, but firm enough to contain its filling. You cook an omelet by whisking eggs with a bit of water or milk and cooking them quickly over high heat without stirring. You can then fold the omelet in half to serve it. While the French word omelette was first used in the 1600s, the omelet itself may be more than two hundred years older than that. The Latin root, lamella, means "thin plate."'
   },
   {
       id: 21,
@@ -167,7 +167,7 @@ const allfoodData = [
     image: 'https://res.cloudinary.com/dlst0ec4h/image/upload/v1673720016/pngwing.com-_4__affge7.webp',
     name: 'Omelette Salad',
     price: 15,
-     desc: 'Slow-cooked for eight hours, this intensely flavored and juicy lamb shank, infused with fresh rosemary and sage, is a house specialty. Served with smooth mashed potatoes and char-grilled, crispy asparagus, topped with a tangy golden-brown glaze for a meal hard to forget.'
+     desc: 'A good omelet is a little bit fluffy, but firm enough to contain its filling. You cook an omelet by whisking eggs with a bit of water or milk and cooking them quickly over high heat without stirring. You can then fold the omelet in half to serve it. While the French word omelette was first used in the 1600s, the omelet itself may be more than two hundred years older than that. The Latin root, lamella, means "thin plate."'
   },
    {
       id: 22,
