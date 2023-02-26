@@ -271,18 +271,18 @@ aria-labelledby="offcanvasExampleLabel">
       
       {!user ? 
       <>
-        <button className="resumebtn" onClick={(e) => handleSignup(e)}>
+        <button className="login" onClick={(e) => handleSignup(e)}>
         Register
         </button>
         
-         <button className="resumebtn"
+         <button className="signup"
          onClick={(e) => handleLogin(e)}>
           Login
         </button>
         </>
         :
         <>
-         <button className="resumebtn"
+         <button className="signup"
          onClick={(e) => logout(e)}>
            Logout
         </button>

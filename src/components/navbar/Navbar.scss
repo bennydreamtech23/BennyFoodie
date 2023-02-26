@@ -42,55 +42,6 @@ text-decoration: none;
   }
   }
   
-  .signup{
-border: var(--border);
- border-radius: 5px;
-font-family: var(--font);
-font-style: normal;
-font-weight: 600;
-font-size: 14px;
-line-height: 20px;
-text-align: center;
-letter-spacing: 0.1px;
-color: var(--green);
-padding: 10px 24px;
-background: transparent;
-width: 9.5rem;
-text-decoration: none;
-  }
-  .signup:hover{
-  border: 2px solid var(--purple);
-  cursor: pointer;
-  color: white;
-  background: var(--green);
-}  
-
-.login{
-border: var(--border);
- border-radius: 5px;
-font-family: var(--font);
-font-style: normal;
-font-weight: 600;
-font-size: 14px;
-line-height: 20px;
-text-align: center;
-letter-spacing: 0.1px;
-color: #fff;
-padding: 10px 24px;
-background: var(--green);
-width: 9.5rem;
-text-decoration: none;
-  }
-  
-  .login:hover{
-  border: 2px solid var(--green);
-  cursor: pointer;
-  color: var(--green);
-  background: transparent;
-}  
-
-
-
  .navbar-toggler{
   @media only screen and (min-width: 320px) and (max-width: 768px){
     margin-top: -20px;
@@ -194,3 +145,50 @@ font-family: var(--font);
    .nav-link:active{
        color: var(--green);
    }
+   
+   .signup{
+border: var(--border);
+ border-radius: 5px;
+font-family: var(--font);
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 20px;
+text-align: center;
+letter-spacing: 0.1px;
+color: var(--green);
+padding: 10px 24px;
+background: transparent;
+width: 9.5rem;
+text-decoration: none;
+  }
+  .signup:hover{
+  border: 2px solid var(--purple);
+  cursor: pointer;
+  color: white;
+  background: var(--green);
+}  
+
+.login{
+border: var(--border);
+ border-radius: 5px;
+font-family: var(--font);
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 20px;
+text-align: center;
+letter-spacing: 0.1px;
+color: #fff;
+padding: 10px 24px;
+background: var(--green);
+width: 9.5rem;
+text-decoration: none;
+  }
+  
+  .login:hover{
+  border: 2px solid var(--green);
+  cursor: pointer;
+  color: var(--green);
+  background: transparent;
+}  
