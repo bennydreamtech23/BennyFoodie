@@ -46,16 +46,29 @@ key={item.id}/>)}
 </Table>
 }
 
-<div>
-<h5>subtotal: <strong>{totalAmount}</strong></h5>
+<div className='mt-3'>
+<h6
+className='fw-normal '>subtotal: <strong 
+className='cart_subtotal'>
+€{totalAmount}
+</strong>
+</h6>
+
 <p>Taxes and shipping will be calculated at checkout</p>
-<div>
-<Link to='/menu'>Continue Shopping</Link>
-<Link to='/checkout'>Proceed to checkout</Link>
-</div>
+<div className='d-flex align-items-start gap-3'>
+<Link 
+to='/menu' 
+className='text-decoration-none cartbtn'>
+Continue Shopping
+</Link>
 
-</div>
-
+<Link
+to='/checkout' 
+className='text-decoration-none fw-bold text-danger'>
+Proceed to checkout
+</Link>
+       </div>
+   </div>
 </Col>
  </Row>
  
@@ -78,7 +91,7 @@ const Tr = props =>{
   <img src={image} alt='product-image'/>
   </td>
    <td className='text-center'>{name}</td>
-   <td className='text-center'>{price}</td>
+   <td className='text-center'>€{price}</td>
     <td className='text-center'>{quantity}</td>
     <td className='text-center cart_item-delete'><MdDeleteOutline 
     className='del_icon'

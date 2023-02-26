@@ -1,3 +1,26 @@
-.Container{
-  padding: 100px 64px;
-}
+   .checkout_form{
+   .form_group{
+       margin-bottom: 1rem;
+       .inputfield{
+         background: transparent;
+         padding: 7px 20px;
+         border: none;
+         border-bottom: 1.5px solid #ccc;
+         outline: none;
+       }
+       .inputfield:focus{
+           outline: none;
+           border: none;
+         }
+     }
+   }
+   
+   .checkout_bill{
+     background: rgba(80,200,120, 0.3);
+     padding: 30px;
+   }
+   .checkout_total{
+     border: 1.2px solid rgba(80,200,120,0.9);
+     padding: 20px 10px;
+     border-radius: 10px;
+   }
