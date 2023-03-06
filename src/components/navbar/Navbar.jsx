@@ -101,7 +101,7 @@ const handleLogin = (e) =>{
      <li className="nav-item">
            <Link  to="/services" 
           className="nav-link">
-    Services
+ Catering
           </Link>
         </li>
      
@@ -221,7 +221,7 @@ aria-labelledby="offcanvasExampleLabel">
      <Link  
        to="/services" 
    className="nav-link">
-    Services
+Catering
           </Link>
         </li>
      

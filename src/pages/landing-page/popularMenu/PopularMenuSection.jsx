@@ -46,7 +46,6 @@ const PopularMenuSection = (props) =>{
    setMenu(result)
  }
  
- 
  //slack setting
      const settings = {
        autoplay: true,

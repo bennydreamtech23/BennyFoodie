@@ -7,6 +7,9 @@ import Footer from "./components/footer/Footer";
 
 //pages
 import LandingPage from "./pages/landing-page/Landingpage";
+import AboutPage from "./pages/about/About";
+import CateringPage from "./pages/catering/Catering";
+import ContactPage from "./pages/contact/Contact";
 import Allfoods from "./pages/allfoods/AllFoods"
 import FoodDetails from './pages/food-details/FoodDetails'
 import Checkout from './pages/checkout/Checkout'
@@ -37,6 +40,12 @@ function App() {
         {/* pages */}
         <Route 
         path="/" element={<LandingPage />} />
+         <Route 
+        path="/about" element={<AboutPage/>} />
+         <Route 
+        path="/services" element={<CateringPage/>} />
+          <Route 
+        path="/contact" element={<ContactPage/>} />
         <Route path="/menu" element={<Allfoods />} />
         <Route path="/menu/:id" element={<FoodDetails />} />
         <Route path="/cart" element={<CartPage/>} />
