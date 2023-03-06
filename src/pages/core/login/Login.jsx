@@ -100,7 +100,6 @@ navigate('/signup')
               
               const user = JSON.parse(localStorage.getItem('user'))
               console.log(user.email);
-              
               navigate('/menu', { replace: true })
               } else {
                // alert(data.error.description)
