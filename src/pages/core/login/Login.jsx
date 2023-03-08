@@ -1,232 +1,259 @@
-import {Container, 
-Col, 
-Form,
-InputGroup,
-Row , 
-Toast,
-ToastContainer} from 'react-bootstrap';
-import {useNavigate, Link} from "react-router-dom";
-import styles from "./Login.module.scss";
- import { Formik } from 'formik';
- import * as Yup from 'yup';
- import {useState} from "react"
+import { Link, useNavigate } from 'react-router-dom'
+import { useState, useEffect, useContext } from 'react'
+import { AuthContext } from '../auth/AuthContext'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import {
+  auth,
+logInWithEmailAndPassword,
+  signInWithGoogle,
+} from '../auth/firebase'
+
+import styles from './Login.module.scss'
+
+import {
+  Container,
+  Toast,
+  ToastContainer,
+  Row,
+  Col,
+  Form,
+  InputGroup,
+  Spinner,
+  Button,
+} from 'react-bootstrap'
 
 //icon
-import { RiLockPasswordFill } from "react-icons/ri";
-import {
-  MdEmail,
-  MdOutlinePhoneLocked, 
-  MdErrorOutline, 
-  MdPersonOutline} from "react-icons/md";
+import { MdEmail, 
+MdPersonOutline } from 'react-icons/md'
+import { RiLockPasswordLine } from 'react-icons/ri'
+import { FcGoogle } from 'react-icons/fc'
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 
-import {
-  AiOutlineEyeInvisible, 
-AiOutlineEye
-} from "react-icons/ai";
+const Login = () => {
+  const [user] = useAuthState(auth)
+  const navigate = useNavigate()
 
-function LoginPage() {
+  const [isLoading, setIsLoading] = useState(false)
+  const [formValues, setFormValues] = useState({})
+  const [passwordEye, setpasswordEye] = useState(false)
+  
+  const [touched, setTouched] = useState({})
+
+  //error
+  const [formError, setFormError] = useState({})
+
+  //toast usestate component
   const [showToast, setShowToast] = useState(false)
   const [errorType, setErrorType] = useState('')
   const [messageType, setMessageType] = useState('')
 
-//toggle
-  const [togglePassword, setTogglePassword] = useState(false)
-  
-const navigate = useNavigate()
+  const useAuthValue = useContext(AuthContext)
+  const { setTimeActive } = useAuthValue
 
-const handleSignup = (e) =>{
-e.preventDefault()
-navigate('/signup')
-}
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setFormValues({ ...formValues, [name]: value })
+
+    setTouched((prevState) => ({
+      ...prevState,
+      [e.target.name]: true,
+    }))
+  }
+
+  const validate = (values) => {
+    const errors = {}
+    const regex =
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+    const passw = /^[A-Za-z]\w{7,14}$/
+  
+    if (!values.email) {
+      errors.email = 'Email is required'
+    } else if (!regex.test(values.email)) {
+      errors.email = 'This is not a valid email'
+    }
+
+    if (!values.password) {
+      errors.password = 'Password is required'
+    } else if (!passw.test(values.password)) {
+      errors.password = 'Password must contain uppercase and lowercase.'
+    }
+ 
+    return errors
+  }
+
+  useEffect(() => {
+    validate(formValues)
+    //console.log(formError)
+    setFormError(validate(formValues))
+    // if (Object.keys(formError).length === 0) {
+    // }
+  }, [formValues, touched])
+
+  const handlesubmit = (e) => {
+    e.preventDefault()
+    console.log(formValues)
+    setIsLoading(false)
+    if (Object.keys(formError).length > 0) {
+      setTouched({
+        password: true,
+        email: true,
+      })
+      setIsLoading(false)
+    }
+
+    if (Object.keys(formError).length === 0) {
+      setTouched({
+        password: false,
+        email: false,
+      })
+      if (
+        logInWithEmailAndPassword(
+          formValues.email,
+          formValues.password
+        )
+      ) {
+        setTimeActive(true)
+        navigate('/verify-email')
+      }
+
+      setIsLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    if (isLoading) return
+    if (user) navigate('/menu')
+  }, [user, isLoading])
 
   return (
     <Container fluid className={styles.Container}>
-           <h1 className={styles.title}>Welcome Back to <span className={styles.color}>Bennyfoodie!</span></h1>
-           <p className={styles.subTitle}>
-         Enter your details, our prominent Customers
-           </p>
-    
-     {/*registration form*/} 
-      <Formik
-       initialValues={{ 
-       email: '',
-        password: '',
-       }}
-  
-       validationSchema={Yup.object({
-       
-         email: Yup.string().email('Invalid email address').required('Required'),
-         
-    password: Yup.string()
-  .required('No password provided.')
-  .min(8, 'Password is too short - should be 8 chars minimum.')
-  .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.'),
-       })}
-       onSubmit={() => {
-          //e.preventDefault()
-          fetch('https://benny-foods.fly.dev/api/v1/users/login', {
-            method: 'POST',
-            //headers: {
-            //'Content-Type': 'application/json',
-            //'Accept': 'application/json'
-            // },
-            body: JSON.stringify({
-              email: email.value,
-              password: password.value,
-            }),
-          })
-            .then((response) => response.json())
-            .then((data) => {
-              //alert(data.message)
-              if (data.status === 'success') {
-                alert(data.message)
-                setErrorType('success')
-                setMessageType(data.message)
-                setShowToast(true)
-                //set constants for local storage
-                const email = data.data.email
-                const access_token = data.data.access_token
-                const user_id = data.data.user_id
-                const name = data.data.name
-              localStorage.setItem(
-                "user",
-                JSON.stringify({
-                  email,
-                  access_token,
-                  user_id,
-                  name,
-                })
-                )
-              
-              const user = JSON.parse(localStorage.getItem('user'))
-              console.log(user.email);
-              navigate('/menu', { replace: true })
-              } else {
-               // alert(data.error.description)
-                setErrorType('danger')
-               setMessageType(data.error.description)
-                setShowToast(true)
-              }
-            })
-            .catch((error) => console.log(error))
-        }}
-     >
-       {formik => (
-         <Form  noValidate
-         autoComplete='off'
-         onSubmit={formik.handleSubmit}>
-         
-{/*email section of the page*/} 
+      <h1 className={styles.title}>
+        Welcome Back to <span className={styles.color}>Bennyfoodie!</span>
+      </h1>
 
-          <Form.Group className={styles.group}>
-         <div className={styles.subgroup}> 
-    
-      <Form.Label className={styles.labelfield}>
-Email
-      </Form.Label>
-      
+      <p className={styles.subTitle}>
+        Register to create your first account and become a prominent customer of
+        BennyFoodie
+      </p>
+
+      <Form onSubmit={handlesubmit}>
+        <Form.Group className={styles.group}>
+          <Form.Label 
+          className={styles.labelfield}>
+          Email
+          </Form.Label>
+
           <InputGroup className={styles.inputField}>
-          
-         <InputGroup.Text id="inputGroupPrepend">
-        <MdEmail/></InputGroup.Text>
-                 
-              <Form.Control
-                 size="md" 
-            type="email"
-          name="email"
-     placeholder="Enter your Email Address"
-            id="email"
-      className={styles.inputbox} 
-             {...formik.getFieldProps('email')}
-           />
-               </InputGroup>
-    {formik.touched.email && formik.errors.email ? (
-             <div className={styles.errorMsg}> <MdErrorOutline className="h6 mt-1"/> {formik.errors.email}</div>
-           ) : null}      
-        
-</div>
-     </Form.Group>
-      
-    {/*pasword section*/}  
-      <Form.Group className={styles.group}>
-     
-     <div className={styles.subgroup}> 
-    
-      <Form.Label className={styles.labelfield}>
-Password
-      </Form.Label>
-      
-  <InputGroup className={styles.inputField}>
-         <InputGroup.Text id="inputGroupPrepend">
-        <RiLockPasswordFill/></InputGroup.Text>
-                 
-              <Form.Control
-          size="md" 
-          type={togglePassword ? 'text' : 'password'}
-                name="password"
-                placeholder="Set your password"
-              id="password"
-           className={styles.inputbox} 
-             {...formik.getFieldProps('password')}
-           />
-        <InputGroup.Text id='inputGroupPrepend'  onClick={(e) => {
-                    e.preventDefault()
-                    setTogglePassword(!togglePassword)
-                  }}>
-                  {togglePassword ? (
-                    <AiOutlineEyeInvisible />
-                  ) : (
-                    <AiOutlineEye />
-                  )}
-                </InputGroup.Text>
-           </InputGroup>
-               
-       {formik.touched.password && formik.errors.password ? (
-             <div className={styles.errorMsg}><MdErrorOutline className="h6 mt-1"/> {formik.errors.password}</div>
-           ) : null}         
-         
-</div>
-     </Form.Group>
-    
-    <Link to="/forgotpassword" className={styles.link}>Forget Password</Link>  
-           <button className={styles.loginButton} 
-           type="submit" 
-        >
-           Submit
-           </button>
-         </Form>
-       )}
-     </Formik>
-     
-     <hr/>
-     <div className={styles.semiGroup}>
-     <p className="text-center">
-      Don't Have an Account
-     </p>
-     <button className={styles.btnLink} onClick={handleSignup}>Signup</button>
-     </div>
-    
-
-        <Toast
-          bg={errorType}
-          show={showToast}
-          onClose={() => {
-            setShowToast(!showToast)
-          }}
-         className={styles.toaster}
-        >
-          <Toast.Header>
-            <img
-              src='holder.js/20x20?text=%20'
-              className='rounded me-2'
-              alt=''
+            <InputGroup.Text id='inputGroupPrepend'>
+              <MdEmail />
+            </InputGroup.Text>
+            <Form.Control
+              name='email'
+              type='email'
+              value={formValues.email}
+              placeholder='Please Enter your Email Address'
+              onChange={handleChange}
             />
-            <strong className='me-auto'>BennyFoodie</strong>
-          </Toast.Header>
-          <Toast.Body className='text-white'>{messageType}</Toast.Body>
-        </Toast>
+          </InputGroup>
+          <div className={styles.errorMsg}>
+            {touched.email && formError.email}
+          </div>
+        </Form.Group>
+
+        <Form.Group className={styles.group}>
+          <Form.Label className={styles.labelfield}>Password</Form.Label>
+          <InputGroup className={styles.inputField}>
+            <InputGroup.Text id='inputGroupPrepend'>
+              <RiLockPasswordLine />
+            </InputGroup.Text>
+            <Form.Control
+              name='password'
+              type={passwordEye ? 'text' : 'password'}
+              value={formValues.phone_number}
+              placeholder='Please Enter your Password'
+              onChange={handleChange}
+            />
+
+            <InputGroup.Text
+              id='inputGroupPrepend'
+              role='button'
+              onClick={(e) => {
+                e.preventDefault()
+                setpasswordEye(!passwordEye)
+              }}
+            >
+              {passwordEye ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
+            </InputGroup.Text>
+          </InputGroup>
+          <div className={styles.errorMsg}>
+            {touched.password && formError.password}
+          </div>
+        </Form.Group>
+
+      
+        <div className='d-flex align-items-center justify-content-center'>
+          {isLoading ? (
+            <Button disabled>
+              <Spinner
+                as='span'
+                animation='grow'
+                size='sm'
+                role='status'
+                aria-hidden='true'
+              />
+              Loading...
+            </Button>
+          ) : (
+            <Button variant='primary' type='submit'>
+              Submit
+            </Button>
+          )}
+        </div>
+      </Form>
+
+      <div className={styles.groupbtn}>
+        <div>
+          <button className={styles.signupbtn} onClick={signInWithGoogle}>
+            Sign up with <FcGoogle className='lead' />
+          </button>
+        </div>
+
+        <div className={styles.semigroup}>
+          <p>User create an Account?</p>
+          <button className={styles.link}>
+        Signup
+          </button>
+        </div>
+      </div>
+
+      {showToast ? (
+        <>
+          <div className={styles.ToastContainer} />
+          <div className={styles.centered}>
+            <Toast
+              bg={errorType}
+              onClose={() => {
+                setShowToast(!showToast)
+              }}
+              className={styles.toast}
+            >
+              <Toast.Header className='mt-3'>
+                <img
+                  src='holder.js/20x20?text=%20'
+                  className='rounded me-2'
+                  alt=''
+                />
+                <strong className='me-auto'>BennyFoodie</strong>
+              </Toast.Header>
+              <Toast.Body className='text-dark'>{messageType}</Toast.Body>
+            </Toast>
+          </div>
+        </>
+      ) : (
+        ''
+      )}
     </Container>
-  );
+  )
 }
 
-export default LoginPage;
+export default Login
