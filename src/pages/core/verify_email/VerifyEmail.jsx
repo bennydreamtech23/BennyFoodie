@@ -8,9 +8,9 @@ import {useNavigate} from 'react-router-dom'
 function VerifyEmail() {
 const useAuthValue = useContext(AuthContext)
   
-  const {currentUser} = useAuthValue()
+  const {currentUser} = useAuthValue
   const [time, setTime] = useState(60)
-  const {timeActive, setTimeActive} = useAuthValue()
+  const {timeActive, setTimeActive} = useAuthValue
   const navigate = useNavigate()
 
   useEffect(() => {

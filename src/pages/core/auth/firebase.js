@@ -1,5 +1,5 @@
-import {useContext} from 'react'
 import { initializeApp } from "firebase/app";
+import { useNavigate } from "react-router-dom";
 
 import {
   GoogleAuthProvider,
@@ -21,7 +21,7 @@ import {
   addDoc,
 } from "firebase/firestore";
 
-import {AuthContext} from './AuthContext'
+//import {AuthContext} from './AuthContext'
 
 const firebaseConfig = {
    apiKey: "AIzaSyAJqpt2YskO0szupwuHmKRgQjHk0R5c3fI",
@@ -38,6 +38,8 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const googleProvider = new GoogleAuthProvider();
+//const navigate = useNavigate()
+
 
 const signInWithGoogle = async () => {
   try {
@@ -60,6 +62,7 @@ const signInWithGoogle = async () => {
 };
 
 const logInWithEmailAndPassword = async (email, password) => {
+
   try {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {
@@ -69,13 +72,12 @@ const logInWithEmailAndPassword = async (email, password) => {
 };
 
 const registerWithEmailAndPassword = async (name, email, password) => {
-const useAuthValue = useContext(AuthContext)
-const {setTimeActive} = useAuthValue;
-
+//const useAuthValue = useContext(AuthContext)
+//const {setTimeActive} = useAuthValue;
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
   if(sendEmailVerification(auth.currentUser)){
-     setTimeActive(true)
+    // setTimeActive(true)
     navigate('/verify-email')
   }
   alert(err.message)

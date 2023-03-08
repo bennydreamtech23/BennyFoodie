@@ -279,7 +279,8 @@ useEffect(() => {
   <div className={styles.groupbtn}>
         <div>
          <button
-          className={styles.signupbtn}>
+          className={styles.signupbtn}
+          onClick={signInWithGoogle}>
           Sign up with <FcGoogle className='lead'/>
         </button> 
     </div>
