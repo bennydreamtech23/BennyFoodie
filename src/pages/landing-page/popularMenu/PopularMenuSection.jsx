@@ -10,7 +10,6 @@ import {Container, Row, Col,Card} from 'react-bootstrap';
 //icon
 import {MdOutlineFastfood, MdOutlineFreeBreakfast, MdLunchDining, MdDinnerDining} from "react-icons/md";
 
-
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
   return (

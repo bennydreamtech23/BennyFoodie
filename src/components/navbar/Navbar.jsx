@@ -1,6 +1,8 @@
 import { useEffect, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import "./Navbar.scss";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth, logout} from "../../pages/core/auth/firebase";
 //component from bootstrap
 import {Container, Nav, Badge} from 'react-bootstrap';
 //icons
@@ -12,19 +14,25 @@ import {cartListActions} from '../../store/shopping-cart/cartListSlice'
 
 function NavbarTool() {
 const navigate = useNavigate()
+//logout function
+  const [user, loading] = useAuthState(auth);
 const totalQuantity = useSelector(state => state.cart.totalQuantity)
 
- const user = localStorage.getItem('user')
+  useEffect(() => {
+    if (loading) return;
+    if (!user) return navigate("/");
+  }, [user, loading]);
+
+
  const dispatch = useDispatch()
  
  const toggleCart = () =>{
-   if(!user === "true"){
-     navigate('/signup')
-   }else{
        dispatch(cartListActions.toggle())
    }
-   }
- 
+   
+  const newuser = () =>{
+  navigate('/signup')
+  }
  
  //handlesignup and handlelogin
 const handleSignup = (e) =>{
@@ -37,13 +45,6 @@ const handleLogin = (e) =>{
   navigate('/login')
  
 }
-
-  const logout = (e) =>{
-    e.preventDefault()
-    localStorage.removeItem('user')
-    navigate('/')
-//console.log(logout)
-  }
 
 
  const [stickyClass, setStickyClass] = useState('');
@@ -90,18 +91,20 @@ const handleLogin = (e) =>{
     
       <ul 
       className="navbar-nav me-auto mb-2 mb-lg-0">
-    
+
+ <li className="nav-item">
+           <Link  to="/services" 
+          className="nav-link">
+ Catering
+          </Link>
+        </li>
+        
+        {!user ?
+        <>
         <li className="nav-item">
           <Link to="/about" 
           className="nav-link">
           About
-          </Link>
-        </li>
-     
-     <li className="nav-item">
-           <Link  to="/services" 
-          className="nav-link">
- Catering
           </Link>
         </li>
      
@@ -111,7 +114,9 @@ const handleLogin = (e) =>{
           Contact
           </Link>
         </li>
-
+        </>
+:
+<>
       <li className="nav-item">
            <Link  to="/menu" 
           className="nav-link">
@@ -125,19 +130,22 @@ const handleLogin = (e) =>{
           Cart
           </Link>
         </li>
+        </>
+        }
     </ul>
     
      <form className="d-flex me-5">
         <span 
         className="iconPlus"
         to="/cart" 
-        onClick={(e) =>toggleCart(e)}>
+        onClick={user ? toggleCart : newuser}>
         <BsCart4 
         className="h3 text-light"/>
         
         <Badge
         bg="secondary"
-        className="badge__content">{totalQuantity}
+        className="badge__content">
+        {!user ? 0 : totalQuantity}
         </Badge>
         </span>
         
@@ -204,6 +212,17 @@ aria-labelledby="offcanvasExampleLabel">
   className="offcanvas-body">
     <ul
     className="navbar-nav me-auto mb-2 mb-lg-0">
+    
+       <li 
+     className="nav-item">
+     <Link  
+    to="/services" 
+    data-bs-dismiss="offcanvas" aria-label="Close"
+   className="nav-link">
+Catering
+          </Link>
+        </li>
+        
       {!user ?
       <>
         <li 
@@ -211,24 +230,18 @@ aria-labelledby="offcanvasExampleLabel">
         
           <Link 
           to="/about" 
-          className="nav-link">
+          className="nav-link"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close">
           About
           </Link>
         </li>
-     
-     <li 
-     className="nav-item">
-     <Link  
-       to="/services" 
-   className="nav-link">
-Catering
-          </Link>
-        </li>
-     
+  
           <li 
           className="nav-item">
            <Link 
            to="/contact" 
+           data-bs-dismiss="offcanvas" aria-label="Close"
           className="nav-link">
           Contact
           </Link>
@@ -255,7 +268,7 @@ Catering
 
      
   <form className="d-flex me-5">
-        <span className="iconPlus" to="/cart" onClick={user ? toggleCart : ''}>
+        <span className="iconPlus" to="/cart" onClick={user ? toggleCart : newuser}>
         <BsCart4 className="h3 text-dark"/>
         <Badge bg="secondary" className="badge__content">{user ? totalQuantity : 0}
         </Badge>

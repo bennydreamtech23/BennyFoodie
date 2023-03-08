@@ -22,9 +22,8 @@ Healthy and mouth watering dishes prepared by the best chef in order to satisfy 
      <Col className={footerStyles.col2}>
 <h1 className={footerStyles.heading}>Site map</h1>
 <Nav className="flex-column">
-      <Nav.Link href="/" className={footerStyles.link}>Services</Nav.Link>
-       <Nav.Link href="/" className={footerStyles.link}>Contact</Nav.Link>
-     <Nav.Link href="/" className={footerStyles.link}>About</Nav.Link>
+      <Nav.Link href="/services" className={footerStyles.link}>Services</Nav.Link>
+     <Nav.Link href="/about" className={footerStyles.link}>About</Nav.Link>
     </Nav>
     </Col>
     

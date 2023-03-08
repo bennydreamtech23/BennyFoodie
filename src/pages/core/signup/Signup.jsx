@@ -1,323 +1,328 @@
+import {Link, useNavigate} from "react-router-dom";
+import { useState, useEffect } from 'react'
+import { useAuthState } from "react-firebase-hooks/auth";
+import {
+  auth,
+  registerWithEmailAndPassword,
+  signInWithGoogle,
+}from "../auth/firebase";
+
+import styles from './Signup.module.scss'
 
 import {
   Container,
+  Toast,
+  ToastContainer,
+  Row,
   Col,
   Form,
   InputGroup,
-  Row,
-  Toast,
+  Spinner, 
+  Button
 } from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
-import styles from './Signup.module.scss'
-import { Formik } from 'formik'
-import * as Yup from 'yup'
-//import axios from 'axios'
 
 //icon
-import { RiLockPasswordFill } from 'react-icons/ri'
-import {
-  MdEmail,
-  MdOutlinePhoneLocked,
-  MdErrorOutline,
-  MdPersonOutline,
-} from 'react-icons/md'
+import { MdEmail, 
+MdPersonOutline } 
+from 'react-icons/md'
+import {RiLockPasswordLine} from "react-icons/ri";
+import {FcGoogle} from "react-icons/fc";
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 
-import {AiOutlineEyeInvisible, 
-AiOutlineEye
-} from "react-icons/ai";
+const Register = () => {
+  const [user] = useAuthState(auth);
+    const navigate = useNavigate();
+    
+  const[isLoading, setIsLoading] = useState(false)
+const [formValues, setFormValues] = useState({})
+const [passwordEye, setpasswordEye] = useState(false)
+const [confirmPasswordEye, setConfirmPasswordEye] = useState(false)
 
+  const [touched, setTouched] = useState({})
 
-function SignupPage(props) {
+  //error
+  const [formError, setFormError] = useState({})
+
+  //toast usestate component
   const [showToast, setShowToast] = useState(false)
   const [errorType, setErrorType] = useState('')
   const [messageType, setMessageType] = useState('')
 
-//toggle
-  const [togglePassword, setTogglePassword] = useState(false)
-  
-  const phoneRegExp =
-    /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setFormValues({ ...formValues, [name]: value })
 
-  const navigate = useNavigate()
-
-  const handleLogin = (e) => {
-    e.preventDefault()
-    navigate('/login', { replace: true })
+    setTouched((prevState) => ({
+      ...prevState,
+      [e.target.name]: true,
+    }))
   }
 
+
+  const validate = (values) => {
+    const errors = {}
+    const regex =
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+       const passw =  /^[A-Za-z]\w{7,14}$/
+    if (!values.full_name) {
+      errors.full_name = 'Full Name is required'
+    }
+    
+    if (!values.email) {
+      errors.email = 'Email is required'
+    } else if (!regex.test(values.email)) {
+      errors.email = 'This is not a valid email'
+    }
+    
+    if (!values.password) {
+      errors.password = 'Password is required'
+    }else if (!passw.test(values.password)) {
+      errors.password = 'Password must contain uppercase and lowercase.'
+    }
+       if (values.confirmPassword !== values.password) {
+      errors.confirmPassword = 'Password doesnot match'
+    }
+    
+    return errors
+  }
+
+  useEffect(() => {
+    validate(formValues)
+    //console.log(formError)
+    setFormError(validate(formValues))
+    // if (Object.keys(formError).length === 0) {
+    // }
+  }, [formValues, touched])
+
+  const handlesubmit = (e) => {
+    e.preventDefault()
+    console.log(formValues)
+setIsLoading(false)
+    if (Object.keys(formError).length > 0) {
+      setTouched({
+        full_name: true,
+        password: true,
+        email: true,
+        confirmPassword: true,
+      })
+      setIsLoading(false)
+    }
+
+    if (Object.keys(formError).length === 0) {
+      setTouched({
+      full_name: false,
+        password: false,
+        email: false,
+        confirmPassword: false,
+      })
+      registerWithEmailAndPassword(formValues.name, formValues.email, formValues.password);
+      setIsLoading(false)
+    }
+  }
+
+useEffect(() => {
+    if (isLoading) return;
+    if (user) navigate("/menu");
+  }, [user, isLoading]);
+
   return (
-    <>
-    <Container fluid className={styles.Container}>
-      <h1 className={styles.title}>
+      <Container fluid
+      className={styles.Container}>
+<h1 className={styles.title}>
         Welcome to <span className={styles.color}>Bennyfoodie!</span>
       </h1>
+      
       <p className={styles.subTitle}>
         Register to create your first account and become a prominent customer of
-        BennyFoodie
+         BennyFoodie
       </p>
 
-      {/*registration form*/}
-      <Formik
-        initialValues={{
-          firstName: '',
-          lastName: '',
-          email: '',
-          phoneNumber: '',
-          password: '',
-        }}
-        validationSchema={Yup.object({
-          firstName: Yup.string()
-            .max(15, 'Must be 15 characters or less')
-            .required('Required'),
+ <Form onSubmit={handlesubmit}>
 
-          lastName: Yup.string()
-            .max(20, 'Must be 20 characters or less')
-            .required('Required'),
+    <Form.Group className={styles.group}>
+          <Form.Label className={styles.labelfield}>
+             Name
+            </Form.Label>
 
-          email: Yup.string()
-            .email('Invalid email address')
-            .required('Required'),
-
-          phoneNumber: Yup.string()
-            .matches(phoneRegExp, 'Phone number is not valid')
-            .required('Required'),
-
-          password: Yup.string()
-            .required('No password provided.')
-            .min(8, 'Password is too short - should be 8 chars minimum.')
-            .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.'),
-        })}
-        onSubmit={() => {
-          //e.preventDefault()
-          fetch('https://benny-foods.fly.dev/api/v1/users', {
-            method: 'POST',
-            //headers: {
-            //'Content-Type': 'application/json',
-            //'Accept': 'application/json'
-            // },
-            body: JSON.stringify({
-              email: email.value,
-              first_name: firstName.value,
-              last_name: lastName.value,
-              password: password.value,
-              phone_number: phoneNumber.value,
-            }),
-          })
-            .then((response) => response.json())
-            .then((data) => {
-              //alert(data.message)
-              if (data.status === 'success') {
-                alert(data.message)
-                setErrorType('success')
-                setMessageType(data.message)
-                setShowToast(true)
-            navigate('/login', { replace: true })
-              } else {
-                //alert(data.error.description)
-                setErrorType('danger')
-               setMessageType(data.error.description)
-              setShowToast(true)
-              }
-            })
-            .catch((error) => console.log(error))
-        }}
-      >
-        {(formik) => (
-          <Form noValidate autoComplete='off' onSubmit={formik.handleSubmit}>
-            <Form.Group className={styles.group}>
-              <div className={styles.subgroup}>
-                <Form.Label className={styles.labelfield}>
-                  First Name
-                </Form.Label>
-
-                <InputGroup className={styles.inputField}>
-                  <InputGroup.Text id='inputGroupPrepend'>
-                    <MdPersonOutline />
-                  </InputGroup.Text>
-
-                  <Form.Control
-                    size='md'
-                    name='firstName'
-                    placeholder='Enter your First Name'
-                    id='firstName'
-                    type='text'
-                    className={styles.inputbox}
-                    {...formik.getFieldProps('firstName')}
-                  />
-                </InputGroup>
-
-                {formik.touched.firstName && formik.errors.firstName ? (
-                  <div className={styles.errorMsg}>
-                    <MdErrorOutline className='h6 mt-1' />{' '}
-                    {formik.errors.firstName}
-                  </div>
-                ) : null}
+              <InputGroup 
+              className={styles.inputField}>
+                <InputGroup.Text id='inputGroupPrepend'>
+                  <MdPersonOutline />
+                </InputGroup.Text>
+                <Form.Control
+                  name='full_name'
+                  type='text'
+                  value={formValues.first_name}
+                  placeholder='Please Enter your Full Name'
+                  onChange={handleChange}
+                />
+              </InputGroup>
+              <div className={styles.errorMsg}>
+                {touched.full_name && formError.full_name}
               </div>
+</Form.Group>
 
-              <div className={styles.subgroup}>
-                <Form.Label className={styles.labelfield}>Last Name</Form.Label>
+<Form.Group className={styles.group}> 
+   <Form.Label className={styles.labelfield}>
+             Email
+      </Form.Label>
 
-                <InputGroup className={styles.inputField}>
-                  <InputGroup.Text id='inputGroupPrepend'>
-                    <MdPersonOutline />
-                  </InputGroup.Text>
-
-                  <Form.Control
-                    size='md'
-                    name='lastName'
-                    placeholder='Enter your Last Name'
-                    id='lastName'
-                    type='text'
-                    className={styles.inputbox}
-                    {...formik.getFieldProps('lastName')}
-                  />
-                </InputGroup>
-
-                {formik.touched.lastName && formik.errors.lastName ? (
-                  <div className={styles.errorMsg}>
-                    <MdErrorOutline className='h6 mt-1' />{' '}
-                    {formik.errors.lastName}
-                  </div>
-                ) : null}
+              <InputGroup
+              className={styles.inputField}>
+                <InputGroup.Text id='inputGroupPrepend'>
+                  <MdEmail />
+                </InputGroup.Text>
+                <Form.Control
+                  name='email'
+                  type='email'
+                  value={formValues.email}
+                  placeholder='Please Enter your Email Address'
+                  onChange={handleChange}
+                />
+              </InputGroup>
+              <div className={styles.errorMsg}>
+                {touched.email && formError.email}
               </div>
-            </Form.Group>
+</Form.Group>
 
-            {/*email section of the page*/}
-
-            <Form.Group className={styles.group}>
-              <div className={styles.subgroup}>
-                <Form.Label className={styles.labelfield}>Email</Form.Label>
-
-                <InputGroup className={styles.inputField}>
-                  <InputGroup.Text id='inputGroupPrepend'>
-                    <MdEmail />
-                  </InputGroup.Text>
-
-                  <Form.Control
-                    size='md'
-                    type='email'
-                    name='email'
-                    placeholder='Enter your Email Address'
-                    id='email'
-                    className={styles.inputbox}
-                    {...formik.getFieldProps('email')}
-                  />
-                </InputGroup>
-                {formik.touched.email && formik.errors.email ? (
-                  <div className={styles.errorMsg}>
-                    {' '}
-                    <MdErrorOutline className='h6 mt-1' /> {formik.errors.email}
-                  </div>
-                ) : null}
-              </div>
-            </Form.Group>
-
-            {/*pasword and phone number section*/}
-            <Form.Group className={styles.group}>
-              <div className={styles.subgroup}>
-                <Form.Label className={styles.labelfield}>
-                  Phone Number
-                </Form.Label>
-
-                <InputGroup className={styles.inputField}>
-                  <InputGroup.Text id='inputGroupPrepend'>
-                    <MdOutlinePhoneLocked />
-                  </InputGroup.Text>
-
-                  <Form.Control
-                    size='md'
-                    type='number'
-                    name='phoneNumber'
-                    placeholder='Enter your Phone Number'
-                    id='phoneNumber'
-                    className={styles.inputbox}
-                    {...formik.getFieldProps('phoneNumber')}
-                  />
-                </InputGroup>
-                {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
-                  <div className={styles.errorMsg}>
-                    <MdErrorOutline className='h6 mt-1' />{' '}
-                    {formik.errors.phoneNumber}
-                  </div>
-                ) : null}
-              </div>
-
-              <div className={styles.subgroup}>
-                <Form.Label className={styles.labelfield}>Password</Form.Label>
-
-                <InputGroup className={styles.inputField}>
-                  <InputGroup.Text id='inputGroupPrepend'>
-                    <RiLockPasswordFill />
-                  </InputGroup.Text>
-
-     <Form.Control
-     size='md'
-    type={togglePassword ? 'text' : 'password'}
-    name='password'
-    placeholder='Set your password'
-    id='password'
-  className={styles.inputbox}
-    {...formik.getFieldProps('password')}
-             />
-
-        <InputGroup.Text id='inputGroupPrepend'  onClick={(e) => {
+<Form.Group className={styles.group}>
+<Form.Label className={styles.labelfield}>
+        Password
+      </Form.Label>
+              <InputGroup
+              className={styles.inputField}>
+                <InputGroup.Text id='inputGroupPrepend'>
+                  <RiLockPasswordLine/>
+                </InputGroup.Text>
+                <Form.Control
+                  name='password'
+                  type= {passwordEye ? 'text' : "password"}
+                  value={formValues.phone_number}
+                  placeholder='Please Enter your Password'
+                  onChange={handleChange}
+                />
+                
+                <InputGroup.Text id='inputGroupPrepend'
+                role='button'
+                 onClick={(e) => {
                     e.preventDefault()
-                    setTogglePassword(!togglePassword)
-                  }}>
-                  {togglePassword ? (
-                    <AiOutlineEyeInvisible />
+              setpasswordEye(!passwordEye)}}>
+                  {passwordEye ? (
+                  <AiOutlineEye/>
                   ) : (
-                    <AiOutlineEye />
+                  <AiOutlineEyeInvisible/>
                   )}
                 </InputGroup.Text>
-                  </InputGroup>
-                  
-                {formik.touched.password && formik.errors.password ? (
-                  <div className={styles.errorMsg}>
-                    <MdErrorOutline className='h6 mt-1' />{' '}
-                    {formik.errors.password}
-                  </div>
-                ) : null}
+
+              </InputGroup>
+              <div className={styles.errorMsg}>
+                {touched.password && formError.password}
               </div>
-            </Form.Group>
+         </Form.Group>
+      
+         <Form.Group className={styles.group}>
+         <Form.Label className={styles.labelfield}>
+       Confirm Password
+      </Form.Label>
+              <InputGroup 
+              className={styles.inputField}>
+                 <InputGroup.Text id='inputGroupPrepend'>
+                  <RiLockPasswordLine/>
+                </InputGroup.Text>
+                  <Form.Control
+                  name='confirmPassword'
+                  type= {confirmPasswordEye ? 'text' : "password"}
+                  value={formValues.message}
+                  placeholder='confirm your password'
+                  onChange={handleChange}
+                />
+           <InputGroup.Text 
+           id='inputGroupPrepend'
+                role='button'
+                 onClick={(e) => {
+                    e.preventDefault()
+              setConfirmPasswordEye(!confirmPasswordEye)}}>
+                  {confirmPasswordEye ? (
+                  <AiOutlineEye/>
+                  ) : (
+                  <AiOutlineEyeInvisible/>
+                  )}
+                </InputGroup.Text>
 
-            <button className={styles.loginButton} type='submit'>
-              Submit
-            </button>
-          </Form>
-        )}
-      </Formik>
+              </InputGroup>
+              <div className={styles.errorMsg}>
+                {touched.confirmPassword && formError.confirmPassword}
+              </div>
+      </Form.Group>
+  
+   
+       <div className='d-flex align-items-center justify-content-center'>   
+          {isLoading ? (
+           <Button disabled>
+        <Spinner
+          as="span"
+          animation="grow"
+          size="sm"
+          role="status"
+          aria-hidden="true"
+        />
+        Loading...
+      </Button>     
+          ) : (
+     <Button variant="primary" type='submit'>
+       Submit
+      </Button>
+          )}
+          </div>
+        </Form>
 
-      <hr />
-      <div className={styles.semiGroup}>
-        <p className='text-center'>Already Have an Account</p>
-        <button className={styles.btnLink} onClick={handleLogin}>
-          login
-        </button>
-      </div>
+  <div className={styles.groupbtn}>
+        <div>
+         <button
+          className={styles.signupbtn}>
+          Sign up with <FcGoogle className='lead'/>
+        </button> 
+    </div>
+    
+    <div className={styles.semigroup}>
+    <p>Already Have An Account?</p>
+       <button className={styles.link}>
+         Login
+        </button> 
+    </div>
+        </div>
+
+  
+        
+        
+      {showToast ? (
+        <>
+          <div className={styles.ToastContainer} />
+          <div className={styles.centered}>
+            <Toast
+              bg={errorType}
+              onClose={() => {
+                setShowToast(!showToast)
+              }}
+              className={styles.toast}
+            >
+              <Toast.Header className='mt-3'>
+                <img
+                  src='holder.js/20x20?text=%20'
+                  className='rounded me-2'
+                  alt=''
+                />
+                <strong className='me-auto'>BennyFoodie</strong>
+              </Toast.Header>
+              <Toast.Body className='text-dark'>{messageType}</Toast.Body>
+            </Toast>
+          </div>
+        </>
+      ) : (
+        ''
+      )}
 </Container>
-
-
-        <Toast
-          bg={errorType}
-          show={showToast}
-          onClose={() => {
-            setShowToast(!showToast)
-          }}
-        className={styles.toaster}>
-          <Toast.Header>
-            <img
-              src='holder.js/20x20?text=%20'
-              className='rounded me-2'
-              alt=''
-            />
-            <strong className='me-auto'>BennyFoodie</strong>
-          </Toast.Header>
-          <Toast.Body className='text-white'>{messageType}</Toast.Body>
-        </Toast>
-    </>
   )
 }
 
-export default SignupPage
+export default Register

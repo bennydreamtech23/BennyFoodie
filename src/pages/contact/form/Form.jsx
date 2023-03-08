@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import styles from './Form.module.scss'
+
 import {
   Container,
   Toast,
@@ -15,7 +16,7 @@ import {
 //icon
 import { MdEmail, MdOutlinePhoneLocked, MdPersonOutline } from 'react-icons/md'
 
-const Quote = () => {
+const FormPage = () => {
   const[isLoading, setIsLoading] = useState(false)
   const [formValues, setFormValues] = useState({})
 
@@ -348,4 +349,4 @@ setIsLoading(true)
   )
 }
 
-export default Quote
+export default FormPage

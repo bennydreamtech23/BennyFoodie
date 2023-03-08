@@ -2,6 +2,28 @@ import Slider from "react-slick";
 import Styles from "./TestimonySlider.module.scss"
 import {BsFillStarFill, BsStar} from "react-icons/bs";
 
+function SampleNextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: "block", background: "green", borderRadius:"50%", outline: "none"
+      }}
+      onClick={onClick}
+    />
+  );
+}
+
+function SamplePrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: "block", background: "green", borderRadius:"50%", outline: "none" }}
+      onClick={onClick}
+    />
+  );
+}
 const TestimonySlider = () =>{
     //slack setting
      const settings = {
@@ -14,6 +36,9 @@ const TestimonySlider = () =>{
       slidesToScroll: 1,
       initialSlide: 0,
       autoplaySpeed: 3000,
+       pauseOnHover: true,
+      nextArrow: <SampleNextArrow />,
+      prevArrow: <SamplePrevArrow />,
     
       responsive: [
           {
