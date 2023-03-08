@@ -1,11 +1,12 @@
-import {Link, useNavigate} from "react-router-dom";
-import { useState, useEffect } from 'react'
-import { useAuthState } from "react-firebase-hooks/auth";
+import { Link, useNavigate } from 'react-router-dom'
+import { useState, useEffect, useContext } from 'react'
+import { AuthContext } from '../auth/AuthContext'
+import { useAuthState } from 'react-firebase-hooks/auth'
 import {
   auth,
   registerWithEmailAndPassword,
   signInWithGoogle,
-}from "../auth/firebase";
+} from '../auth/firebase'
 
 import styles from './Signup.module.scss'
 
@@ -17,26 +18,24 @@ import {
   Col,
   Form,
   InputGroup,
-  Spinner, 
-  Button
+  Spinner,
+  Button,
 } from 'react-bootstrap'
 
 //icon
-import { MdEmail, 
-MdPersonOutline } 
-from 'react-icons/md'
-import {RiLockPasswordLine} from "react-icons/ri";
-import {FcGoogle} from "react-icons/fc";
+import { MdEmail, MdPersonOutline } from 'react-icons/md'
+import { RiLockPasswordLine } from 'react-icons/ri'
+import { FcGoogle } from 'react-icons/fc'
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 
 const Register = () => {
-  const [user] = useAuthState(auth);
-    const navigate = useNavigate();
-    
-  const[isLoading, setIsLoading] = useState(false)
-const [formValues, setFormValues] = useState({})
-const [passwordEye, setpasswordEye] = useState(false)
-const [confirmPasswordEye, setConfirmPasswordEye] = useState(false)
+  const [user] = useAuthState(auth)
+  const navigate = useNavigate()
+
+  const [isLoading, setIsLoading] = useState(false)
+  const [formValues, setFormValues] = useState({})
+  const [passwordEye, setpasswordEye] = useState(false)
+  const [confirmPasswordEye, setConfirmPasswordEye] = useState(false)
 
   const [touched, setTouched] = useState({})
 
@@ -48,6 +47,9 @@ const [confirmPasswordEye, setConfirmPasswordEye] = useState(false)
   const [errorType, setErrorType] = useState('')
   const [messageType, setMessageType] = useState('')
 
+  const useAuthValue = useContext(AuthContext)
+  const { setTimeActive } = useAuthValue
+
   const handleChange = (e) => {
     const { name, value } = e.target
     setFormValues({ ...formValues, [name]: value })
@@ -58,31 +60,30 @@ const [confirmPasswordEye, setConfirmPasswordEye] = useState(false)
     }))
   }
 
-
   const validate = (values) => {
     const errors = {}
     const regex =
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-       const passw =  /^[A-Za-z]\w{7,14}$/
+    const passw = /^[A-Za-z]\w{7,14}$/
     if (!values.full_name) {
       errors.full_name = 'Full Name is required'
     }
-    
+
     if (!values.email) {
       errors.email = 'Email is required'
     } else if (!regex.test(values.email)) {
       errors.email = 'This is not a valid email'
     }
-    
+
     if (!values.password) {
       errors.password = 'Password is required'
-    }else if (!passw.test(values.password)) {
+    } else if (!passw.test(values.password)) {
       errors.password = 'Password must contain uppercase and lowercase.'
     }
-       if (values.confirmPassword !== values.password) {
+    if (values.confirmPassword !== values.password) {
       errors.confirmPassword = 'Password doesnot match'
     }
-    
+
     return errors
   }
 
@@ -97,7 +98,7 @@ const [confirmPasswordEye, setConfirmPasswordEye] = useState(false)
   const handlesubmit = (e) => {
     e.preventDefault()
     console.log(formValues)
-setIsLoading(false)
+    setIsLoading(false)
     if (Object.keys(formError).length > 0) {
       setTouched({
         full_name: true,
@@ -110,192 +111,181 @@ setIsLoading(false)
 
     if (Object.keys(formError).length === 0) {
       setTouched({
-      full_name: false,
+        full_name: false,
         password: false,
         email: false,
         confirmPassword: false,
       })
-      registerWithEmailAndPassword(formValues.name, formValues.email, formValues.password);
+      if (
+        registerWithEmailAndPassword(
+          formValues.name,
+          formValues.email,
+          formValues.password
+        )
+      ) {
+        setTimeActive(true)
+        navigate('/verify-email')
+      }
+
       setIsLoading(false)
     }
   }
 
-useEffect(() => {
-    if (isLoading) return;
-    if (user) navigate("/menu");
-  }, [user, isLoading]);
+  useEffect(() => {
+    if (isLoading) return
+    if (user) navigate('/menu')
+  }, [user, isLoading])
 
   return (
-      <Container fluid
-      className={styles.Container}>
-<h1 className={styles.title}>
+    <Container fluid className={styles.Container}>
+      <h1 className={styles.title}>
         Welcome to <span className={styles.color}>Bennyfoodie!</span>
       </h1>
-      
+
       <p className={styles.subTitle}>
         Register to create your first account and become a prominent customer of
-         BennyFoodie
+        BennyFoodie
       </p>
 
- <Form onSubmit={handlesubmit}>
+      <Form onSubmit={handlesubmit}>
+        <Form.Group className={styles.group}>
+          <Form.Label className={styles.labelfield}>Name</Form.Label>
 
-    <Form.Group className={styles.group}>
-          <Form.Label className={styles.labelfield}>
-             Name
-            </Form.Label>
-
-              <InputGroup 
-              className={styles.inputField}>
-                <InputGroup.Text id='inputGroupPrepend'>
-                  <MdPersonOutline />
-                </InputGroup.Text>
-                <Form.Control
-                  name='full_name'
-                  type='text'
-                  value={formValues.first_name}
-                  placeholder='Please Enter your Full Name'
-                  onChange={handleChange}
-                />
-              </InputGroup>
-              <div className={styles.errorMsg}>
-                {touched.full_name && formError.full_name}
-              </div>
-</Form.Group>
-
-<Form.Group className={styles.group}> 
-   <Form.Label className={styles.labelfield}>
-             Email
-      </Form.Label>
-
-              <InputGroup
-              className={styles.inputField}>
-                <InputGroup.Text id='inputGroupPrepend'>
-                  <MdEmail />
-                </InputGroup.Text>
-                <Form.Control
-                  name='email'
-                  type='email'
-                  value={formValues.email}
-                  placeholder='Please Enter your Email Address'
-                  onChange={handleChange}
-                />
-              </InputGroup>
-              <div className={styles.errorMsg}>
-                {touched.email && formError.email}
-              </div>
-</Form.Group>
-
-<Form.Group className={styles.group}>
-<Form.Label className={styles.labelfield}>
-        Password
-      </Form.Label>
-              <InputGroup
-              className={styles.inputField}>
-                <InputGroup.Text id='inputGroupPrepend'>
-                  <RiLockPasswordLine/>
-                </InputGroup.Text>
-                <Form.Control
-                  name='password'
-                  type= {passwordEye ? 'text' : "password"}
-                  value={formValues.phone_number}
-                  placeholder='Please Enter your Password'
-                  onChange={handleChange}
-                />
-                
-                <InputGroup.Text id='inputGroupPrepend'
-                role='button'
-                 onClick={(e) => {
-                    e.preventDefault()
-              setpasswordEye(!passwordEye)}}>
-                  {passwordEye ? (
-                  <AiOutlineEye/>
-                  ) : (
-                  <AiOutlineEyeInvisible/>
-                  )}
-                </InputGroup.Text>
-
-              </InputGroup>
-              <div className={styles.errorMsg}>
-                {touched.password && formError.password}
-              </div>
-         </Form.Group>
-      
-         <Form.Group className={styles.group}>
-         <Form.Label className={styles.labelfield}>
-       Confirm Password
-      </Form.Label>
-              <InputGroup 
-              className={styles.inputField}>
-                 <InputGroup.Text id='inputGroupPrepend'>
-                  <RiLockPasswordLine/>
-                </InputGroup.Text>
-                  <Form.Control
-                  name='confirmPassword'
-                  type= {confirmPasswordEye ? 'text' : "password"}
-                  value={formValues.message}
-                  placeholder='confirm your password'
-                  onChange={handleChange}
-                />
-           <InputGroup.Text 
-           id='inputGroupPrepend'
-                role='button'
-                 onClick={(e) => {
-                    e.preventDefault()
-              setConfirmPasswordEye(!confirmPasswordEye)}}>
-                  {confirmPasswordEye ? (
-                  <AiOutlineEye/>
-                  ) : (
-                  <AiOutlineEyeInvisible/>
-                  )}
-                </InputGroup.Text>
-
-              </InputGroup>
-              <div className={styles.errorMsg}>
-                {touched.confirmPassword && formError.confirmPassword}
-              </div>
-      </Form.Group>
-  
-   
-       <div className='d-flex align-items-center justify-content-center'>   
-          {isLoading ? (
-           <Button disabled>
-        <Spinner
-          as="span"
-          animation="grow"
-          size="sm"
-          role="status"
-          aria-hidden="true"
-        />
-        Loading...
-      </Button>     
-          ) : (
-     <Button variant="primary" type='submit'>
-       Submit
-      </Button>
-          )}
+          <InputGroup className={styles.inputField}>
+            <InputGroup.Text id='inputGroupPrepend'>
+              <MdPersonOutline />
+            </InputGroup.Text>
+            <Form.Control
+              name='full_name'
+              type='text'
+              value={formValues.first_name}
+              placeholder='Please Enter your Full Name'
+              onChange={handleChange}
+            />
+          </InputGroup>
+          <div className={styles.errorMsg}>
+            {touched.full_name && formError.full_name}
           </div>
-        </Form>
+        </Form.Group>
 
-  <div className={styles.groupbtn}>
+        <Form.Group className={styles.group}>
+          <Form.Label className={styles.labelfield}>Email</Form.Label>
+
+          <InputGroup className={styles.inputField}>
+            <InputGroup.Text id='inputGroupPrepend'>
+              <MdEmail />
+            </InputGroup.Text>
+            <Form.Control
+              name='email'
+              type='email'
+              value={formValues.email}
+              placeholder='Please Enter your Email Address'
+              onChange={handleChange}
+            />
+          </InputGroup>
+          <div className={styles.errorMsg}>
+            {touched.email && formError.email}
+          </div>
+        </Form.Group>
+
+        <Form.Group className={styles.group}>
+          <Form.Label className={styles.labelfield}>Password</Form.Label>
+          <InputGroup className={styles.inputField}>
+            <InputGroup.Text id='inputGroupPrepend'>
+              <RiLockPasswordLine />
+            </InputGroup.Text>
+            <Form.Control
+              name='password'
+              type={passwordEye ? 'text' : 'password'}
+              value={formValues.phone_number}
+              placeholder='Please Enter your Password'
+              onChange={handleChange}
+            />
+
+            <InputGroup.Text
+              id='inputGroupPrepend'
+              role='button'
+              onClick={(e) => {
+                e.preventDefault()
+                setpasswordEye(!passwordEye)
+              }}
+            >
+              {passwordEye ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
+            </InputGroup.Text>
+          </InputGroup>
+          <div className={styles.errorMsg}>
+            {touched.password && formError.password}
+          </div>
+        </Form.Group>
+
+        <Form.Group className={styles.group}>
+          <Form.Label className={styles.labelfield}>
+            Confirm Password
+          </Form.Label>
+          <InputGroup className={styles.inputField}>
+            <InputGroup.Text id='inputGroupPrepend'>
+              <RiLockPasswordLine />
+            </InputGroup.Text>
+            <Form.Control
+              name='confirmPassword'
+              type={confirmPasswordEye ? 'text' : 'password'}
+              value={formValues.message}
+              placeholder='confirm your password'
+              onChange={handleChange}
+            />
+            <InputGroup.Text
+              id='inputGroupPrepend'
+              role='button'
+              onClick={(e) => {
+                e.preventDefault()
+                setConfirmPasswordEye(!confirmPasswordEye)
+              }}
+            >
+              {confirmPasswordEye ? (
+                <AiOutlineEye />
+              ) : (
+                <AiOutlineEyeInvisible />
+              )}
+            </InputGroup.Text>
+          </InputGroup>
+          <div className={styles.errorMsg}>
+            {touched.confirmPassword && formError.confirmPassword}
+          </div>
+        </Form.Group>
+
+        <div className='d-flex align-items-center justify-content-center'>
+          {isLoading ? (
+            <Button disabled>
+              <Spinner
+                as='span'
+                animation='grow'
+                size='sm'
+                role='status'
+                aria-hidden='true'
+              />
+              Loading...
+            </Button>
+          ) : (
+            <Button variant='primary' type='submit'>
+              Submit
+            </Button>
+          )}
+        </div>
+      </Form>
+
+      <div className={styles.groupbtn}>
         <div>
-         <button
-          className={styles.signupbtn}
-          onClick={signInWithGoogle}>
-          Sign up with <FcGoogle className='lead'/>
-        </button> 
-    </div>
-    
-    <div className={styles.semigroup}>
-    <p>Already Have An Account?</p>
-       <button className={styles.link}>
-         Login
-        </button> 
-    </div>
+          <button className={styles.signupbtn} onClick={signInWithGoogle}>
+            Sign up with <FcGoogle className='lead' />
+          </button>
         </div>
 
-  
-        
-        
+        <div className={styles.semigroup}>
+          <p>Already Have An Account?</p>
+          <button className={styles.link}>Login</button>
+        </div>
+      </div>
+
       {showToast ? (
         <>
           <div className={styles.ToastContainer} />
@@ -322,7 +312,7 @@ useEffect(() => {
       ) : (
         ''
       )}
-</Container>
+    </Container>
   )
 }
 
