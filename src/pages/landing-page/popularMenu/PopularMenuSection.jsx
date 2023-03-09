@@ -1,7 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {useState, useEffect} from "react";
 import Slider from "react-slick";
 import PopularFoodStyle from "./PopularMenuSection.module.scss";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth} from "../../core/auth/firebase";
 //dummy data for popular food
 import popularfoodData from "../../../components/data/popularMenuData.js";
 //components from folder and bootstrap
@@ -35,6 +37,17 @@ function SamplePrevArrow(props) {
 
 const PopularMenuSection = (props) =>{
   const chefanime = "https://res.cloudinary.com/dlst0ec4h/image/upload/v1673719201/pngwing.com-_1__ls7bfm.webp";
+  const navigate = useNavigate()
+ const [user] = useAuthState(auth);
+
+const getStarted = (e) =>{
+  e.preventDefault()
+    if(!user === true){
+      navigate("/signup")
+    }else{
+      navigate("/menu")
+    }
+  }
   
  const[menu, setMenu] = useState(popularfoodData)
  
@@ -171,30 +184,32 @@ Dinner
 
         <div 
         className={PopularFoodStyle.tranding_product_inn}>
-        
+      
+<Row
+className='gap-5'>
       <Slider {...settings}
-      className={PopularFoodStyle.slider_outer}>
+      className='pt-5'>
     {
        menu.map(item =>(
-      <div 
-      key={item.id}  
-      className={PopularFoodStyle.slide_item}>
+      <Col lg='4' md='6'
+      key={item.id}>
       <ProductCard 
       item={item}
       category={item.category}/>
-      </div>
+      </Col>
       ))
     }
   </Slider>
+  </Row>
 </div>
 
       <div 
       className="mt-5 d-flex align-items-center justify-content-center">
-  <Link 
-  to='/menu'
+  <button
+ onClick={getStarted}
   className="secondarybtn">
   Explore All
-  </Link>
+  </button>
    </div>
     </Container>
     )

@@ -44,15 +44,14 @@ return(
         className="text-center h5 text-dark text-decoration-none
         d-flex 
         align-items-center 
-        justify-content-center">
+        justify-content-center fw-bold">
         {name}
         </Link>
         
-        <p className="text-center lead">
+              <div className={ProductCardStyle.btnBox}>
+               <p className="text-center lead mt-2 fw-bold">
             £{price}
         </p>
-        
-              <div className={ProductCardStyle.btnBox}>
         <button className='secondarybtn' onClick={addToCart}>Add To Cart</button>
         </div>
                     </div>

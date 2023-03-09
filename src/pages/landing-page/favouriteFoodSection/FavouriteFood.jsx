@@ -1,5 +1,7 @@
-import { Link } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import FavouriteFoodStyles from "./FavouriteFood.module.scss";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth} from "../../core/auth/firebase";
 //container from bootstrap
 import {Container, Row, Col, Card} from 'react-bootstrap';
 //favourite food data dummy data
@@ -13,6 +15,18 @@ import {BsFillSuitHeartFill} from "react-icons/bs";
 const FavouriteFoodSection = () =>{
   
   const chef = "https://res.cloudinary.com/dlst0ec4h/image/upload/v1673718971/pngwing.com_zlmc2w.webp";
+const navigate = useNavigate()
+
+const [user] = useAuthState(auth);
+
+const getStarted = (e) =>{
+  e.preventDefault()
+    if(!user === true){
+      navigate("/signup")
+    }else{
+      navigate("/menu")
+    }
+  }
 
   return(
    <Container
@@ -24,11 +38,10 @@ const FavouriteFoodSection = () =>{
     Our Favourite Customers Special Dishes
     </h1>
     
- <Row 
- className={FavouriteFoodStyles.row}>
+ <Row className='mt-5'>
   {
       favouritefoodData.map(item =>(
-      <Col key={item.id}>
+      <Col key={item.id} lg='4' md='6'>
       <ProductCard item={item}/>
       </Col>
       ))
@@ -55,10 +68,11 @@ Food is for the body as relaxing is for the mind, when you are healthy you are h
 <div 
 className={FavouriteFoodStyles.btnBox}>
 
-<Link to='/menu'
+<button 
+onClick={getStarted}
 className="btn btn-white btn-animated">
 Explore More
-</Link>
+</button>
 </div>
 </Col>
 

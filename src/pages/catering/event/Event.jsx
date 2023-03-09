@@ -25,7 +25,7 @@ alt='food'
 className='w-50'/>
 </div>
 <p className='mt-3 h5 fw-bold'>Breakfast Dishes</p>
-<h4>Half & Full Pan Available</h4>
+<h4 className='text-center'>Half & Full Pan Available</h4>
 </Link>
 </Col>
 
@@ -38,7 +38,7 @@ className={Styles.foodContent}>
 <img src={previewImg} alt='food' className='w-50'/>
 </div>
 <p className='mt-3 h5 fw-bold'>Lunch Dishes</p>
-<h4>Full & Half Pan Available</h4>
+<h4 className='text-center'>Full & Half Pan Available</h4>
 </Link>
 </Col>
 
@@ -55,7 +55,8 @@ className='w-50'/>
 <p className='mt-3 h5 fw-bold'>
 Dinner Dishes
 </p>
-<h4>Full & Half Pan Available</h4>
+<h4
+className='text-center'>Full & Half Pan Available</h4>
 </Link>
 </Col>
 
@@ -69,7 +70,7 @@ alt='food' className='w-50'/>
 <img src="https://res.cloudinary.com/dlst0ec4h/image/upload/v1673701487/fast-food-png-41613_rj94kr.webp" alt='food' className='w-50'/>
 </div>
 <p className='mt-3 h5 fw-bold'>fast Food</p>
-<h4>Full & Half Pan Available</h4>
+<h4 className='text-center'>Full & Half Pan Available</h4>
 </Link>
 </Col>
 

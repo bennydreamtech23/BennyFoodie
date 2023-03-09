@@ -13,7 +13,6 @@ font-family: var(--font);
 } 
    }  
 
-
 .subtext{
   padding-top: 1rem;
 font-family: var(--font);
@@ -23,10 +22,13 @@ font-size: 1.2rem;
 line-height: 30px;
 text-align: left;
 color: #777;
-width: 450px;
-@media only screen and (min-width: 320px) and (max-width: 480px){
+width: 500px;
+@media only screen and (min-width: 320px) and (max-width: 600px){
 width: 100%;
 font-size: 16px;
+} 
+@media only screen and (min-width: 600px) and (max-width: 1200px){
+width: 300px;
 } 
 }
 

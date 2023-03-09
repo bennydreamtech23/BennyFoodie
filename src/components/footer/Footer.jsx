@@ -47,7 +47,13 @@ Healthy and mouth watering dishes prepared by the best chef in order to satisfy 
     </Col>
 
     </Row>
-    
+
+<div className='d-flex aklign-items-center justify-content-center'>
+<a href='#top'
+className='text-white text-center text-decoration-none fw-bold h4'>
+top of the page &uarr;	
+</a>
+</div>
      <div className={footerStyles.footerRuler}></div>
      
 <div className={footerStyles.footerButtom}>

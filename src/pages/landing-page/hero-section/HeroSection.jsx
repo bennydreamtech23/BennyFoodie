@@ -1,6 +1,7 @@
 import {Link, useNavigate} from "react-router-dom";
 import HeroStyles from "./HeroSection.module.scss";
-
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth} from "../../core/auth/firebase";
 //container from bootstrap
 import {Container, Row, Col, Card} from 'react-bootstrap';
 //icons
@@ -8,9 +9,9 @@ import {TbTruckDelivery, TbHandClick,TbAward} from "react-icons/tb";
 import {BsArrowDownRight} from "react-icons/bs"; 
 
 const HeroSection = () =>{
-  const user = localStorage.getItem('user')
   const navigate = useNavigate()
-  
+ const [user] = useAuthState(auth);
+
   const getStarted = () =>{
     if(!user === true){
       navigate("/signup")
@@ -20,7 +21,11 @@ const HeroSection = () =>{
   }
   
   const order = () =>{
-    navigate("/menu")
+    if(!user === true){
+      navigate("/signup")
+    }else{
+      navigate("/menu")
+    }
   }
 
 const img = "https://res.cloudinary.com/dlst0ec4h/image/upload/v1673632501/Pngtree_healthy_food_3776802_nqbeku.webp";
@@ -31,13 +36,39 @@ const img = "https://res.cloudinary.com/dlst0ec4h/image/upload/v1673632501/Pngtr
     className={HeroStyles.Container}>
     
    <Row 
-   className="d-flex flex-row-reverse justify-content-between mb-5">
+   className="d-flex flex-row-reverse justify-content-between">
    
    <Col 
    className={HeroStyles.col}>
-      <img src={img} 
-      className={HeroStyles.heroimg} 
-      loading="lazy"/>
+    <div className={HeroStyles.main}>
+    <img className={HeroStyles.theSmiley} 
+    src={img}/>
+  
+   <img className={HeroStyles.item} 
+   style={{animationDelay: "-1s"}} 
+   src="https://www.kirupa.com/icon/1f951.svg"/>
+   
+  <img className={HeroStyles.item}
+  style={{animationDelay: "-2s"}}
+  src="https://www.kirupa.com/icon/1f370.svg"/>
+  
+  <img className={HeroStyles.item} 
+  style={{animationDelay: "-3s"}}
+  src="https://www.kirupa.com/icon/1f355.svg"/>
+  
+  <img className={HeroStyles.item} 
+  style={{animationDelay: "-4s"}}
+  src="https://www.kirupa.com/icon/1f96c.svg"/>
+  
+  <img className={HeroStyles.item} 
+  style={{animationDelay: "-5s"}} 
+  src="https://www.kirupa.com/icon/1f347.svg"/>
+  
+  <img className={HeroStyles.item}
+  style={{animationDelay: "-6s"}}
+  src="https://www.kirupa.com/icon/1f354.svg"/>
+
+  </div>
    </Col>
       
     <Col 
@@ -73,63 +104,60 @@ Get Started
 </Row>
 
 <Row
-className="d-flex flex-row-reverse justify-content-center">
+className="mt-5">
 
 {/*card 1*/}
-     <Card
+     <Col lg='4' md='6'
      className={HeroStyles.card}>
   <TbHandClick 
   className={HeroStyles.Icon}/>
   
-      <Card.Body>
-        <Card.Title 
+        <h3
         className={HeroStyles.smallTitle}>
         Easy To Order
-        </Card.Title>
+        </h3>
         
-        <Card.Text 
+        <p
         className={HeroStyles.text}>
         We take your time and patience into consideration, that is why our platform is designed to just be a click when you want to place an order.
-        </Card.Text>
-      </Card.Body>
-    </Card>
+        </p>
+    </Col>
 
       {/* card 2*/}
       
-     <Card
+     <Col lg='4' md='6'
      className={HeroStyles.card}>
   <TbAward 
   className={HeroStyles.Icon}/>
-      <Card.Body>
-     <Card.Title 
+
+     <h3
         className={HeroStyles.smallTitle}>
         Best Quality
-        </Card.Title>
+        </h3>
 
-        <Card.Text 
+        <p
         className={HeroStyles.text}>
           Been Affoardable doesn't mean we shouldn't consider  quality and food hygiene in our preparation. Our Dishes are affordable and healthy...
-        </Card.Text>
-      </Card.Body>
-    </Card>
+        </p>
+
+    </Col>
 
       {/*card 3*/}
-     <Card 
+     <Col lg='4' md='6'
      className={HeroStyles.card}>
     <TbTruckDelivery 
     className={HeroStyles.Icon}/>
-      <Card.Body>
-        <Card.Title 
+    
+        <h3 
         className={HeroStyles.smallTitle}>
         Fastest Delivery
-        </Card.Title>
+        </h3>
         
-        <Card.Text 
+        <p
         className={HeroStyles.text}>
          Food should be eaten on time and slow delivery services hinder this, that why we provide the fastest delivery services. We are <strong> one step from your away Doorstep</strong>
-        </Card.Text>
-      </Card.Body>
-    </Card>
+        </p>
+    </Col>
 </Row>
     </Container>
     </>
