@@ -1,9 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap');
+
+
+  @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&display=swap');
 
 /* Variables */
 :root{
-  --font: 'Oxygen', sans-serif;
-  --bg: #49454f;
+  --font: 'Crimson Text', serif;
+  --bg: #49454f
+  --white: #fff;
   --border: 1px solid var(--green);
     --black : #242D49;
     --green: rgb(80,200,120);
@@ -24,7 +27,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Oxygen';
+  font-family: 'Crimson Text', serif;
 }
 
 html{
@@ -63,7 +66,7 @@ border: 1px solid var(--green);
 border-radius: 5px;
 font-family: var(--font);
 font-style: normal;
-font-weight: 600;
+font-weight: 700;
 font-size: 14px;
 line-height: 20px;
 text-align: center;
@@ -101,7 +104,7 @@ border: 1px solid var(--green);
 border-radius: 5px;
 font-family: var(--font);
 font-style: normal;
-font-weight: 600;
+font-weight: 700;
 font-size: 14px;
 line-height: 20px;
 text-align: center;

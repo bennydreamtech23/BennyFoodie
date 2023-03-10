@@ -1,6 +1,7 @@
 import {Link, useNavigate} from "react-router-dom";
 import HeroStyles from "./HeroSection.module.scss";
 import { useAuthState } from "react-firebase-hooks/auth";
+import Slider from "react-slick";
 import { auth} from "../../core/auth/firebase";
 //container from bootstrap
 import {Container, Row, Col, Card} from 'react-bootstrap';
@@ -30,6 +31,20 @@ const HeroSection = () =>{
 
 const img = "https://res.cloudinary.com/dlst0ec4h/image/upload/v1673632501/Pngtree_healthy_food_3776802_nqbeku.webp";
 
+const settings = {
+      autoplay: true,
+      dots: true,
+      navs: false,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      initialSlide: 0,
+      autoplaySpeed: 4000,
+       pauseOnHover: true,
+    };
+
+
   return(
     <>
     <Container fluid 
@@ -37,47 +52,30 @@ const img = "https://res.cloudinary.com/dlst0ec4h/image/upload/v1673632501/Pngtr
     
    <Row 
    className="d-flex flex-row-reverse justify-content-between">
-   
-   <Col 
-   className={HeroStyles.col}>
-    <div className={HeroStyles.main}>
-    <img className={HeroStyles.theSmiley} 
-    src={img}/>
-  
-   <img className={HeroStyles.item} 
-   style={{animationDelay: "-1s"}} 
-   src="https://www.kirupa.com/icon/1f951.svg"/>
-   
-  <img className={HeroStyles.item}
-  style={{animationDelay: "-2s"}}
-  src="https://www.kirupa.com/icon/1f370.svg"/>
-  
-  <img className={HeroStyles.item} 
-  style={{animationDelay: "-3s"}}
-  src="https://www.kirupa.com/icon/1f355.svg"/>
-  
-  <img className={HeroStyles.item} 
-  style={{animationDelay: "-4s"}}
-  src="https://www.kirupa.com/icon/1f96c.svg"/>
-  
-  <img className={HeroStyles.item} 
-  style={{animationDelay: "-5s"}} 
-  src="https://www.kirupa.com/icon/1f347.svg"/>
-  
-  <img className={HeroStyles.item}
-  style={{animationDelay: "-6s"}}
-  src="https://www.kirupa.com/icon/1f354.svg"/>
-
-  </div>
+   <Col lg='6' md='6' className={HeroStyles.col}>
+ <Slider {...settings}> 
+ <div>
+<img src={img} alt='food-hero-img' className='img-fluid border border-success border-5 rounded-circle'/>
+ </div>
+ 
+  <div>
+<img src="https://res.cloudinary.com/dlst0ec4h/image/upload/v1673721888/pngwing.com_14_rhjogg.webp" 
+alt='food-hero-img'
+className='img-fluid border border-success border-5 rounded-circle'/>
+ </div>
+ 
+  <div>
+<img src="https://res.cloudinary.com/dlst0ec4h/image/upload/v1673722305/pngwing.com_25_ybdmcr.png" alt='food-hero-img' 
+className='img-fluid border border-success border-5 rounded-circle'/>
+ </div>
+ </Slider>
    </Col>
       
-    <Col 
+    <Col lg='6' md='6'
     className={HeroStyles.heroText}>
   <h1 
   className={HeroStyles.title}>
-  Our food site makes it easy to find your <span 
-  className={HeroStyles.color}> Craving 
-  </span>
+ BENNYFOODIE
   </h1>
   
 <p 
@@ -102,10 +100,12 @@ Get Started
 </div>
 </Col>
 </Row>
-
-<Row
-className="mt-5">
-
+    </Container>
+    
+ <section className={HeroStyles.smallbox}> 
+ <h1>WHY CHOOSE US?</h1>
+ <p>You should choose us because we deliver the best quality of food at a fast speed limit</p>
+<Row className='gap-5 mt-5'>
 {/*card 1*/}
      <Col lg='4' md='6'
      className={HeroStyles.card}>
@@ -127,19 +127,19 @@ className="mt-5">
       
      <Col lg='4' md='6'
      className={HeroStyles.card}>
-  <TbAward 
+  <TbAward
   className={HeroStyles.Icon}/>
-
-     <h3
+  
+        <h3
         className={HeroStyles.smallTitle}>
-        Best Quality
+   Best Quality
         </h3>
-
+        
         <p
         className={HeroStyles.text}>
-          Been Affoardable doesn't mean we shouldn't consider  quality and food hygiene in our preparation. Our Dishes are affordable and healthy...
+         Been Affoardable doesn't mean we shouldn't consider quality and food hygiene in our preparation. Our Dishes are affordable and well cooked.
+         
         </p>
-
     </Col>
 
       {/*card 3*/}
@@ -159,7 +159,7 @@ className="mt-5">
         </p>
     </Col>
 </Row>
-    </Container>
+</section>
     </>
     )
 }

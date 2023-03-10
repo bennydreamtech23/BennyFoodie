@@ -6,6 +6,7 @@ import ProductCardStyle from "./ProductCad.module.scss";
 import { useDispatch } from "react-redux";
 import {cartActions} from "../../store/shopping-cart/cartSlice"
 
+import {Card} from "react-bootstrap"
 
 const ProductCard = (props) =>{
   const { id, name, price, image} = props.item
@@ -22,43 +23,42 @@ const dispatch = useDispatch()
   }
   
 return(
-          <div
-          className={ProductCardStyle.product_container}>
-         
-            <div 
+  <Card
          className={ProductCardStyle.product_inn}>
-                
-        <div 
+ <div 
         className={ProductCardStyle.product_pic_outer}>
-      
         <BsFillSuitHeartFill 
        className={ProductCardStyle.icon}/>
               <img
               src={image}
              alt="image"
             className={ProductCardStyle.heroimg} />
-                    </div>
+         </div>
 
-              <div className={ProductCardStyle.boxText}>
-        <Link to={`/menu/${id}`}
+      <Card.Body className={ProductCardStyle.boxText}>
+       <Card.Title>
+       <Link to={`/menu/${id}`}
         className="text-center h5 text-dark text-decoration-none
         d-flex 
         align-items-center 
         justify-content-center fw-bold">
         {name}
         </Link>
+        </Card.Title>
         
-              <div className={ProductCardStyle.btnBox}>
-               <p className="text-center lead mt-2 fw-bold">
+       <div className={ProductCardStyle.btnBox}>
+       <div>
+       <Card.Text 
+               className="text-center lead fw-bold">
             £{price}
-        </p>
+        </Card.Text>
+        </div>
+        <div>
         <button className='secondarybtn' onClick={addToCart}>Add To Cart</button>
         </div>
-                    </div>
-              </div>
-                </div>
-
-
+        </div>
+       </Card.Body>
+     </Card>
     )
 }
 

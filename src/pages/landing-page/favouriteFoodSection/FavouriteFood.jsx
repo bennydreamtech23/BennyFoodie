@@ -35,56 +35,20 @@ const getStarted = (e) =>{
    
     <h1
     className={FavouriteFoodStyles.favouriteFoodTitle}>
-    Our Favourite Customers Special Dishes
-    </h1>
+Customer's Regular Menu
+</h1>
     
- <Row className='mt-5'>
+ <Row className='gap-5 mt-5 d-flex align-items-center justify-content-center'>
   {
       favouritefoodData.map(item =>(
-      <Col key={item.id} lg='4' md='6'>
+      <Col key={item.id} lg='3' md='4'>
       <ProductCard item={item}/>
       </Col>
       ))
     }
 
 </Row>
-
-   <Row 
-   className={FavouriteFoodStyles.row1}>
-   
-    <Col 
-    className={FavouriteFoodStyles.heroText}>
-    
-  <h1 
-  className={FavouriteFoodStyles.title}>
-  Stay Healthy Live Long
-  </h1>
-  
-<p
-className={FavouriteFoodStyles.paraText}>
-Food is for the body as relaxing is for the mind, when you are healthy you are happy. We want to keep you happy always with our meals.
-</p>
-
-<div 
-className={FavouriteFoodStyles.btnBox}>
-
-<button 
-onClick={getStarted}
-className="btn btn-white btn-animated">
-Explore More
-</button>
-</div>
-</Col>
-
-  <Col 
-   className={FavouriteFoodStyles.col}>
-      <img 
-      src={chef} 
-      className={FavouriteFoodStyles.img} 
-      loading="lazy"/>
-      </Col>
-</Row>
-    </Container>
+</Container>
     )
 }
 
