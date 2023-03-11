@@ -75,7 +75,7 @@ className='img-fluid border border-success border-5 rounded-circle'/>
     className={HeroStyles.heroText}>
   <h1 
   className={HeroStyles.title}>
- BENNYFOODIE
+ Always Eating Good
   </h1>
   
 <p 

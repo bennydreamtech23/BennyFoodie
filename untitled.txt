@@ -1,0 +1,12 @@
+https://img.freepik.com/free-photo/elevated-view-fresh-vegetables-black-backdrop_23-2147917347.jpg?w=900&t=st=1678478957~exp=1678479557~hmac=853eee7282a062b858cc50566588682b5be3b964f4fb6224c806869840bb47ea
+
+
+  <h1 
+  className={FavouriteFoodStyles.title}>
+  Stay Healthy Live Long
+  </h1>
+  
+<p
+className={FavouriteFoodStyles.paraText}>
+Food is for the body as relaxing is for the mind, when you are healthy you are happy. We want to keep you happy always with our meals.
+</p>

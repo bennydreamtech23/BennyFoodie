@@ -107,9 +107,9 @@ const getStarted = (e) =>{
     className={PopularFoodStyle.Container}>
     
 <Row 
-className={PopularFoodStyle.row}>
+className="d-flex align-items-center justify-content-center">
 
-<Col>
+<Col lg='6' md='6'>
     <h1 
     className={PopularFoodStyle.Title}>
     Our Popular Menu
@@ -122,21 +122,17 @@ className={PopularFoodStyle.row}>
   </Col>
   
      <Col
+     lg='6' md='6'
    className={PopularFoodStyle.col}>
       <img 
       src={chefanime} 
       loading="lazy"
       className={PopularFoodStyle.Img}/>
       </Col>
-  </Row>
-  
   
    {/*header button for filter*/}  
-     <header 
-     className ={PopularFoodStyle.containerFilter}>
-  
-  <div 
-  className={PopularFoodStyle.cardFilter}>
+  <Col lg='3' md='4'
+  className={PopularFoodStyle.btnFolder}>
    <button 
    className="btn"
 onClick= {() => setMenu(popularfoodData)}>
@@ -144,10 +140,9 @@ onClick= {() => setMenu(popularfoodData)}>
 className="lead me-2"/>
 All
 </button>
-</div>
+</Col>
 
-<div
-className={PopularFoodStyle.cardFilter}>
+<Col lg='3' md='4'>
 <button 
 className="btn" 
 onClick= {() => filterResult("Breakfast")}>
@@ -156,10 +151,9 @@ onClick= {() => filterResult("Breakfast")}>
 className="lead me-2"/>
 Breakfast
 </button>
-</div>
+</Col>
 
-  <div 
-  className={PopularFoodStyle.cardFilter}>
+  <Col lg='3' md='4'>
 <button
 className="btn"
 onClick= {() => filterResult("Lunch")}>
@@ -167,10 +161,9 @@ onClick= {() => filterResult("Lunch")}>
 className="lead me-2"/>
 Lunch
 </button>
-</div>
+</Col>
 
-<div 
-className={PopularFoodStyle.cardFilter}>
+<Col lg='3' md='4'>
 <button 
 className="btn"
 onClick= {() => filterResult("Dinner")}>
@@ -178,20 +171,13 @@ onClick= {() => filterResult("Dinner")}>
 className="lead me-2"/>
 Dinner
 </button>
-</div>
+</Col>
 
-</header>
-
-        <div 
-        className={PopularFoodStyle.tranding_product_inn}>
-      
-<Row
-className='gap-5'>
       <Slider {...settings}
       className='pt-5'>
     {
        menu.map(item =>(
-      <Col lg='4' md='6'
+      <Col lg='3' md='4'
       key={item.id}>
       <ProductCard 
       item={item}
@@ -201,7 +187,7 @@ className='gap-5'>
     }
   </Slider>
   </Row>
-</div>
+
 
       <div 
       className="mt-5 d-flex align-items-center justify-content-center">

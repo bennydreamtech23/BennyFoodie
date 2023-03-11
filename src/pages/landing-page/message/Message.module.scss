@@ -1,0 +1,70 @@
+ .Container{
+     background: url("https://img.freepik.com/free-photo/flat-lay-delicious-local-food-assortment-with-copy-space_23-2148833791.jpg?w=1060&t=st=1678480064~exp=1678480664~hmac=18b8a582cce2a657bf1318dfb8a8d12c8a5998da49cfca844cab92ef712ce3aa");
+     background-size: cover;
+     background-repeat: no-repeat;
+     background-position: center center;
+     padding: 80px 64px;
+     object-fit: cover;
+     height: 100vh;
+     font-family: var(--font);
+     @media only screen and (min-width: 320px) and (max-width: 768px){
+  padding: 80px 32px;
+} 
+.content{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.title{
+   font-size: 36px;
+    line-height: 44px;
+   font-weight: 600;
+   font-style: normal;
+   letter-spacing: 0.5px;
+   color: var(--black);
+@media only screen and (min-width: 320px) and (max-width: 768px){
+    font-size: 28px;
+    line-height: 2.5rem;
+} 
+}
+ .paraText{
+     color: var(--black);
+    font-size: 1.5rem;
+    line-height: 2.5rem;
+   font-family: var(--font);
+   font-weight: 400;
+   font-style: normal;
+   letter-spacing: 0.5px;
+   width: 600px;
+      @media only screen and (min-width: 320px) and (max-width: 480px){
+    font-size: 1rem;
+    line-height: 1.5rem;
+} 
+ @media only screen and (min-width: 421px) and (max-width: 768px){
+    font-size: 1.2rem;
+    line-height: 2rem;
+} 
+   }
+   
+   .smalltitle{
+    text-align: center;
+     font-size: 30px;
+     font-weight: 500;
+   }
+   
+   .smallContainer{
+     padding-top: 1.5rem;
+     width: 100%;
+     display: flex;
+     align-items: flex-end;
+     gap: 1rem;
+justify-content: center;
+margin: 0 auto;
+     img{
+       width: 100%;
+     }
+   }
+   }

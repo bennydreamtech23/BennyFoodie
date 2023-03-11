@@ -149,7 +149,9 @@ const Register = () => {
 
       <Form onSubmit={handlesubmit}>
         <Form.Group className={styles.group}>
-          <Form.Label className={styles.labelfield}>Name</Form.Label>
+          <Form.Label className={styles.labelfield}>
+          Name
+          </Form.Label>
 
           <InputGroup className={styles.inputField}>
             <InputGroup.Text id='inputGroupPrepend'>
@@ -282,7 +284,11 @@ const Register = () => {
 
         <div className={styles.semigroup}>
           <p>Already Have An Account?</p>
-          <button className={styles.link}>Login</button>
+          <Link 
+          to="/login"
+        className={styles.link}>
+          Login
+          </Link>
         </div>
       </div>
 

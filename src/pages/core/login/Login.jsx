@@ -191,7 +191,7 @@ const Login = () => {
         </Form.Group>
 
       
-        <div className='d-flex align-items-center justify-content-center'>
+        <div className='d-flex align-items-center justify-content-center gap-3'>
           {isLoading ? (
             <Button disabled>
               <Spinner
@@ -208,6 +208,10 @@ const Login = () => {
               Submit
             </Button>
           )}
+          
+          <Link 
+          to="/forgotpassword"
+          className={styles.link}>forgot Password</Link>
         </div>
       </Form>
 
@@ -219,10 +223,12 @@ const Login = () => {
         </div>
 
         <div className={styles.semigroup}>
-          <p>User create an Account?</p>
-          <button className={styles.link}>
+          <p>New User create an Account?</p>
+          <Link 
+          to="/Signup"
+          className={styles.link}>
         Signup
-          </button>
+          </Link>
         </div>
       </div>
 
