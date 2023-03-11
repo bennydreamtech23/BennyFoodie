@@ -89,10 +89,10 @@ const Login = () => {
     // }
   }, [formValues, touched])
 
-  const handlesubmit = (e) => {
+   const handlesubmit = (e) => {
     e.preventDefault()
     console.log(formValues)
-    setIsLoading(true)
+    setIsLoading(false)
     if (Object.keys(formError).length > 0) {
       setTouched({
         password: true,
@@ -106,11 +106,16 @@ const Login = () => {
         password: false,
         email: false,
       })
+      if (
         logInWithEmailAndPassword(
           formValues.email,
           formValues.password
         )
-       setIsLoading(false)
+      ) {
+        setTimeActive(true)
+        navigate('/verify-email')
+      }
+      setIsLoading(false)
     }
   }
 

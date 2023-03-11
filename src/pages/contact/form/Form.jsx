@@ -50,8 +50,8 @@ const FormPage = () => {
       errors.full_name = 'Full Name is required'
     }
     
-     if (!values.dish_name) {
-      errors.dish_name = 'Dish Type is required'
+     if (!values.nature_of_event) {
+      errors.nature_of_event = 'Nature of Event is required'
     }
     
     if (!values.email) {
@@ -64,12 +64,12 @@ const FormPage = () => {
       errors.phone_number = 'Phone Number is required'
     }
     
-    if (!values.type_of_pan) {
-      errors.type_of_pan = 'Please select an option'
+    if (!values.budget) {
+      errors.budget = 'Budget per person is required'
     }
  
-    if (!values.quantity) {
-      errors.quantity = 'Please enter the number of Pan required'
+    if (!values.number_of_guest) {
+      errors.number_of_guest = 'Please Enter the number of Guest'
     }
   
     if (!values.message) {
@@ -92,26 +92,26 @@ const FormPage = () => {
 setIsLoading(true)
     if (Object.keys(formError).length > 0) {
       setTouched({
-        dish_name: true,
+        nature_of_event: true,
         full_name: true,
         message: true,
         email: true,
         phone_number: true,
-        type_of_pan: true,
-    quantity: true,
+        budget: true,
+    number_of_guest: true,
       })
       setIsLoading(false)
     }
 
     if (Object.keys(formError).length === 0) {
       setTouched({
-        dish_name: false,
+        nature_of_event: false,
         full_name: false,
         message: false,
         email: false,
         phone_number: false,
-        type_of_pan: false,
-    quantity: false,
+        budget: false,
+    number_of_guest: false,
       })
 
       fetch('https://formsubmit.co/ajax/uwabunkeonyeijeoma@gmail.com', {
@@ -121,14 +121,14 @@ setIsLoading(true)
           Accept: 'application/json',
         },
         body: JSON.stringify({
-          Dish_type: formValues.dish_name,
+          nature_of_event: formValues.nature_of_event,
           full_name: formValues.full_name,
           Email: formValues.email,
           Phone_number: formValues.phone_number,
-          Type_of_pan: formValues.type_of_pan,
+          budget: formValues.budget,
           message: formValues.message,
-          quantity: formValues.quantity,
-          _subject: `New Catering Service Order Submmitted By ${formValues.first_name} ${formValues.last_name}`,
+          number_of_guest: formValues.number_of_guest,
+          _subject: `New Catering Service Order Submmitted By ${formValues.full_name}`,
           _captcha: true,
           _blacklist: 'spammy pattern, banned term, phrase',
           _template: 'box',
@@ -161,14 +161,14 @@ setIsLoading(true)
   return (
       <Container fluid
       className={styles.Container}>
-      
  <Form onSubmit={handlesubmit} 
         className={styles.form}>
+          <p className='lead text-center'>
+          Kindly fill this form below and we would get in touch with you shortly. <br/>
+          We are capable of handling any kind of event.
+          </p>
           <Form.Group className={styles.box}>
-            <Form.Label className={styles.labelfield}>
-              Personal Details
-            </Form.Label>
-
+          
             <div className='mb-3'>
               <InputGroup>
                 <InputGroup.Text id='inputGroupPrepend'>
@@ -221,6 +221,51 @@ setIsLoading(true)
               <div className={styles.errorMsg}>
                 {touched.phone_number && formError.phone_number}
               </div>
+            </div>       
+          
+    <div className='mb-3'>
+              <InputGroup>
+                <Form.Control
+                  name='nature_of_event'
+                  type='text'
+                  value={formValues.nature_of_event}
+                  placeholder='Nature of Event'
+                  onChange={handleChange}
+                />
+              </InputGroup>
+              <div className={styles.errorMsg}>
+                {touched.nature_of_event && formError.nature_of_event}
+              </div>
+            </div>        
+    
+      <div className='mb-3'>
+              <InputGroup>
+                <Form.Control
+                  name='budget'
+                  type='number'
+                  value={formValues.budget}
+                  placeholder='Budget per person'
+                  onChange={handleChange}
+                />
+              </InputGroup>
+              <div className={styles.errorMsg}>
+                {touched.budget && formError.budget}
+              </div>
+            </div>      
+          
+            <div className='mb-3'>
+              <InputGroup>
+                <Form.Control
+                  name='number_of_guest'
+                  type='number'
+                  value={formValues.number_of_guest}
+                  placeholder='Approximate Number of Guest'
+                  onChange={handleChange}
+                />
+              </InputGroup>
+              <div className={styles.errorMsg}>
+                {touched.number_of_guest && formError.number_of_guest}
+              </div>
             </div>
           
                <div className='mb-3'>
@@ -231,7 +276,7 @@ setIsLoading(true)
                   name='message'
                   type='text'
                   value={formValues.message}
-                  placeholder='Please Enter your message'
+                  placeholder='Is there any additional information you would like to add'
                   onChange={handleChange}
                 />
               </InputGroup>
@@ -241,62 +286,6 @@ setIsLoading(true)
             </div>   
       </Form.Group>
       
-         
-          <Form.Group className={styles.box}>
-            <Form.Label className={styles.labelfield}>Type Of Dish</Form.Label>
-
-            <InputGroup className='mb-4'>
-              <Form.Control
-                name='dish_name'
-                type='text'
-                value={formValues.quantity}
-                onChange={handleChange}
-                placeholder='Please Enter Dish Type'
-              />
-            </InputGroup>
-
-            <div className={styles.errorMsg}>
-              {touched.dish_name && formError.dish_name}
-            </div>
-          </Form.Group>
-
-          <Form.Group className={styles.box}>
-            <Form.Label className={styles.labelfield}>
-              Type Of Pan
-            </Form.Label>
-            <select name='type_of_pan' onChange={handleChange}>
-              <option value=''>Select an option</option>
-              <option value='Half Pan'>
-              For Half Pan
-              </option>
-              <option value='Full Pan'>
-              For Full Pan
-              </option>
-            </select>
-            <div className={styles.errorMsg}>
-              {touched.type_of_pan && formError.type_of_pan}
-            </div>
-          </Form.Group>
-
-         
-          <Form.Group className={styles.box}>
-            <Form.Label className={styles.labelfield}>Quantity</Form.Label>
-
-            <InputGroup className='mb-4'>
-              <Form.Control
-                name='quantity'
-                type='number'
-                value={formValues.quantity}
-                onChange={handleChange}
-                placeholder='Please Enter the Number of Quantity'
-              />
-            </InputGroup>
-
-            <div className={styles.errorMsg}>
-              {touched.quantity && formError.quantity}
-            </div>
-          </Form.Group>
-          
           <input type='hidden' />
           <input type='hidden' />
           <input type='hidden' />

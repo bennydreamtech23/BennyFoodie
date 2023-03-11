@@ -25,12 +25,18 @@ font-family: var(--font);
     border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   p{
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 17px;
+    font-weight: 400;
   }
   h4{
-    font-size: 20px;
+    font-size: 22px;
     line-height: 1.8rem;
+    font-weight: bold;
+  }
+  .link{
+    text-decoration: none;
+    color: var(--green);
+    font-size: 1.1rem;
   }
   }
   

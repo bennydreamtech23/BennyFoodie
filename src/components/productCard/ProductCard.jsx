@@ -29,10 +29,10 @@ return(
         className={ProductCardStyle.product_pic_outer}>
         <BsFillSuitHeartFill 
        className={ProductCardStyle.icon}/>
-              <img
+              <Card.Img
+              position = 'top'
               src={image}
-             alt="image"
-            className={ProductCardStyle.heroimg} />
+             alt="product_image" />
          </div>
 
       <Card.Body className={ProductCardStyle.boxText}>
@@ -41,7 +41,7 @@ return(
         className="text-center h5 text-dark text-decoration-none
         d-flex 
         align-items-center 
-        justify-content-center fw-bold">
+        justify-content-center fw-bold pb-3">
         {name}
         </Link>
         </Card.Title>
