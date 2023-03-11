@@ -1,14 +1,12 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useState, useEffect, useContext } from 'react'
-import { AuthContext } from '../auth/AuthContext'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import {
   auth,
-logInWithEmailAndPassword,
-  signInWithGoogle,
+ sendPasswordReset
 } from '../auth/firebase'
 
-import styles from './Login.module.scss'
+import styles from './ResetPassword.module.scss'
 
 import {
   Container,
@@ -23,11 +21,9 @@ import {
 } from 'react-bootstrap'
 
 //icon
-import { MdEmail, 
-MdPersonOutline } from 'react-icons/md'
-import { RiLockPasswordLine } from 'react-icons/ri'
+import { MdEmail} from 'react-icons/md'
+
 import { FcGoogle } from 'react-icons/fc'
-import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 
 const Login = () => {
   const [user, loading] = useAuthState(auth)
@@ -35,7 +31,7 @@ const Login = () => {
 
   const [isLoading, setIsLoading] = useState(false)
   const [formValues, setFormValues] = useState({})
-  const [passwordEye, setpasswordEye] = useState(false)
+
   
   const [touched, setTouched] = useState({})
 
@@ -47,8 +43,7 @@ const Login = () => {
   const [errorType, setErrorType] = useState('')
   const [messageType, setMessageType] = useState('')
 
-  const useAuthValue = useContext(AuthContext)
-  const { setTimeActive } = useAuthValue
+ 
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -64,20 +59,13 @@ const Login = () => {
     const errors = {}
     const regex =
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-    const passw = /^[A-Za-z]\w{7,14}$/
-  
+    
     if (!values.email) {
       errors.email = 'Email is required'
     } else if (!regex.test(values.email)) {
       errors.email = 'This is not a valid email'
     }
 
-    if (!values.password) {
-      errors.password = 'Password is required'
-    } else if (!passw.test(values.password)) {
-      errors.password = 'Password must contain uppercase and lowercase.'
-    }
- 
     return errors
   }
 
@@ -95,7 +83,6 @@ const Login = () => {
     setIsLoading(true)
     if (Object.keys(formError).length > 0) {
       setTouched({
-        password: true,
         email: true,
       })
       setIsLoading(false)
@@ -103,31 +90,28 @@ const Login = () => {
 
     if (Object.keys(formError).length === 0) {
       setTouched({
-        password: false,
         email: false,
       })
-        logInWithEmailAndPassword(
+        sendPasswordReset(
           formValues.email,
-          formValues.password
         )
-       setIsLoading(false)
+      setIsLoading(false)
     }
   }
 
   useEffect(() => {
     if (loading === isLoading) return
     if (user) navigate('/menu')
-  }, [user, loading])
+  }, [user, isLoading])
 
   return (
     <Container fluid className={styles.Container}>
       <h1 className={styles.title}>
-        Welcome Back to <span className={styles.color}>Bennyfoodie!</span>
+       Reset Password
       </h1>
 
       <p className={styles.subTitle}>
-        Register to create your first account and become a prominent customer of
-        BennyFoodie
+      Enter your email, to receive a mail on how to reset your password and follow all the instructions
       </p>
 
       <Form onSubmit={handlesubmit}>
@@ -154,37 +138,6 @@ const Login = () => {
           </div>
         </Form.Group>
 
-        <Form.Group className={styles.group}>
-          <Form.Label className={styles.labelfield}>Password</Form.Label>
-          <InputGroup className={styles.inputField}>
-            <InputGroup.Text id='inputGroupPrepend'>
-              <RiLockPasswordLine />
-            </InputGroup.Text>
-            <Form.Control
-              name='password'
-              type={passwordEye ? 'text' : 'password'}
-              value={formValues.phone_number}
-              placeholder='Please Enter your Password'
-              onChange={handleChange}
-            />
-
-            <InputGroup.Text
-              id='inputGroupPrepend'
-              role='button'
-              onClick={(e) => {
-                e.preventDefault()
-                setpasswordEye(!passwordEye)
-              }}
-            >
-              {passwordEye ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
-            </InputGroup.Text>
-          </InputGroup>
-          <div className={styles.errorMsg}>
-            {touched.password && formError.password}
-          </div>
-        </Form.Group>
-
-      
         <div className='d-flex align-items-center justify-content-center gap-3'>
           {isLoading ? (
             <Button disabled>
@@ -202,27 +155,18 @@ const Login = () => {
               Submit
             </Button>
           )}
-          
-          <Link 
-          to="/forgotpassword"
-          className={styles.link}>forgot Password</Link>
         </div>
       </Form>
 
       <div className={styles.groupbtn}>
-        <div>
-          <button className={styles.signupbtn} onClick={signInWithGoogle}>
-            Sign up with <FcGoogle className='lead' />
-          </button>
-        </div>
-
+       
         <div className={styles.semigroup}>
-          <p>New User create an Account?</p>
-          <Link 
+          <p>New User create an Account? <Link 
           to="/Signup"
           className={styles.link}>
         Signup
           </Link>
+          </p>
         </div>
       </div>
 

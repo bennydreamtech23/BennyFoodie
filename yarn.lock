@@ -768,6 +768,11 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
+"@paystack/inline-js@^2.12.6":
+  version "2.12.6"
+  resolved "https://registry.yarnpkg.com/@paystack/inline-js/-/inline-js-2.12.6.tgz#f86bb4bd4a52e755b11ab35655bb77ff119659a1"
+  integrity sha512-OGr4o3v1iDnmikWfdeGiTl+q4nbAK1ffvrp7wBcKLSg65nWe+Eus90Mn72OQ/mo/zJdHm3IY2RZX3FtgIzrEsw==
+
 "@popperjs/core@^2.11.6":
   version "2.11.6"
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.6.tgz#cee20bd55e68a1720bdab363ecf0c821ded4cd45"
@@ -2054,6 +2059,11 @@ react-paginate@^8.1.4:
   integrity sha512-c3rxjcTEqeDQa6LqXifxLeFguY2qy2CHGRphVjHLFFMGfIHyaJ+v3bOvIlLYEeohwQ1q+cQpknjsqBVrkc/SNA==
   dependencies:
     prop-types "^15"
+
+react-paystack@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/react-paystack/-/react-paystack-4.0.2.tgz#766bc52bcf885de84b24a08cb22c7e27606ce4c5"
+  integrity sha512-D5aLMOejrd7i9EXGWnDA1X/v8Uz6ei2pgb3ZwTT2daGRB8XtZ1CZCXENfr/6o/UDb2fGb0xbFiYSLge6cV1guQ==
 
 react-redux-toolkit@^0.0.1-alpha.2:
   version "0.0.1-alpha.2"

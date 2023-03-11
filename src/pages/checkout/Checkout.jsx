@@ -1,4 +1,5 @@
 import { useState } from "react"
+import {useNavigate} from 'react-router-dom'
 import './Checkout.scss';
 //container from bootstrap
 import {Container, 
@@ -17,6 +18,8 @@ MdOutlinePhoneLocked,
 
 const Checkout = () =>{
 //data for shipping address entry
+const navigate = useNavigate()
+
 const [enteredName, setEnteredName] = useState('')
 const[enteredMail, setEnteredMail] =  useState('')
 const [enteredNumber, SetEnteredNumber] = useState('')
@@ -29,6 +32,10 @@ const [enteredPostalCode, SetEnteredPostalCode] = useState('')
   
   const  totalAmount = cartTotalAmount + Number(shippingCost)
   
+  const payment = (e) =>{
+    e.preventDefault()
+    navigate('/payment')
+  }
   
   return(
     <section>
@@ -119,7 +126,11 @@ const [enteredPostalCode, SetEnteredPostalCode] = useState('')
         className='inputfield'/>
 </InputGroup>
 </Form.Group>
-<button className='btn'>payment</button>
+<button 
+className='btn'
+onClick = {(e) => payment(e)}>
+payment
+</button>
 </Form>
 </Col>
 

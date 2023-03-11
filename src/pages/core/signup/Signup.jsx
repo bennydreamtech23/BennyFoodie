@@ -29,10 +29,11 @@ import { FcGoogle } from 'react-icons/fc'
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 
 const Register = () => {
-  const [user] = useAuthState(auth)
+  const [user,loading] = useAuthState(auth)
   const navigate = useNavigate()
 
   const [isLoading, setIsLoading] = useState(false)
+  
   const [formValues, setFormValues] = useState({})
   const [passwordEye, setpasswordEye] = useState(false)
   const [confirmPasswordEye, setConfirmPasswordEye] = useState(false)
@@ -98,7 +99,7 @@ const Register = () => {
   const handlesubmit = (e) => {
     e.preventDefault()
     console.log(formValues)
-    setIsLoading(false)
+    setIsLoading(true)
     if (Object.keys(formError).length > 0) {
       setTouched({
         full_name: true,
@@ -132,7 +133,7 @@ const Register = () => {
   }
 
   useEffect(() => {
-    if (isLoading) return
+    if (isLoading === loading) return
     if (user) navigate('/menu')
   }, [user, isLoading])
 

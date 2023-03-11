@@ -9,6 +9,7 @@ const EventSection = () =>{
   return(
     <Container fluid 
     className={Styles.Container}>
+    <h1 className='text-center border-bottom border-5 rounded mb-5'>Catering Plan</h1>
    <Row className='gap-5 d-flex align-items-center justify-content-center'>
    
 <Col md='3' lg='4'>
@@ -69,10 +70,10 @@ className={Styles.foodContent}>
 </div>
 </Link>
 </Col>
-
-<p className='text-muted mt-3'>
-<AiFillInfoCircle/> Please Specify the type of dish you want and the quantity in the contact form, Thank you</p>
 </Row>   
+<p className='text-muted pt-5'>
+<AiFillInfoCircle/> 
+Please be informed that catering dish payment plan is based on the pan and the dish type and also specify the  type of dish you want and the quantity in the contact form located in the contact page, Thank you</p>
     </Container>
     )
 }

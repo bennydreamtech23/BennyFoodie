@@ -16,6 +16,7 @@ import ContactPage from "./pages/contact/Contact";
 import Allfoods from "./pages/allfoods/AllFoods"
 import FoodDetails from './pages/food-details/FoodDetails'
 import Checkout from './pages/checkout/Checkout'
+import PaymentPage from './pages/payment/Payment'
 import CartPage from './pages/cartPage/CartPage'
 
 //core
@@ -23,10 +24,7 @@ import PrivateRoute from './pages/core/PrivateRoute'
 import VerifyEmail from './pages/core/verify_email/VerifyEmail';
  import LoginPage from "./pages/core/login/Login"
  import SignupPage from "./pages/core/signup/Signup"
- //import ForgetPasswordPage from "./pages/core/forgotpassword/ForgotPassword"
-//import OtpPage from "./pages/core/otp/Otp"
-//import ResetPasswordPage from "./pages/core/reset/Reset"
-
+ import ForgetPasswordPage from "./pages/core/reset_password/ResetPassword"
 
 //cart stuff
 import Carts from './pages/cart/Cart'
@@ -67,7 +65,8 @@ function App() {
         <Route path="/menu/:id" element={<FoodDetails />} />
         <Route path="/cart" element={<CartPage/>} />
          <Route path="/checkout" element={<Checkout/>} />
-         
+        
+          <Route path="/payment" element={<PaymentPage/>} />
          
             {/*core*/}
      <Route path="/signup" element={
@@ -81,6 +80,8 @@ function App() {
             : <Navigate to='/menu' replace/>
  } />
  <Route path='/verify-email' element={<VerifyEmail/>} /> 
+ 
+  <Route path='/forgotpassword' element={<ForgetPasswordPage/>} /> 
 </Routes>
     <Footer/>
     </AuthProvider>
