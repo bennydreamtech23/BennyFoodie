@@ -188,11 +188,14 @@ aria-labelledby="offcanvasExampleLabel">
 
   <div 
   className="offcanvas-header">
-    <h5 
-    className="offcanvas-title" 
+    <Link 
+    to='/'
+    className="offcanvas-title text-decoration-none text-dark h1" 
+    data-bs-dismiss="offcanvas" 
+    aria-label="Close"
     id="offcanvasExampleLabel">
     Bennyfoodie.
-    </h5>
+    </Link>
     
     <button 
     type="button" 

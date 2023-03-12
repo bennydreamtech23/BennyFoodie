@@ -21,14 +21,14 @@ const dispatch = useDispatch()
   const [submittedEmail, setSubmittedEmail] = useState(null);
   const [submittedMsg, setSubmittedMsg] = useState(null);
   
-  const { id } = useParams();
+  const { name } = useParams();
   // const [foodid, setFoodId] = useState({ id });
 
   const product = allfoods.find((product) => {
-    return product.id === Number(id);
+    return product.name === name;
   });
 
-const {name, 
+const {
 price,
 category,
 desc,image} = product ?? {};
@@ -224,7 +224,8 @@ const submittedHandler = (e) =>{
           You might also like
           </h2>
         </Col>
-        
+   
+        <Row className='gap-5'>
                   {
             relatedFood.map(item =>(
             <Col  key={item.id}>
@@ -232,6 +233,7 @@ const submittedHandler = (e) =>{
             </Col>
             ))
           }
+          </Row>
         </Row>
       </Container>
     </section>

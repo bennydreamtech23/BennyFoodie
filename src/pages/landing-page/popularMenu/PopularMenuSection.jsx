@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import {useState, useEffect} from "react";
 import Slider from "react-slick";
-import PopularFoodStyle from "./PopularMenuSection.module.scss";
+import  "./Popularfood.scss";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth} from "../../core/auth/firebase";
 //dummy data for popular food
@@ -104,73 +104,72 @@ const getStarted = (e) =>{
  
   return(
     <Container fluid 
-    className={PopularFoodStyle.Container}>
+    className='popularFoodContainer'>
     
-<Row 
-className="d-flex align-items-center justify-content-center">
-
-<Col lg='6' md='6'>
+<Row>
+<Col lg='6' md='12'>
     <h1 
-    className={PopularFoodStyle.Title}>
+    className='Title'>
     Our Popular Menu
     </h1>
     
     <p 
-    className={PopularFoodStyle.subHeading}>
+    className='subHeading'>
     Our Love for food and our desire for everyone to be healthy, always keep us in check when preparing our Dishes for you, Our lovely and outstanding Customers.
     </p>
   </Col>
   
-     <Col
-     lg='6' md='6'
-   className={PopularFoodStyle.col}>
+ <Col
+     lg='6' md='12'
+   className= 'column'>
       <img 
       src={chefanime} 
       loading="lazy"
-      className={PopularFoodStyle.Img}/>
+      className='Img'/>
       </Col>
+</Row>
+
+ 
   
-   {/*header button for filter*/}  
-  <Col lg='3' md='4'
-  className={PopularFoodStyle.btnFolder}>
+   {/*header button for filter*/} 
+   
+   <Row 
+className="d-flex align-items-center justify-content-center gap-5">
+  <Col lg='12'>
+  <div className='food_category d-flex align-items-center justify-content-center gap-4'>
+  
    <button 
-   className="btn"
-onClick= {() => setMenu(popularfoodData)}>
+onClick= {() => setMenu(popularfoodData)}
+className='foodBtnActive d-flex align-items-center justify-content-center gap-2'>
 <MdOutlineFastfood 
-className="lead me-2"/>
+className="lead"/>
 All
 </button>
-</Col>
 
-<Col lg='3' md='4'>
 <button 
-className="btn" 
-onClick= {() => filterResult("Breakfast")}>
-
+onClick= {() => filterResult("Breakfast")}
+className='foodBtnActive d-flex align-items-center justify-content-center gap-2'>
 <MdOutlineFreeBreakfast 
-className="lead me-2"/>
+className="lead"/>
 Breakfast
 </button>
-</Col>
 
-  <Col lg='3' md='4'>
 <button
-className="btn"
-onClick= {() => filterResult("Lunch")}>
+onClick= {() => filterResult("Lunch")}
+className='foodBtnActive d-flex align-items-center justify-content-center gap-2'>
 <MdLunchDining 
-className="lead me-2"/>
+className="lead"/>
 Lunch
 </button>
-</Col>
 
-<Col lg='3' md='4'>
 <button 
-className="btn"
-onClick= {() => filterResult("Dinner")}>
+onClick= {() => filterResult("Dinner")}
+className='foodBtnActive d-flex align-items-center justify-content-center gap-2'>
 <MdDinnerDining 
-className="lead me-2"/>
+className="lead"/>
 Dinner
 </button>
+</div>
 </Col>
 
       <Slider {...settings}

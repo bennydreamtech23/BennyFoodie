@@ -1,8 +1,8 @@
  .Container{
-     background: url("https://img.freepik.com/free-photo/flat-lay-delicious-local-food-assortment-with-copy-space_23-2148833791.jpg?w=1060&t=st=1678480064~exp=1678480664~hmac=18b8a582cce2a657bf1318dfb8a8d12c8a5998da49cfca844cab92ef712ce3aa");
-     background-size: cover;
+     background: url("https://img.freepik.com/free-photo/high-angle-uncooked-pasta-with-tomatoes-olive-oil-copy-space_23-2148360772.jpg?w=740&t=st=1678621545~exp=1678622145~hmac=0d9a7ce8e2ebdcaff930b05b8436e7180cd4e46abc850b177b3fdd5cf12bc374");
+    background-size: cover;
      background-repeat: no-repeat;
-     background-position: center center;
+     //background-position: center center;
      padding: 80px 64px;
      object-fit: cover;
      height: 100%;
@@ -12,19 +12,17 @@
 } 
 
 .content{
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: center;
-  margin-top: 3rem;
-  @media only screen and (min-width: 320px) and (max-width: 500px){
-margin-top: 22rem;
-align-items: center;
-} 
- @media only screen and (min-width: 600px) and (max-width: 1024px){
-margin-top: 15rem;
-align-items: center;
-} 
+  margin-top: 28rem;
+  @media only screen and (min-width: 320px) and (max-width: 576px){
+margin-top: 33rem;
+}
+@media only screen and (min-width: 576px) and (max-width: 768px){
+margin-top: 28rem;
+}
+
+@media only screen and (min-width: 769px) and (max-width: 992px){
+margin-top: 24rem;
+}
 }
 
 .title{
@@ -43,47 +41,41 @@ align-items: center;
   text-align: center;
 } 
 }
+
  .paraText{
      color: var(--black);
     font-size: 1.5rem;
-    line-height: 2.5rem;
+    line-height: 2rem;
    font-family: var(--font);
    font-weight: 400;
    font-style: normal;
    letter-spacing: 0.5px;
-   width: 600px;
       @media only screen and (min-width: 320px) and (max-width: 600px){
-        width: 100%;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     line-height: 1.7rem;
     text-align: center;
 } 
-      @media only screen and (min-width: 600px) and (max-width: 900px){
-        width: 100%;
-    text-align: center;
-} 
-  @media only screen and (min-width: 900px) and (max-width: 1200px){
-        width: 550px;
-    text-align: left;
+ @media only screen and (min-width: 600px) and (max-width: 1024px){
+  text-align: center;
 } 
    }
    
    .smalltitle{
+     padding-top: 1rem;
     text-align: center;
      font-size: 30px;
      font-weight: 500;
    }
    
-   .smallContainer{
-     padding-top: 1.5rem;
-     width: 100%;
+  .ruler{
+     background: black;
+     height: 5px;
+     width: 200px;
+     text-align: center;
      display: flex;
-     align-items: flex-end;
-     gap: 1rem;
-justify-content: center;
-margin: 0 auto;
-     img{
-       width: 100%;
-     }
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     margin: auto;
    }
    }

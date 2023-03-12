@@ -41,11 +41,13 @@ const getStarted = (e) =>{
     className={FavouriteFoodStyles.favouriteFoodTitle}>
 Customer's Regular Menu
 </h1>
+
+<hr className={FavouriteFoodStyles.ruler}/>
     
  <Row className='gap-5 mt-5 d-flex align-items-center justify-content-center'>
   {
       favouritefoodData.map(item =>(
-      <Col key={item.id} xl='3'lg='5' md='5'>
+      <Col key={item.id} xl='3' lg='5' md='5' sm='5'>
       <ProductCard item={item}/>
       </Col>
       ))

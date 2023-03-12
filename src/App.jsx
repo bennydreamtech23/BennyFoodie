@@ -62,7 +62,7 @@ function App() {
         <Allfoods/>
         </PrivateRoute>
         } />
-        <Route path="/menu/:id" element={<FoodDetails />} />
+        <Route path="/menu/:name" element={<FoodDetails />} />
         <Route path="/cart" element={<CartPage/>} />
          <Route path="/checkout" element={<Checkout/>} />
         

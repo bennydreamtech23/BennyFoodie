@@ -12,14 +12,17 @@ const Message = () =>{
   </h1>
   
   <p className={Styles.paraText}>
-  Food is for the body as relaxing is for the mind, when you are healthy you are happy. We want to keep you happy always with our meals.
+  Food is for the body as relaxing is for the mind, when you are healthy you are happy. <br/>
+  We want to keep you happy always with our meals.
   </p>
   
-  <Row className={Styles.smallContainer}>
-   <h1 className={Styles.smalltitle}>
+  <h1 className={Styles.smalltitle}>
   Our Top-notch Chefs
   </h1>
-  <Col lg='3' md='3' sm='3'>
+  <hr className={Styles.ruler}/>
+  
+  <Row className='gap-5 mt-5 d-flex align-items-center justify-content-center'>
+  <Col xl='3' lg='4' md='4'>
   <img src='https://img.freepik.com/free-photo/confident-young-female-cook-wearing-chef-uniform-holding-frying-pan-crossing-hands-isolated-white-wall_141793-120213.jpg?w=900&t=st=1678482605~exp=1678483205~hmac=42a5ee9bc531f8b89fdaa424f65a29ba4a1f1e439fc696662e0284867c4bbb80' 
   alt="chefs"
   className='img-fluid border border-5 rounded-circle '/>

@@ -3,15 +3,15 @@ import {Row, Col, Container, Nav} from 'react-bootstrap';
 import { AiOutlineTwitter, AiFillFacebook, AiFillInstagram,
 AiOutlineCopyrightCircle} from "react-icons/ai";
 import footerStyles from "./Footer.module.scss";
+import {Link} from "react-router-dom"
 
 const Footer = () =>{
   return(
-    <>
     <footer>
-    
- <Row className={footerStyles.roller}>
+ <Row className='d-flex gap-4 justify-content-center'>
  
-   <Col className={footerStyles.col2}>
+   <Col
+xl='6' lg='12' md='12' sm='12'>
    
 <h1 className={footerStyles.heading}>BennyFoodie</h1>
 <p className={footerStyles.subtext}>
@@ -19,36 +19,47 @@ Healthy and mouth watering dishes prepared by the best chef in order to satisfy 
 </p>
     </Col>
     
-     <Col className={footerStyles.col2}>
-<h1 className={footerStyles.heading}>Site map</h1>
+     <Col  xl='2' lg='4' md='4'  sm='4'>
+<h1 className={footerStyles.heading}>
+Site map
+</h1>
+
 <Nav className="flex-column">
-      <Nav.Link href="/services" className={footerStyles.link}>Services</Nav.Link>
-     <Nav.Link href="/about" className={footerStyles.link}>About</Nav.Link>
+      <Link to="/services" 
+      className={footerStyles.link}>
+   Catering
+      </Link>
+      
+     <Link to="/about" 
+     className={footerStyles.link}>
+     About
+     </Link>
     </Nav>
     </Col>
     
-     <Col className={footerStyles.col2}>
-<h1 className={footerStyles.heading}>Social Media</h1>
+     <Col xl='2' lg='4' md='4'  sm='4'>
+<h1 className={footerStyles.heading}>
+Social Media
+</h1>
 
-<Nav className="d-flex justify-content-center">
-
-      <Nav.Link href="/" className={footerStyles.link}>
+<Nav className={footerStyles.icons}>
+      <Link to="/" 
+      className={footerStyles.link}>
       <AiOutlineTwitter className={footerStyles.icon}/>
-      </Nav.Link>
+      </Link>
       
-       <Nav.Link href="/" className={footerStyles.link}>
+       <Link to= "/" className={footerStyles.link}>
         <AiFillInstagram className={footerStyles.icon}/>
-        </Nav.Link>
+        </Link>
         
-     <Nav.Link href="/" className={footerStyles.link}>
+     <Link to="/" className={footerStyles.link}>
    <AiFillFacebook className={footerStyles.icon}/>
-   </Nav.Link>
+   </Link>
     </Nav>
     </Col>
 
     </Row>
-
-<div className='d-flex aklign-items-center justify-content-center'>
+<div className='d-flex align-items-center justify-content-center mt-5'>
 <a href='#top'
 className='text-white text-center text-decoration-none fw-bold h4'>
 top of the page &uarr;	
@@ -62,12 +73,7 @@ top of the page &uarr;
              <strong className={footerStyles.footernote}> Bennydreamtech</strong>
             </p>
 </div>
-
 </footer>
-
-
-</>
-
     )
 }
 export default Footer

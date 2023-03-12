@@ -37,7 +37,7 @@ return(
 
       <Card.Body className={ProductCardStyle.boxText}>
        <Card.Title>
-       <Link to={`/menu/${id}`}
+       <Link to={`/menu/${name}`}
         className="text-center h5 text-dark text-decoration-none
         d-flex 
         align-items-center 
