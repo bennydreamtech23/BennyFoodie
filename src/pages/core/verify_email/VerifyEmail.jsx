@@ -55,8 +55,8 @@ function VerifyEmail() {
 
   return (
     <div
-      className='center container'
-      style={{ marginTop: 100, marginLeft: 50 }}
+      className='container d-flex align-items-center flex-column justify-content-center p-5'
+      style={{ marginTop: 100}}
     >
       <div className='verifyEmail'>
         <h1>Verify your Email Address</h1>

@@ -30,10 +30,10 @@ import { FcGoogle } from 'react-icons/fc'
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 
 const Login = () => {
-  const [user, loading] = useAuthState(auth)
+  const [user,loading] = useAuthState(auth)
   const navigate = useNavigate()
 
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(loading)
   const [formValues, setFormValues] = useState({})
   const [passwordEye, setpasswordEye] = useState(false)
   
@@ -89,10 +89,11 @@ const Login = () => {
     // }
   }, [formValues, touched])
 
-   const handlesubmit = (e) => {
+//submit form function
+const handlesubmit = (e) => {
     e.preventDefault()
     console.log(formValues)
-    setIsLoading(false)
+    setIsLoading(true)
     if (Object.keys(formError).length > 0) {
       setTouched({
         password: true,
@@ -115,15 +116,18 @@ const Login = () => {
         setTimeActive(true)
         navigate('/verify-email')
       }
-      setIsLoading(false)
+ setIsLoading(false)
     }
   }
-
+  
   useEffect(() => {
-    if (loading === isLoading) return
-    if (user) navigate('/menu')
+if (isLoading) {
+  setIsLoading(true)
+}
+if (user) navigate('/menu')
+setIsLoading(false)
   }, [user, loading])
-
+  
   return (
     <Container fluid className={styles.Container}>
       <h1 className={styles.title}>
@@ -192,7 +196,9 @@ const Login = () => {
       
         <div className='d-flex align-items-center justify-content-center gap-3'>
           {isLoading ? (
-            <Button disabled>
+            <Button 
+variant='success'
+            disabled>
               <Spinner
                 as='span'
                 animation='grow'

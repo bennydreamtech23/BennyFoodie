@@ -60,7 +60,7 @@ Our originator, settled on the choice to close on Sundays in 2022 when he opened
 
  <section className='mt-5 mb-5'> 
  <h1 className={Styles.heading}>
- What our Trademark?
+ our Trademark
  </h1>
 
 <Row className='gap-5 mt-5'>

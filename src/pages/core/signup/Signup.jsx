@@ -29,10 +29,10 @@ import { FcGoogle } from 'react-icons/fc'
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 
 const Register = () => {
-  const [user,loading] = useAuthState(auth)
+  const [user, loading] = useAuthState(auth)
   const navigate = useNavigate()
 
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(loading)
   
   const [formValues, setFormValues] = useState({})
   const [passwordEye, setpasswordEye] = useState(false)
@@ -127,15 +127,17 @@ const Register = () => {
         setTimeActive(true)
         navigate('/verify-email')
       }
-
-      setIsLoading(false)
+ setIsLoading(false)
     }
   }
 
   useEffect(() => {
-    if (isLoading === loading) return
-    if (user) navigate('/menu')
-  }, [user, isLoading])
+if (isLoading) {
+  setIsLoading(true)
+}
+if (user) navigate('/menu')
+setIsLoading(false)
+  }, [user, loading])
 
   return (
     <Container fluid className={styles.Container}>
@@ -232,6 +234,10 @@ const Register = () => {
             <Form.Control
               name='confirmPassword'
               type={confirmPasswordEye ? 'text' : 'password'}
+              onPaste= {(e) => { 
+              e.preventDefault()
+                return false
+              }}
               value={formValues.message}
               placeholder='confirm your password'
               onChange={handleChange}
@@ -258,7 +264,8 @@ const Register = () => {
 
         <div className='d-flex align-items-center justify-content-center'>
           {isLoading ? (
-            <Button disabled>
+            <Button 
+            variant="success" disabled>
               <Spinner
                 as='span'
                 animation='grow'

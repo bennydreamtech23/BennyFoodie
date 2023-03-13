@@ -60,8 +60,6 @@ const logInWithEmailAndPassword = async (email, password) => {
   try {
     await signInWithEmailAndPassword(auth, email, password)
     if (sendEmailVerification(auth.currentUser)) {
-      // setTimeActive(true)
-      //navigate('/verify-email')
       return true
     }
     alert(err.message)

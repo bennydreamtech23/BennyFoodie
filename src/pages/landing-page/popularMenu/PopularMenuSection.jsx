@@ -103,10 +103,8 @@ const getStarted = (e) =>{
     };
  
   return(
-    <Container fluid 
-    className='popularFoodContainer'>
-    
-<Row>
+<>
+<Row className='bg-container'>
 <Col lg='6' md='12'>
     <h1 
     className='Title'>
@@ -129,10 +127,11 @@ const getStarted = (e) =>{
       </Col>
 </Row>
 
- 
-  
+
+    <Container fluid 
+    className='popularFoodContainer'>
+    
    {/*header button for filter*/} 
-   
    <Row 
 className="d-flex align-items-center justify-content-center gap-5">
 
@@ -198,6 +197,7 @@ Dinner
   </button>
    </div>
     </Container>
+    </>
     )
 }
 

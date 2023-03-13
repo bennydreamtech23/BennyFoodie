@@ -15,7 +15,7 @@ xl='6' lg='12' md='12' sm='12'>
    
 <h1 className={footerStyles.heading}>BennyFoodie</h1>
 <p className={footerStyles.subtext}>
-Healthy and mouth watering dishes prepared by the best chef in order to satisfy the stomach need of their lovely customers
+Healthy and mouth watering dishes prepared by the best chefs in order to satisfy the stomach need of their lovely customers
 </p>
     </Col>
     

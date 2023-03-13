@@ -107,7 +107,7 @@ setIsLoading(true)
           Email: formValues.email,
           Subject: formValues.subject,
           message: formValues.message,
-          _subject: `New Catering Service Order Submmitted By ${formValues.full_name}`,
+          _subject: `New Message Submmitted By ${formValues.full_name}`,
           _captcha: true,
           _blacklist: 'spammy pattern, banned term, phrase',
           _template: 'box',
@@ -141,7 +141,7 @@ setIsLoading(true)
       <Container fluid
       className={styles.Container}>
       
- <section className='mt-5 mb-5'> 
+ <section className='mb-5'> 
  <h1 className={styles.heading}>
 Get in touch with us !
  </h1>
@@ -259,7 +259,7 @@ No 15 Jonnesburg Street Washington DC
                 />
               </InputGroup>
               <div className={styles.errorMsg}>
-                {touched.phone_number && formError.phone_number}
+                {touched.subject && formError.subject}
               </div>
             </div>       
       
