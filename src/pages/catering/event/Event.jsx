@@ -9,7 +9,7 @@ const EventSection = () =>{
   return(
     <Container fluid 
     className={Styles.Container}>
-    <h1 className='text-center border-bottom border-5 rounded mb-5'>
+    <h1 className={Styles.title}>
     Catering Plan
     </h1>
     

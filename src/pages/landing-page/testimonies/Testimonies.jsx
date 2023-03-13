@@ -2,7 +2,7 @@ import {Container, Row, Col, Card} from 'react-bootstrap';
 import TestimonialStyles from "./Testimonies.module.scss";
 import TestiomnySlider from "../../../components/slider/testimonySlider/TestimonySlider"
 
-const AboutSection = () =>{
+const TestimonySection = () =>{
 
     return (
    <Container
@@ -25,4 +25,4 @@ const AboutSection = () =>{
     )
 }
 
-export default AboutSection
+export default TestimonySection

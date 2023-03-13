@@ -41,8 +41,6 @@ const getStarted = (e) =>{
 Customer's Regular Menu
 </h1>
 
-<hr className={FavouriteFoodStyles.ruler}/>
-    
  <Row className='gap-5 mt-5 d-flex align-items-center justify-content-center'>
   {
       favouritefoodData.map(item =>(

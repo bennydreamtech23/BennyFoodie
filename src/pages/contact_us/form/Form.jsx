@@ -50,8 +50,8 @@ const FormPage = () => {
       errors.full_name = 'Full Name is required'
     }
     
-     if (!values.nature_of_event) {
-      errors.nature_of_event = 'Nature of Event is required'
+     if (!values.subject) {
+      errors.subject = 'Title is required'
     }
     
     if (!values.email) {
@@ -60,20 +60,8 @@ const FormPage = () => {
       errors.email = 'This is not a valid email'
     }
     
-    if (!values.phone_number) {
-      errors.phone_number = 'Phone Number is required'
-    }
-    
-    if (!values.budget) {
-      errors.budget = 'Budget per person is required'
-    }
- 
-    if (!values.number_of_guest) {
-      errors.number_of_guest = 'Please Enter the number of Guest'
-    }
-  
     if (!values.message) {
-      errors.message = 'Please specify more details'
+      errors.message = 'Please tell us in details'
     }
     return errors
   }
@@ -92,26 +80,20 @@ const FormPage = () => {
 setIsLoading(true)
     if (Object.keys(formError).length > 0) {
       setTouched({
-        nature_of_event: true,
+        subject: true,
         full_name: true,
         message: true,
         email: true,
-        phone_number: true,
-        budget: true,
-    number_of_guest: true,
       })
       setIsLoading(false)
     }
 
     if (Object.keys(formError).length === 0) {
       setTouched({
-        nature_of_event: false,
+        subject: false,
         full_name: false,
         message: false,
         email: false,
-        phone_number: false,
-        budget: false,
-    number_of_guest: false,
       })
 
       fetch('https://formsubmit.co/ajax/uwabunkeonyeijeoma@gmail.com', {
@@ -121,13 +103,10 @@ setIsLoading(true)
           Accept: 'application/json',
         },
         body: JSON.stringify({
-          nature_of_event: formValues.nature_of_event,
           full_name: formValues.full_name,
           Email: formValues.email,
-          Phone_number: formValues.phone_number,
-          budget: formValues.budget,
+          Subject: formValues.subject,
           message: formValues.message,
-          number_of_guest: formValues.number_of_guest,
           _subject: `New Catering Service Order Submmitted By ${formValues.full_name}`,
           _captcha: true,
           _blacklist: 'spammy pattern, banned term, phrase',
@@ -166,65 +145,69 @@ setIsLoading(true)
  <h1 className={styles.heading}>
 Get in touch with us !
  </h1>
-<Row className='gap-5 mt-5'>
+<Row className='gap-5 mt-5 mx-auto d-flex align-items-center justify-content-center'>
+
 {/*card 1*/}
      <Col lg='4' md='6'
      className={styles.card}>
-
-        <h3
-        className={styles.smallTitle}>
-       Mission
-        </h3>
-        
+    
+<BsFillPhoneVibrateFill
+className={styles.icon}/>
+  
+    <h3 className={styles.headingsmall}>
+    PHONE
+    </h3>    
+    
         <p
         className={styles.text}>
-       Reducing the death rate by providing an affordable and easy to get meal. The company is an open company, meaning they receive feedback from clients.
++234(09)277-455-900
        </p>
+       
+               <p
+        className={styles.text}>
++234(09)277-800-900
+       </p>
+
     </Col>
 
       {/* card 2*/}
       
      <Col lg='4' md='6'
      className={styles.card}>
-  
-        <h3
-        className={styles.smallTitle}>
-Vision
-        </h3>
+  <MdEmail className={styles.icon}/>
+    <h3 className={styles.headingsmall}>
+    Email
+    </h3>
         
         <p
         className={styles.text}>
-       We plan to help reduce the gap rate between chefs and customers, by providing a getway for chefs to sell their food when approved by the company.
-         
+       bennyfoodiesupport@gmail.com 
+        </p>
+                <p
+        className={styles.text}>
+       bennyfoodiehelpline@gmail.com 
         </p>
     </Col>
 
       {/*card 3*/}
      <Col lg='4' md='6'
      className={styles.card}>
-    
-        <h3 
-        className={styles.smallTitle}>
-      Statement 
+  <MdLocationOn className={styles.icon}/>
+      <h3 className={styles.headingsmall}>
+      address
       </h3>
-        
         <p
         className={styles.text}>
-         We believe that quality food, should be affordable and people craving, should be looked upon.
+No 15 Jonnesburg Street Washington DC
          </p>
     </Col>
 </Row>
 </section>
     
-      
-      
-      
-      
  <Form onSubmit={handlesubmit} 
         className={styles.form}>
-          <p className='lead text-center'>
-          Kindly fill this form below and we would get in touch with you shortly. <br/>
-          We are capable of handling any kind of event.
+          <p className='h5 text-center fw-bold text-uppercase mb-3'>
+          If you got any question don't hesitate to send us a message 
           </p>
           <Form.Group className={styles.box}>
           
@@ -266,14 +249,12 @@ Vision
 
             <div className='mb-3'>
               <InputGroup>
-                <InputGroup.Text id='inputGroupPrepend'>
-                  <MdOutlinePhoneLocked />
-                </InputGroup.Text>
+
                 <Form.Control
-                  name='phone_number'
-                  type='number'
-                  value={formValues.phone_number}
-                  placeholder='Please Enter your Phone Number'
+                  name='subject'
+                  type='text'
+                  value={formValues.subject}
+                  placeholder='Subject'
                   onChange={handleChange}
                 />
               </InputGroup>
@@ -281,52 +262,7 @@ Vision
                 {touched.phone_number && formError.phone_number}
               </div>
             </div>       
-          
-    <div className='mb-3'>
-              <InputGroup>
-                <Form.Control
-                  name='nature_of_event'
-                  type='text'
-                  value={formValues.nature_of_event}
-                  placeholder='Nature of Event'
-                  onChange={handleChange}
-                />
-              </InputGroup>
-              <div className={styles.errorMsg}>
-                {touched.nature_of_event && formError.nature_of_event}
-              </div>
-            </div>        
-    
-      <div className='mb-3'>
-              <InputGroup>
-                <Form.Control
-                  name='budget'
-                  type='number'
-                  value={formValues.budget}
-                  placeholder='Budget per person'
-                  onChange={handleChange}
-                />
-              </InputGroup>
-              <div className={styles.errorMsg}>
-                {touched.budget && formError.budget}
-              </div>
-            </div>      
-          
-            <div className='mb-3'>
-              <InputGroup>
-                <Form.Control
-                  name='number_of_guest'
-                  type='number'
-                  value={formValues.number_of_guest}
-                  placeholder='Approximate Number of Guest'
-                  onChange={handleChange}
-                />
-              </InputGroup>
-              <div className={styles.errorMsg}>
-                {touched.number_of_guest && formError.number_of_guest}
-              </div>
-            </div>
-          
+      
                <div className='mb-3'>
               <InputGroup>
                   <Form.Control
@@ -335,7 +271,7 @@ Vision
                   name='message'
                   type='text'
                   value={formValues.message}
-                  placeholder='Is there any additional information you would like to add'
+                  placeholder='Please Enter your message'
                   onChange={handleChange}
                 />
               </InputGroup>
@@ -362,7 +298,7 @@ Vision
       </Button>     
           ) : (
      <Button variant="primary" type='submit'>
-       Submit
+       Send
       </Button>
           )}
         </Form>

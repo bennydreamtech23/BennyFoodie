@@ -43,7 +43,7 @@ const OurStorySection = () =>{
   
           <Col lg="6" md="6">
             <div className="single_product-content">
-              <h2 className="product_title mb-3 text-center">Who Are We?</h2>
+              <h2 className={Styles.title}>Who Are We?</h2>
               <p className={Styles.text}>
               “We ought to be about something beyond moving chicken. We ought to be a piece of our client’s lives and the networks in which we serve.”
 </p>
@@ -62,7 +62,7 @@ Our originator, settled on the choice to close on Sundays in 2022 when he opened
  <h1 className={Styles.heading}>
  What our Trademark?
  </h1>
- <hr className={Styles.ruler}/>
+
 <Row className='gap-5 mt-5'>
 {/*card 1*/}
      <Col lg='4' md='6'
@@ -117,9 +117,7 @@ Vision
  <h1 className={Styles.heading}>
  Meet Our Team
  </h1>
-         
-     <hr className={Styles.ruler}/>
-     
+
 <Row className='gap-5 mt-5'>
 {/*card 1*/}
      <Col lg='4' md='6'

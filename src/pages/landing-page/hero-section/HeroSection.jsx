@@ -103,7 +103,7 @@ Get Started
     </Container>
     
  <section className={HeroStyles.smallbox}> 
- <h1>WHY CHOOSE US?</h1>
+ <h1 className={HeroStyles.title} id={HeroStyles.title}>WHY CHOOSE US?</h1>
  <p>You should choose us because we deliver the best quality of food at a fast speed limit</p>
 <Row className='gap-5 mt-5 my-auto d-flex align-items-center justify-content-center'>
 {/*card 1*/}

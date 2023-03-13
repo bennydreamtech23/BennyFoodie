@@ -5,6 +5,24 @@ font-family: var(--font);
   padding: 80px 24px;
 }
 
+  .title{
+    text-transform: capitalize;
+     font-size: 3.5rem;
+    line-height: 4rem;
+   font-weight: 800;
+   font-style: normal;
+   letter-spacing: 0.5px;
+   text-align: center;
+   padding-bottom: 1rem;
+@media only screen and (min-width: 320px) and (max-width: 480px){
+    font-size: 2rem;
+    line-height: 1.5rem;
+} 
+ @media only screen and (min-width: 481px) and (max-width: 900px){
+    font-size: 2.5rem;
+    line-height: 2rem;
+} 
+   }
 
 .foodContent{
   display: flex;
