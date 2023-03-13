@@ -5,6 +5,7 @@ font-family: var(--font);
   padding: 80px 24px;
 }
 
+
 .foodContent{
   display: flex;
   flex-direction: row;
@@ -16,6 +17,16 @@ font-family: var(--font);
   color: var(--black);
   box-shadow: 6px 7px 10px rgba(0, 0, 0, 0.25);
   margin: 0 auto;
+    @media only screen and (min-width: 320px) and (max-width: 480px){
+flex-direction: column;
+}
+  @media only screen and (min-width: 768px) and (max-width: 990px){
+flex-direction: column;
+width: 18rem;
+height: 30rem;
+}
+
+
   .content{
     background-color: black;
     color: #fff;
@@ -24,19 +35,24 @@ font-family: var(--font);
     padding: 50px 10px;
     border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
+   @media only screen and (min-width: 320px) and (max-width: 480px){
+padding: 50px 20px;
+}
   p{
-    font-size: 17px;
+    font-size: 1.3rem;
     font-weight: 400;
   }
   h4{
-    font-size: 22px;
+    font-size: 2rem;
+    margin-bottom: 1rem;
     line-height: 1.8rem;
     font-weight: bold;
   }
   .link{
     text-decoration: none;
     color: var(--green);
-    font-size: 1.1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
   }
   }
   

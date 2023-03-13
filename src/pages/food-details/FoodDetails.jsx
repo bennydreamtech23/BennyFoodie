@@ -17,9 +17,11 @@ const dispatch = useDispatch()
   const [enteredName, setEnteredName] = useState('')
   const[enteredMail, setEnteredMail] =  useState('')
   const [enteredMessage, SetEnteredMessage] = useState('')
-  const [submittedName, setSubmittedName] = useState(null);
-  const [submittedEmail, setSubmittedEmail] = useState(null);
-  const [submittedMsg, setSubmittedMsg] = useState(null);
+  const [submittedName, setSubmittedName] = useState(localStorage.getItem('submittedName') ? localStorage.getItem("submittedName") : "Benny");
+  
+  const [submittedEmail, setSubmittedEmail] = useState(localStorage.getItem('submittedEmail') ? localStorage.getItem("submittedEmail") : "bennyfoodie@gmail.com");
+  
+  const [submittedMsg, setSubmittedMsg] = useState(localStorage.getItem('submittedMsg') ? localStorage.getItem("submittedMsg") : "I love the hamburger");
   
   const { name } = useParams();
   // const [foodid, setFoodId] = useState({ id });
@@ -54,11 +56,14 @@ useEffect(()=>{
 window.scrollTo(0,0)
 },[product])
 
+//local storage
+
+
 const submittedHandler = (e) =>{
   e.preventDefault()
-  setSubmittedName(enteredName)
-  setSubmittedEmail(enteredMail)
-  setSubmittedMsg(enteredMessage)
+  setSubmittedName(localStorage.setItem('submittedName', enteredName))
+  setSubmittedEmail(localStorage.setItem('submittedEmail', enteredMail))
+  setSubmittedMsg(localStorage.setItem('submittedMsg', enteredMessage))
   setEnteredName('')
   setEnteredMail('')
   SetEnteredMessage('')
@@ -88,7 +93,7 @@ const submittedHandler = (e) =>{
     <section className="container-box">
       <HeaderSection title={name} />
 
-      <Container className="py-5">
+      <Container fluid className="py-5">
         <Row>
           <Col lg="2" md="2">
             <div className="product_images">
@@ -135,16 +140,17 @@ const submittedHandler = (e) =>{
                 {" "}
                 Price: <span>€{price}</span>
               </p>
-              <p className="category mb-5">
+              <p className="category">
                 Category: <span> {category}</span>
               </p>
-
-              <button className="btn"
+<div className='mb-5'>
+              <button className='addtocartbtn'
               onClick={addToCart}>Add to Cart</button>
+            </div>
             </div>
           </Col>
 
-       <Col lg="12">
+       <Col lg="12" className='px-5'>
             <div className="tabs d-flex align-items-center gap-3 py-2">
               <h6 className={`${tabs === 'desc' ? "tab_active" : ''}`}
               onClick={()=>setTabs('desc')}>
@@ -157,7 +163,7 @@ const submittedHandler = (e) =>{
             </div>
 {
   tabs === 'desc' ? <div className="tab_content">
-          <p>{desc}</p>
+          <p className='subtext'>{desc}</p>
             </div> :
             <div className="tab_form mb-3 pt-5">
             <div>
@@ -212,7 +218,7 @@ const submittedHandler = (e) =>{
                 </Form.Group>
 
                 <button type="submit" className="btn">
-                  submit
+                  send
                 </button>
               </Form>
             </div>
@@ -220,15 +226,17 @@ const submittedHandler = (e) =>{
           </Col>
           
           <Col lg='12' className='my-4'>
-          <h2 className='related_product_title'>
+          <h2 className='related_product_title text-center'>
           You might also like
           </h2>
         </Col>
    
-        <Row className='gap-5'>
+        <Row className='gap-5 d-flex align-items-center justify-content-center mx-auto'>
                   {
             relatedFood.map(item =>(
-            <Col  key={item.id}>
+            <Col  key={item.id} 
+            xl='3' 
+            lg='5' md='5' sm='5'>
             <ProductCard item={item}/>
             </Col>
             ))
@@ -236,7 +244,7 @@ const submittedHandler = (e) =>{
           </Row>
         </Row>
       </Container>
-    </section>
+</section>
   );
 };
 

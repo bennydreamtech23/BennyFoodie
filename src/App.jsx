@@ -13,6 +13,7 @@ import LandingPage from "./pages/landing-page/Landingpage";
 import AboutPage from "./pages/about/About";
 import CateringPage from "./pages/catering/Catering";
 import ContactPage from "./pages/contact/Contact";
+import ContactUsPage from "./pages/contact_us/ContactUs";
 import Allfoods from "./pages/allfoods/AllFoods"
 import FoodDetails from './pages/food-details/FoodDetails'
 import Checkout from './pages/checkout/Checkout'
@@ -57,6 +58,9 @@ function App() {
         path="/services" element={<CateringPage/>} />
           <Route 
         path="/contact" element={<ContactPage/>} />
+        
+            <Route 
+        path="/contact_us" element={<ContactUsPage/>} />
         <Route path="/menu" element={
         <PrivateRoute>
         <Allfoods/>

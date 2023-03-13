@@ -15,17 +15,17 @@ align-items: center;
 justify-content: center;
 flex-direction: column;
 margin: 0 auto;
-height: 30rem;
+height: 33rem;
 &:hover {
   transform: translateY(-15px);
 }
 
-@media only screen and (max-width: 320px){
-width: 15.5rem;
+@media only screen and (min-width: 300px) and (max-width: 360px){
+width: 16rem;
 height: 29rem;
 } 
 
-@media only screen and (min-width: 576px) and (max-width: 768px){
+@media only screen and (min-width: 365px) and (max-width: 768px){
 width: 16.5rem;
 height: 29rem;
 } 

@@ -1,15 +1,15 @@
 import Styles from './OurStory.module.scss';
-import {Container, Row, Col} from "react-bootstrap";
+import {Container, Row, Col, Card} from "react-bootstrap";
 
 const OurStorySection = () =>{
   const previewImg = 'https://res.cloudinary.com/dlst0ec4h/image/upload/v1673722321/pngwing.com_22_jp2sqx.png'
   
   const chef = "https://res.cloudinary.com/dlst0ec4h/image/upload/v1673718971/pngwing.com_zlmc2w.webp"
   return(
-    <Container fluid 
+    <Container 
     className={Styles.Container}>
-   <Row className='d-flex align-items-center justify-content-center'>
-    <Col lg="2" md="2">
+   <Row>
+    <Col lg="6" md="2">
             <div className="product_images">
               <div
                 className="img__item"
@@ -17,7 +17,7 @@ const OurStorySection = () =>{
                 <img
                   src='https://res.cloudinary.com/dlst0ec4h/image/upload/v1673721735/pngwing.com_16_zurgty.webp'
                   alt="product images"
-                  className="w-100"
+                  className="w-50"
                 />
               </div>
 
@@ -26,7 +26,7 @@ const OurStorySection = () =>{
                 <img
                   src="https://res.cloudinary.com/dlst0ec4h/image/upload/v1673720496/pngwing.com-_8__sxocwn.webp"
                   alt="product images"
-                  className="w-100"
+                  className="w-50"
                 />
               </div>
 
@@ -35,7 +35,7 @@ const OurStorySection = () =>{
                 <img
                   src={previewImg}
                   alt="product images"
-                  className="w-100"
+                  className="w-50"
                 />
               </div>
             </div>
@@ -58,11 +58,11 @@ Our originator, settled on the choice to close on Sundays in 2022 when he opened
           </Col>
 </Row>  
 
-
- <section className='mt-5'> 
+ <section className='mt-5 mb-5'> 
  <h1 className={Styles.heading}>
  What our Trademark?
  </h1>
+ <hr className={Styles.ruler}/>
 <Row className='gap-5 mt-5'>
 {/*card 1*/}
      <Col lg='4' md='6'
@@ -72,7 +72,7 @@ Our originator, settled on the choice to close on Sundays in 2022 when he opened
         className={Styles.smallTitle}>
        Mission
         </h3>
-        
+
         <p
         className={Styles.text}>
        Reducing the death rate by providing an affordable and easy to get meal. The company is an open company, meaning they receive feedback from clients.
@@ -112,7 +112,59 @@ Vision
     </Col>
 </Row>
 </section>
-   
+
+   <section className='pt-5 mt-5'> 
+ <h1 className={Styles.heading}>
+ Meet Our Team
+ </h1>
+         
+     <hr className={Styles.ruler}/>
+     
+<Row className='gap-5 mt-5'>
+{/*card 1*/}
+     <Col lg='4' md='6'
+     className={Styles.card}>
+
+<Card>
+<Card.Img src='https://images.unsplash.com/photo-1581299894007-aaa50297cf16?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80' loading='lazy' alt='team member'/>
+
+        <Card.Title
+        className='fw-bold pt-5'>
+
+C.E.O
+        </Card.Title>
+       </Card>
+    </Col>
+
+      {/* card 2*/}
+      
+     <Col lg='4' md='6'
+     className={Styles.card}>
+ <Card>
+<Card.Img src='https://images.unsplash.com/photo-1555084415-b708df0fef3e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=626&q=80' alt='team member'/>
+
+        <Card.Title className='fw-bold pt-5'>
+Managing Director
+        </Card.Title>
+       </Card>
+    </Col>
+
+      {/*card 3*/}
+     <Col lg='4' md='6'
+     className={Styles.card}>
+     
+    <Card>
+<Card.Img src='https://images.unsplash.com/photo-1487309078313-fad80c3ec1e5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80' alt='team member'/>
+
+        <Card.Title
+       className='fw-bold pt-5'>
+H.R Head
+        </Card.Title>
+       </Card>
+     
+    </Col>
+</Row>
+</section>
     </Container>
     )
 }

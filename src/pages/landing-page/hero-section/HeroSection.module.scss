@@ -12,7 +12,7 @@ font-family: var(--font);
       width: 80%;
   box-shadow: 0 0 10px rgba(0, 0, 0, .5);
   animation: spinAround 6s linear infinite;
-       @media only screen and (min-width: 320px) and (max-width: 768px){
+       @media only screen and (min-width: 320px) and (max-width: 900px){
 width: 100%;
 } 
 &:hover{
@@ -46,7 +46,6 @@ font-family: var(--font);
     line-height: 4rem;
    font-weight: 400;
    font-style: normal;
-   text-align: center;
    letter-spacing: 0.5px;
    text-align: left;
    padding-bottom: 1rem;
@@ -55,7 +54,7 @@ font-family: var(--font);
     line-height: 1.5rem;
     text-align: center;
 } 
- @media only screen and (min-width: 481px) and (max-width: 768px){
+ @media only screen and (min-width: 481px) and (max-width: 900px){
     text-align: center;
     font-size: 2.5rem;
     line-height: 2rem;
@@ -69,12 +68,14 @@ font-family: var(--font);
    font-family: var(--font);
    font-weight: 400;
    font-style: normal;
-   text-align: center;
    letter-spacing: 0.5px;
    text-align: left;
       @media only screen and (min-width: 320px) and (max-width: 480px){
     font-size: 1.3rem;
     line-height: 1.8rem;
+    text-align: center;
+} 
+ @media only screen and (min-width: 480px) and (max-width: 900px){
     text-align: center;
 } 
    }
@@ -99,6 +100,7 @@ margin-bottom: 2rem;
     transition: all .2s;
     position: absolute;
     font-weight: 700;
+    font-size: 2rem;
 }
 
 .btn:active {
@@ -157,7 +159,7 @@ border-radius: 5px;
 font-family: var(--font);
 font-style: normal;
 font-weight: 700;
-font-size: 14px;
+font-size: 1rem;
 line-height: 20px;
 text-align: center;
 letter-spacing: 0.1px;
@@ -216,12 +218,11 @@ p{
 }
 
 .card{
-background-color: #fff;
 font-family: var(--font);
 border: none;
 border-radius: 7px;
-box-shadow: 6px 7px 10px rgba(255, 255, 255, 0.5);
-color: black;
+  background-color: #fff;
+  color: black;
 width: 18.5rem;
 text-align: center;
 padding-top: 1rem;
@@ -231,6 +232,11 @@ align-items: center;
 justify-content: center;
 flex-direction: column;
 margin: 0 auto;
+transition: all 0.5s ease-in-out;
+&:hover{
+  box-shadow: 6px 7px 10px rgba(255, 255, 255, 0.5);
+  transform: translateY(-10px);
+}
 
 .Icon{
   font-size: 3.5rem;
@@ -269,7 +275,7 @@ border-radius: 50%;
 
 .text{
   font-family: var(--font);
-  font-size: 1.5rem;
+  font-size: 1.3rem;
     line-height: 1.7rem;
    font-family: var(--font);
    font-weight: 400;
@@ -277,7 +283,7 @@ border-radius: 50%;
    text-align: center;
    letter-spacing: 0.5px;
       @media only screen and (min-width: 320px) and (max-width: 600px){
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     line-height: 1.8rem;
 } 
 }

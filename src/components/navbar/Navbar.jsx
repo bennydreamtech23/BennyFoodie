@@ -107,6 +107,12 @@ const handleLogin = (e) =>{
           About
           </Link>
         </li>
+            <li className="nav-item">
+          <Link to="/contact_us" 
+          className="nav-link">
+       Contact
+          </Link>
+        </li>
         </>
 :
 <>
@@ -230,6 +236,13 @@ Catering
           data-bs-dismiss="offcanvas"
           aria-label="Close">
           About
+          </Link>
+        </li>
+        
+          <li className="nav-item">
+          <Link to="/contact_us" 
+          className="nav-link">
+       Contact
           </Link>
         </li>
         </>

@@ -15,7 +15,6 @@ import ProductCard from "../../../components/productCard/ProductCard"
 //icon
 import {BsFillSuitHeartFill} from "react-icons/bs";
 
-
 const FavouriteFoodSection = () =>{
   
   const chef = "https://res.cloudinary.com/dlst0ec4h/image/upload/v1673718971/pngwing.com_zlmc2w.webp";

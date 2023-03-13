@@ -135,6 +135,7 @@ const getStarted = (e) =>{
    
    <Row 
 className="d-flex align-items-center justify-content-center gap-5">
+
   <Col lg='12'>
   <div className='food_category d-flex align-items-center justify-content-center gap-4'>
   

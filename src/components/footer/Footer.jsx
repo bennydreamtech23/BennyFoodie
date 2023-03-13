@@ -19,7 +19,7 @@ Healthy and mouth watering dishes prepared by the best chef in order to satisfy 
 </p>
     </Col>
     
-     <Col  xl='2' lg='4' md='4'  sm='4'>
+     <Col  xl='2' lg='6' md='6'  sm='4'>
 <h1 className={footerStyles.heading}>
 Site map
 </h1>

@@ -52,7 +52,7 @@ const settings = {
     
    <Row 
    className="d-flex flex-row-reverse justify-content-between">
-   <Col lg='6' md='6' className={HeroStyles.col}>
+   <Col lg='6' md='12' className={HeroStyles.col}>
  <Slider {...settings}> 
  <div>
 <img src={img} alt='food-hero-img' className='img-fluid border border-success border-5 rounded-circle'/>
@@ -71,7 +71,7 @@ className='img-fluid border border-success border-5 rounded-circle'/>
  </Slider>
    </Col>
       
-    <Col lg='6' md='6'
+    <Col lg='6' md='12'
     className={HeroStyles.heroText}>
   <h1 
   className={HeroStyles.title}>
@@ -105,7 +105,7 @@ Get Started
  <section className={HeroStyles.smallbox}> 
  <h1>WHY CHOOSE US?</h1>
  <p>You should choose us because we deliver the best quality of food at a fast speed limit</p>
-<Row className='gap-5 mt-5'>
+<Row className='gap-5 mt-5 my-auto d-flex align-items-center justify-content-center'>
 {/*card 1*/}
      <Col lg='4' md='6'
      className={HeroStyles.card}>
