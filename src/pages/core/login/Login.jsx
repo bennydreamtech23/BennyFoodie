@@ -1,6 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom'
-import { useState, useEffect, useContext } from 'react'
-import { AuthContext } from '../auth/AuthContext'
+import { useState, useEffect} from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import {
   auth,
@@ -47,8 +46,8 @@ const Login = () => {
   const [errorType, setErrorType] = useState('')
   const [messageType, setMessageType] = useState('')
 
-  const useAuthValue = useContext(AuthContext)
-  const { setTimeActive } = useAuthValue
+  //const useAuthValue = useContext(AuthContext)
+  //const { setTimeActive } = useAuthValue
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -107,15 +106,10 @@ const handlesubmit = (e) => {
         password: false,
         email: false,
       })
-      if (
         logInWithEmailAndPassword(
           formValues.email,
           formValues.password
         )
-      ) {
-        setTimeActive(true)
-        navigate('/verify-email')
-      }
  setIsLoading(false)
     }
   }

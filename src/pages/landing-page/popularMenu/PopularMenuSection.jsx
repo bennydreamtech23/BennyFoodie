@@ -173,7 +173,7 @@ Dinner
 </Col>
 
       <Slider {...settings}
-      className='pt-5'>
+      className='pt-5 p-3'>
     {
        menu.map(item =>(
       <Col lg='3' md='4'

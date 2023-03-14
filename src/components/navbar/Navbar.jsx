@@ -3,6 +3,8 @@ import {Link, useNavigate} from "react-router-dom";
 import "./Navbar.scss";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, logout} from "../../pages/core/auth/firebase";
+
+import Profile from "../../pages/profile/Profile"
 //component from bootstrap
 import {Container, Nav, Badge} from 'react-bootstrap';
 //icons
@@ -13,6 +15,7 @@ import { useSelector, useDispatch } from "react-redux"
 import {cartListActions} from '../../store/shopping-cart/cartListSlice'
 
 function NavbarTool() {
+  const [modalShow, setModalShow] = useState(false)
 const navigate = useNavigate()
 //logout function
   const [user, loading] = useAuthState(auth);
@@ -150,6 +153,7 @@ const handleLogin = (e) =>{
         
         {user ?
         <BsPerson
+        onClick={() => setModalShow(true)}
         className="h3 text-light ms-4" /> 
         :
         ""}
@@ -274,7 +278,8 @@ Catering
         </span>
         
         {user ?
-        <BsPerson className="h3 text-light ms-4" /> 
+        <BsPerson className="h3 text-light ms-4" 
+        onClick={() => setModalShow(true)}/> 
         :
         ""}
       </form>
@@ -304,6 +309,11 @@ Catering
       </ul>
   </div>
 </div>
+
+ <Profile
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
     </div>
   );
 }

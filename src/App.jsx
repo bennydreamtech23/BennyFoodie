@@ -21,7 +21,7 @@ import PaymentPage from './pages/payment/Payment'
 import CartPage from './pages/cartPage/CartPage'
 
 //core
-import PrivateRoute from './pages/core/PrivateRoute'
+//import PrivateRoute from './pages/core/PrivateRoute'
 import VerifyEmail from './pages/core/verify_email/VerifyEmail';
  import LoginPage from "./pages/core/login/Login"
  import SignupPage from "./pages/core/signup/Signup"
@@ -62,10 +62,8 @@ function App() {
             <Route 
         path="/contact_us" element={<ContactUsPage/>} />
         <Route path="/menu" element={
-        <PrivateRoute>
         <Allfoods/>
-        </PrivateRoute>
-        } />
+}/>
         <Route path="/menu/:name" element={<FoodDetails />} />
         <Route path="/cart" element={<CartPage/>} />
          <Route path="/checkout" element={<Checkout/>} />

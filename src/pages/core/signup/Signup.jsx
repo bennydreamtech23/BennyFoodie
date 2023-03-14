@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom'
-import { useState, useEffect, useContext } from 'react'
-import { AuthContext } from '../auth/AuthContext'
+import { useState, useEffect } from 'react'
+import {useAuthValue } from '../auth/AuthContext'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import {
   auth,
@@ -27,14 +27,14 @@ import { MdEmail, MdPersonOutline } from 'react-icons/md'
 import { RiLockPasswordLine } from 'react-icons/ri'
 import { FcGoogle } from 'react-icons/fc'
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
-
+import {BsPhone} from 'react-icons/bs'
 const Register = () => {
   const [user, loading] = useAuthState(auth)
   const navigate = useNavigate()
-
   const [isLoading, setIsLoading] = useState(loading)
   
   const [formValues, setFormValues] = useState({})
+  const {name, password, email, phone_number} = formValues;
   const [passwordEye, setpasswordEye] = useState(false)
   const [confirmPasswordEye, setConfirmPasswordEye] = useState(false)
 
@@ -48,8 +48,8 @@ const Register = () => {
   const [errorType, setErrorType] = useState('')
   const [messageType, setMessageType] = useState('')
 
-  const useAuthValue = useContext(AuthContext)
-  const { setTimeActive } = useAuthValue
+  //const useAuthValue = useContext(AuthContext)
+  const { setTimeActive } = useAuthValue()
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -66,10 +66,14 @@ const Register = () => {
     const regex =
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
     const passw = /^[A-Za-z]\w{7,14}$/
-    if (!values.full_name) {
-      errors.full_name = 'Full Name is required'
+    if (!values.name) {
+      errors.name = 'Full Name is required'
     }
 
+  if (!values.phone_number) {
+      errors.phone_number = 'Phone Number is required'
+    } 
+     
     if (!values.email) {
       errors.email = 'Email is required'
     } else if (!regex.test(values.email)) {
@@ -81,6 +85,7 @@ const Register = () => {
     } else if (!passw.test(values.password)) {
       errors.password = 'Password must contain uppercase and lowercase.'
     }
+    
     if (values.confirmPassword !== values.password) {
       errors.confirmPassword = 'Password doesnot match'
     }
@@ -102,7 +107,8 @@ const Register = () => {
     setIsLoading(true)
     if (Object.keys(formError).length > 0) {
       setTouched({
-        full_name: true,
+        name: true,
+        phone_number: true,
         password: true,
         email: true,
         confirmPassword: true,
@@ -112,17 +118,19 @@ const Register = () => {
 
     if (Object.keys(formError).length === 0) {
       setTouched({
-        full_name: false,
+        name: false,
+        phone_number: false,
         password: false,
         email: false,
         confirmPassword: false,
       })
       if (
         registerWithEmailAndPassword(
-          formValues.name,
-          formValues.email,
-          formValues.password
-        )
+          name,
+          email,
+          password,
+          phone_number
+      )
       ) {
         setTimeActive(true)
         navigate('/verify-email')
@@ -161,20 +169,22 @@ setIsLoading(false)
               <MdPersonOutline />
             </InputGroup.Text>
             <Form.Control
-              name='full_name'
+              name='name'
               type='text'
-              value={formValues.first_name}
+              value={formValues.name}
               placeholder='Please Enter your Full Name'
               onChange={handleChange}
             />
           </InputGroup>
           <div className={styles.errorMsg}>
-            {touched.full_name && formError.full_name}
+            {touched.name && formError.name}
           </div>
         </Form.Group>
 
         <Form.Group className={styles.group}>
-          <Form.Label className={styles.labelfield}>Email</Form.Label>
+          <Form.Label className={styles.labelfield}>
+          Email
+          </Form.Label>
 
           <InputGroup className={styles.inputField}>
             <InputGroup.Text id='inputGroupPrepend'>
@@ -193,6 +203,28 @@ setIsLoading(false)
           </div>
         </Form.Group>
 
+ <Form.Group className={styles.group}>
+          <Form.Label className={styles.labelfield}>
+          Phone Number
+          </Form.Label>
+
+          <InputGroup className={styles.inputField}>
+            <InputGroup.Text id='inputGroupPrepend'>
+              <BsPhone />
+            </InputGroup.Text>
+            <Form.Control
+              name='phone_number'
+              type='number'
+              value={formValues.phone_number}
+              placeholder='Please Enter your Phone Number'
+              onChange={handleChange}
+            />
+          </InputGroup>
+          <div className={styles.errorMsg}>
+            {touched.phone_number && formError.phone_number}
+          </div>
+        </Form.Group>
+
         <Form.Group className={styles.group}>
           <Form.Label className={styles.labelfield}>Password</Form.Label>
           <InputGroup className={styles.inputField}>
@@ -202,7 +234,7 @@ setIsLoading(false)
             <Form.Control
               name='password'
               type={passwordEye ? 'text' : 'password'}
-              value={formValues.phone_number}
+              value={formValues.password}
               placeholder='Please Enter your Password'
               onChange={handleChange}
             />

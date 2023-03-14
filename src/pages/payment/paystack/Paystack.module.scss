@@ -4,4 +4,65 @@ font-family: var(--font);
    @media only screen and (min-width: 320px) and (max-width: 768px){
   padding: 80px 24px;
 }
+
+.labelfield{
+  color: #181818;
+  font-weight: bold;
+}
+
+.ToastContainer{
+ position: fixed; /* Sit on top of the page content */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+  z-index: 0; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+}
+.centered{
+  position: fixed; 
+     top: 30%; 
+     left: 50%;
+     transform: translate(-50%, -50%); 
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     overflow-x: hidden;
+     overflow-y: auto;
+     z-index: 50;
+     outline: none;
+.toast{
+     @media screen and (max-width: 768px)  {
+             position: relative;
+             border-radius: 10px;
+             z-index: 10; 
+             box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
+             display: flex;
+             flex-direction: column;
+             margin: auto;
+          }
+       position: relative;
+       border-radius: 10px;
+       z-index: 10; 
+       box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+       margin: auto;
+     }
+}
+ .errorMsg {
+    font-size: 13px;
+    color:  #dc3545;
+    display: flex;
+    flex-direction: row;
+    column-gap: 0.5rem;
+    margin-top: 5px;
+  }
+
 }
