@@ -133,11 +133,9 @@ const getStarted = (e) =>{
     
    {/*header button for filter*/} 
    <Row 
-className="d-flex align-items-center justify-content-center gap-5">
+className="d-flex align-items-center justify-content-center gap-3">
 
-  <Col lg='12'>
-  <div className='food_category d-flex align-items-center justify-content-center gap-4'>
-  
+  <Col>
    <button 
 onClick= {() => setMenu(popularfoodData)}
 className='foodBtnActive d-flex align-items-center justify-content-center gap-2'>
@@ -145,7 +143,9 @@ className='foodBtnActive d-flex align-items-center justify-content-center gap-2'
 className="lead"/>
 All
 </button>
+</Col>
 
+<Col>
 <button 
 onClick= {() => filterResult("Breakfast")}
 className='foodBtnActive d-flex align-items-center justify-content-center gap-2'>
@@ -153,7 +153,9 @@ className='foodBtnActive d-flex align-items-center justify-content-center gap-2'
 className="lead"/>
 Breakfast
 </button>
+</Col>
 
+<Col>
 <button
 onClick= {() => filterResult("Lunch")}
 className='foodBtnActive d-flex align-items-center justify-content-center gap-2'>
@@ -161,7 +163,9 @@ className='foodBtnActive d-flex align-items-center justify-content-center gap-2'
 className="lead"/>
 Lunch
 </button>
+</Col>
 
+<Col>
 <button 
 onClick= {() => filterResult("Dinner")}
 className='foodBtnActive d-flex align-items-center justify-content-center gap-2'>
@@ -169,14 +173,14 @@ className='foodBtnActive d-flex align-items-center justify-content-center gap-2'
 className="lead"/>
 Dinner
 </button>
-</div>
 </Col>
 
-      <Slider {...settings}
-      className='pt-5 p-3'>
+
+      <Slider {...settings} className='mt-5'>
     {
        menu.map(item =>(
-      <Col lg='3' md='4'
+      <Col lg='4' md='4' xs='12'
+      className='mb-5'
       key={item.id}>
       <ProductCard 
       item={item}

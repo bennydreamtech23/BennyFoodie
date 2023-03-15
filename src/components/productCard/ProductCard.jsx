@@ -32,7 +32,8 @@ return(
               <Card.Img
               position = 'top'
               src={image}
-             alt="product_image" />
+             alt="product_image"
+             className={ProductCardStyle.img}/>
          </div>
 
       <Card.Body className={ProductCardStyle.boxText}>

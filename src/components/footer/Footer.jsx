@@ -8,18 +8,15 @@ import {Link} from "react-router-dom"
 const Footer = () =>{
   return(
     <footer>
- <Row className='d-flex gap-4 justify-content-center'>
- 
-   <Col
-xl='6' lg='12' md='12' sm='12'>
-   
+ <Row className='d-flex justify-content-between text-white'>
+ <Col lg='3' md='4' sm='12' className='mb-3'>
 <h1 className={footerStyles.heading}>BennyFoodie</h1>
 <p className={footerStyles.subtext}>
 Healthy and mouth watering dishes prepared by the best chefs in order to satisfy the stomach need of their lovely customers
 </p>
-    </Col>
-    
-     <Col  xl='2' lg='6' md='6'  sm='4'>
+ </Col>
+  
+   <Col lg='3' md='4' sm='6' className='mb-3'>
 <h1 className={footerStyles.heading}>
 Site map
 </h1>
@@ -35,10 +32,10 @@ Site map
      About
      </Link>
     </Nav>
-    </Col>
-    
-     <Col xl='2' lg='4' md='4'  sm='4'>
-<h1 className={footerStyles.heading}>
+ </Col>
+  
+   <Col lg='3' md='4' sm='6' className='mb-3'>
+ <h1 className={footerStyles.heading}>
 Social Media
 </h1>
 
@@ -56,15 +53,18 @@ Social Media
    <AiFillFacebook className={footerStyles.icon}/>
    </Link>
     </Nav>
-    </Col>
-
-    </Row>
-<div className='d-flex align-items-center justify-content-center mt-5'>
+ </Col>
+ 
+<Col 
+lg='12' md='12' sm='12'
+className='d-flex align-items-center justify-content-center mt-2'>
 <a href='#top'
 className='text-white text-center text-decoration-none fw-bold h4'>
 top of the page &uarr;	
 </a>
-</div>
+</Col>
+
+</Row>
      <div className={footerStyles.footerRuler}></div>
      
 <div className={footerStyles.footerButtom}>

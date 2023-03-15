@@ -1,0 +1,18 @@
+
+
+ <Slider {...settings} className='d-flex flex-column mx-auto w-50'> 
+ <div>
+<img src={img} alt='food-hero-img' className='img-fluid border border-success border-5 rounded-circle'/>
+ </div>
+ 
+  <div>
+<img src="https://img.freepik.com/free-photo/large-set-isolated-vegetables-white-background_485709-44.jpg?w=740&t=st=1678869338~exp=1678869938~hmac=8d6e26d0934e6e1ad1ed383c01877384da6d634199defa596ac0f0ec42a379b4" 
+alt='food-hero-img'
+className='img-fluid border border-success border-5 rounded-circle'/>
+ </div>
+ 
+  <div>
+<img src="https://res.cloudinary.com/dlst0ec4h/image/upload/v1673722305/pngwing.com_25_ybdmcr.png" alt='food-hero-img' 
+className='img-fluid border border-success border-5 rounded-circle'/>
+ </div>
+ </Slider>

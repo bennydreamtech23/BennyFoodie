@@ -51,7 +51,7 @@ const signInWithGoogle = async () => {
       })
     }
   } catch (err) {
-    console.error(err)
+    console.error(err.message)
     //alert(err.message)
   }
 }
@@ -64,12 +64,12 @@ const logInWithEmailAndPassword = async (email, password) => {
    // }
     //alert(err.message)
   } catch (err) {
-    console.error(err)
+    console.error(err.message)
    // alert(err.message)
   }
 }
 
-const registerWithEmailAndPassword = async (name, email, password) => {
+const registerWithEmailAndPassword = async (name, email, password, phone_number) => {
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password)
     const user = res.user;
@@ -86,7 +86,7 @@ const registerWithEmailAndPassword = async (name, email, password) => {
     }
     alert(err.message)
   } catch (err) {
-    console.error(err)
+    console.error(err.message)
     //alert(err.message)
   }
 }
@@ -96,7 +96,7 @@ const sendPasswordReset = async (email) => {
     await sendPasswordResetEmail(auth, email)
     alert('Password reset link sent!')
   } catch (err) {
-    console.error(err)
+    console.error(err.message)
    // alert(err.message)
   }
 }

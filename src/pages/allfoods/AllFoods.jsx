@@ -70,15 +70,20 @@ onChange={(e) => setSearchItem(e.target.value)}/>
 </Col>
 </Row>
 
-<Row className={FoodStyles.foodContainer}>
+<Row className='d-flex justify-content-between'>
 {
 displayPage
 .map(item => 
+  <Col lg='4' md='4' 
+      className='mb-5'
+        key={item.id}>
   <ProductCard item={item}
-  key={item.id}/>
+/>
+</Col>
   )
 }
 </Row>
+
 <div className='mt-5'>
 <ReactPaginate
 pageCount={pageCount}

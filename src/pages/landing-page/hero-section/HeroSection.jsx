@@ -51,24 +51,10 @@ const settings = {
     className={HeroStyles.Container}>
     
    <Row 
-   className="d-flex flex-row-reverse justify-content-between">
+   className="d-flex flex-row-reverse justify-content-center align-items-center">
    <Col lg='6' md='12' className={HeroStyles.col}>
- <Slider {...settings}> 
- <div>
-<img src={img} alt='food-hero-img' className='img-fluid border border-success border-5 rounded-circle'/>
- </div>
- 
-  <div>
-<img src="https://res.cloudinary.com/dlst0ec4h/image/upload/v1673721888/pngwing.com_14_rhjogg.webp" 
-alt='food-hero-img'
-className='img-fluid border border-success border-5 rounded-circle'/>
- </div>
- 
-  <div>
-<img src="https://res.cloudinary.com/dlst0ec4h/image/upload/v1673722305/pngwing.com_25_ybdmcr.png" alt='food-hero-img' 
-className='img-fluid border border-success border-5 rounded-circle'/>
- </div>
- </Slider>
+<img src='https://img.freepik.com/free-photo/large-set-isolated-vegetables-white-background_485709-44.jpg?w=740&t=st=1678869338~exp=1678869938~hmac=8d6e26d0934e6e1ad1ed383c01877384da6d634199defa596ac0f0ec42a379b4'
+alt='hero-img' loading='lazy' className='img-fluid'/>
    </Col>
       
     <Col lg='6' md='12'
@@ -155,7 +141,7 @@ Get Started
         
         <p
         className={HeroStyles.text}>
-         Food should be eaten on time and slow delivery services hinder this, that why we provide the fastest delivery services. We are <strong> one step from your away Doorstep</strong>
+         Food should be eaten on time and slow delivery services hinder this, that why we provide the fastest delivery services. We are <strong> one step away from your Doorstep</strong>
         </p>
     </Col>
 </Row>

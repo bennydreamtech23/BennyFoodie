@@ -1,17 +1,12 @@
 
 .product_inn{
 background: rgba( 255, 255, 255, 0.25);
-box-shadow: 0 8px 20px 0 rgba( 31, 38, 135, 0.25);
-backdrop-filter: blur( 4px );
--webkit-backdrop-filter: blur( 4px );
-border-radius: 56px;
-//background-color: #fff;
+box-shadow: 0 8px 10px 0 rgba( 0, 0, 0, 0.25);
+border-radius: 30px;
 font-family: var(--font);
 border: none;
-//border-radius: 20px;
-//box-shadow: 6px 10px 10px rgba(0, 0, 0, 0.25);
 color: black;
-//width: 18.5rem;
+width: 20rem;
 text-align: center;
 padding-top: 1rem;
 padding-bottom: 1rem;
@@ -25,14 +20,14 @@ height: 33rem;
   transform: translateY(-15px);
 }
 
-@media only screen and (min-width: 300px) and (max-width: 360px){
-width: 16.8rem;
-height: 29rem;
+@media only screen and (min-width: 300px) and (max-width: 380px){
+width: 18.5rem;
+//height: 29rem;
 } 
 
 @media only screen and (min-width: 567px) and (max-width: 768px){
 //width: 16.5rem;
-height: 29rem;
+//height: 29rem;
 } 
 }
 
@@ -53,21 +48,20 @@ transition: all .2s;
 transform: scaleX(1.2) scaleY(1.2);
 color: var(--green);
 }
-
 }
-
-     .heroimg{
-    width: 250px;
-    height: 250px;
-    object-fit: contain;
-   display: flex;
-   flex-direction: column;
-   margin: 0 auto;
-  }
-  
-  .heroimg:hover{
+     .img{
+       width: 300px;
+       height: 250px;
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+       margin: auto;
+       object-fit: contain;
+  &:hover{
     transform: scale(0.9);
     }
+     }
   
    .btnBox{
  display: flex;

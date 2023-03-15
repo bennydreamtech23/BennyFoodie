@@ -1,5 +1,5 @@
  .Container{
-     background: url("https://img.freepik.com/free-photo/high-angle-uncooked-pasta-with-tomatoes-olive-oil-copy-space_23-2148360772.jpg?w=740&t=st=1678621545~exp=1678622145~hmac=0d9a7ce8e2ebdcaff930b05b8436e7180cd4e46abc850b177b3fdd5cf12bc374");
+     background: url("https://img.freepik.com/free-photo/top-view-assortment-organic-vegetables_23-2148479168.jpg?w=900&t=st=1678872294~exp=1678872894~hmac=82517f8dde2106104885ab6302decfcf85997668706fccd4353220b7fb3116cb");
     background-size: cover;
      background-repeat: no-repeat;
      //background-position: center center;
@@ -12,17 +12,16 @@
 } 
 
 .content{
-  margin-top: 28rem;
-  @media only screen and (min-width: 320px) and (max-width: 576px){
-margin-top: 33rem;
-}
-@media only screen and (min-width: 576px) and (max-width: 768px){
-margin-top: 28rem;
-}
-
-@media only screen and (min-width: 769px) and (max-width: 992px){
-margin-top: 24rem;
-}
+background: white;
+border-radius: 10px;
+ display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+padding: 3rem 0rem;
+ @media only screen and (min-width: 320px) and (max-width: 576px){
+padding: 3rem 1rem;
+} 
 }
 
 .title{
@@ -32,14 +31,13 @@ margin-top: 24rem;
    font-style: normal;
    letter-spacing: 0.5px;
    color: var(--black);
-@media only screen and (min-width: 320px) and (max-width: 600px){
-    font-size: 28px;
+   text-align: center;
+@media only screen and (min-width: 320px) and (max-width: 576px){
+    font-size: 1.7rem;
     line-height: 2.5rem;
-    text-align: center;
 } 
- @media only screen and (min-width: 600px) and (max-width: 1024px){
+ @media only screen and (min-width: 576px) and (max-width: 1024px){
    font-size: 2.5rem;
-  text-align: center;
 } 
 }
 
@@ -51,8 +49,8 @@ margin-top: 24rem;
    font-weight: 400;
    font-style: normal;
    letter-spacing: 0.5px;
-      @media only screen and (min-width: 320px) and (max-width: 600px){
-    font-size: 1.5rem;
+      @media only screen and (min-width: 320px) and (max-width: 576px){
+    font-size: 1.3rem;
     line-height: 1.7rem;
     text-align: center;
 } 
