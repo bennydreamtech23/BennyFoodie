@@ -9,6 +9,8 @@ import popularfoodData from "../../../components/data/popularMenuData.js";
 //components from folder and bootstrap
 import ProductCard from "../../../components/productCard/ProductCard"
 import {Container, Row, Col,Card} from 'react-bootstrap';
+import Button from "../../../components/button/Button"
+
 //icon
 import {MdOutlineFastfood, MdOutlineFreeBreakfast, MdLunchDining, MdDinnerDining} from "react-icons/md";
 
@@ -133,9 +135,9 @@ const getStarted = (e) =>{
     
    {/*header button for filter*/} 
    <Row 
-className="d-flex align-items-center justify-content-center gap-3">
+className="d-flex align-items-center justify-content-center gap-5">
 
-  <Col>
+  <Col className='d-flex flex-column align-items-center justify-content-center'>
    <button 
 onClick= {() => setMenu(popularfoodData)}
 className='foodBtnActive d-flex align-items-center justify-content-center gap-2'>
@@ -145,7 +147,8 @@ All
 </button>
 </Col>
 
-<Col>
+<Col 
+className='d-flex flex-column align-items-center justify-content-center'>
 <button 
 onClick= {() => filterResult("Breakfast")}
 className='foodBtnActive d-flex align-items-center justify-content-center gap-2'>
@@ -155,7 +158,10 @@ Breakfast
 </button>
 </Col>
 
-<Col>
+<Col 
+className='d-flex flex-column align-items-center justify-content-center'
+>
+
 <button
 onClick= {() => filterResult("Lunch")}
 className='foodBtnActive d-flex align-items-center justify-content-center gap-2'>
@@ -165,7 +171,8 @@ Lunch
 </button>
 </Col>
 
-<Col>
+<Col
+className='d-flex flex-column align-items-center justify-content-center'>
 <button 
 onClick= {() => filterResult("Dinner")}
 className='foodBtnActive d-flex align-items-center justify-content-center gap-2'>
@@ -175,8 +182,7 @@ Dinner
 </button>
 </Col>
 
-
-      <Slider {...settings} className='mt-5'>
+      <Slider {...settings} className='mt-3'>
     {
        menu.map(item =>(
       <Col lg='4' md='4' xs='12'
@@ -184,6 +190,7 @@ Dinner
       key={item.id}>
       <ProductCard 
       item={item}
+      className='card'
       category={item.category}/>
       </Col>
       ))
@@ -191,14 +198,13 @@ Dinner
   </Slider>
   </Row>
 
-
-      <div 
-      className="mt-5 d-flex align-items-center justify-content-center">
-  <button
+     <div 
+  className="mt-5 d-flex align-items-center justify-content-center">
+  <Button
  onClick={getStarted}
-  className="secondarybtn">
-  Explore All
-  </button>
+  className="secondarybtn"
+  title='Explore All'
+  />
    </div>
     </Container>
     </>

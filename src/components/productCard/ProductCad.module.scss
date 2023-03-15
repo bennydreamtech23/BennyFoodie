@@ -1,42 +1,10 @@
 
-.product_inn{
-background: rgba( 255, 255, 255, 0.25);
-box-shadow: 0 8px 10px 0 rgba( 0, 0, 0, 0.25);
-border-radius: 30px;
-font-family: var(--font);
-border: none;
-color: black;
-width: 20rem;
-text-align: center;
-padding-top: 1rem;
-padding-bottom: 1rem;
-display: flex;
-align-items: center;
-justify-content: center;
-flex-direction: column;
-margin: 0 auto;
-height: 33rem;
-&:hover {
-  transform: translateY(-15px);
-}
-
-@media only screen and (min-width: 300px) and (max-width: 380px){
-width: 18.5rem;
-//height: 29rem;
-} 
-
-@media only screen and (min-width: 567px) and (max-width: 768px){
-//width: 16.5rem;
-//height: 29rem;
-} 
-}
-
 .icon{
 font-size: 2.5rem;
 float: right;
 display: flex;
 align-items: flex-end;
-//float: right;
+float: right;
 margin-top: 1rem;
 color: var(--black);
 background: white;
@@ -48,8 +16,14 @@ transition: all .2s;
 transform: scaleX(1.2) scaleY(1.2);
 color: var(--green);
 }
+@media only screen and (min-width: 320px) and (max-width: 360px){
+width: 2.5rem;
+height: 2.5rem;
+padding: 5px 10px;
+margin-right: 1.5rem;
 }
-     .img{
+}
+      .img{
        width: 300px;
        height: 250px;
        display: flex;
@@ -58,10 +32,19 @@ color: var(--green);
        align-items: center;
        margin: auto;
        object-fit: contain;
+       object-position: center;
+       @media only screen and (min-width: 320px) and (max-width: 360px){
+     width: 250px;
+     }
+  
+@media only screen and (min-width: 576px) and (max-width: 768px){
+width: 100%;
+}
   &:hover{
     transform: scale(0.9);
     }
      }
+  
   
    .btnBox{
  display: flex;

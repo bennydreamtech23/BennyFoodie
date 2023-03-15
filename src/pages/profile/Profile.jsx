@@ -57,8 +57,18 @@ function Profile(props) {
     </strong>
     </h4>
       </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
+      <Modal.Footer className='d-flex align-items-center justify-content-between'>
+      <Button onClick={
+    (e) =>{  
+    props.onHide(e)
+  logout(e)
+      }}>
+      Logout
+      </Button>
+      
+    <Button onClick={props.onHide}>
+        Close
+        </Button>
       </Modal.Footer>
     </Modal>
   );

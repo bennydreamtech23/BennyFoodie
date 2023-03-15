@@ -5,6 +5,8 @@ import Slider from "react-slick";
 import { auth} from "../../core/auth/firebase";
 //container from bootstrap
 import {Container, Row, Col, Card} from 'react-bootstrap';
+import Button from '../../../components/button/Button'
+
 //icons
 import {TbTruckDelivery, TbHandClick,TbAward} from "react-icons/tb";
 import {BsArrowDownRight} from "react-icons/bs"; 
@@ -71,18 +73,16 @@ Imagine you don't need to fear food poison because we provide healthy and delici
 
 <div 
 className={HeroStyles.btnBox}>
-<button 
+<Button 
 className={`${HeroStyles.btn} ${HeroStyles.btnWhte} ${HeroStyles.btnAnimated}`} 
-onClick={getStarted}>
-Get Started 
-</button>
+onClick={getStarted}
+title='Get Started' />
 
-  <button 
+  <Button 
   className="secondarybtn" 
-  onClick={order}>
-     Order Now <BsArrowDownRight 
-     className={HeroStyles.arrow}/>
-    </button>
+  onClick={order}
+  title = 'Order Now' />
+    
 </div>
 </Col>
 </Row>

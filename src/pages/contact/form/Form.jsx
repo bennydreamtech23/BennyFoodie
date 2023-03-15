@@ -90,7 +90,6 @@ const FormPage = () => {
     e.preventDefault()
     console.log(formValues)
 setIsLoading(true)
-const paystack = new PaystackProp()
     if (Object.keys(formError).length > 0) {
       setTouched({
         nature_of_event: true,

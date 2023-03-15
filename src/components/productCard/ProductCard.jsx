@@ -5,11 +5,11 @@ import ProductCardStyle from "./ProductCad.module.scss";
 //redux
 import { useDispatch } from "react-redux";
 import {cartActions} from "../../store/shopping-cart/cartSlice"
-
+import Button from '../button/Button'
 import {Card} from "react-bootstrap"
 
-const ProductCard = (props) =>{
-  const { id, name, price, image} = props.item
+const ProductCard = ({item, className}) =>{
+  const { id, name, price, image} = item
   
 const dispatch = useDispatch()
 
@@ -24,11 +24,12 @@ const dispatch = useDispatch()
   
 return(
   <Card
-         className={ProductCardStyle.product_inn}>
+         className={className}>
  <div 
         className={ProductCardStyle.product_pic_outer}>
         <BsFillSuitHeartFill 
        className={ProductCardStyle.icon}/>
+       
               <Card.Img
               position = 'top'
               src={image}
@@ -55,7 +56,9 @@ return(
         </Card.Text>
         </div>
         <div>
-        <button className='secondarybtn' onClick={addToCart}>Add To Cart</button>
+        <Button className='secondarybtn' 
+        onClick={addToCart}
+        title= 'Add To Cart'/>
         </div>
         </div>
        </Card.Body>
