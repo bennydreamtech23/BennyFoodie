@@ -21,14 +21,15 @@ font-weight: 400;
 font-size: 1.5rem;
 line-height: 30px;
 text-align: left;
-color: #777;
+color: #707070;
 width: 500px;
-@media only screen and (min-width: 320px) and (max-width: 600px){
+@media only screen and (min-width: 320px) and (max-width: 567px){
 width: 100%;
 font-size: 1.2rem;
 } 
 
-@media only screen and (min-width: 610px) and (max-width: 1200px){
+@media only screen and (min-width: 567px) and (max-width: 1200px){
+  font-size: 1.3rem;
 width: 300px;
 } 
 }

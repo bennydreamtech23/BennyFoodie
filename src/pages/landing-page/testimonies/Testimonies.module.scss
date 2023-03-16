@@ -15,10 +15,14 @@ font-family: var(--font);
    text-align: left;
    letter-spacing: 0.5px;
    color: var(--black);
-@media only screen and (min-width: 320px) and (max-width: 768px){
+@media only screen and (min-width: 320px) and (max-width: 567px){
     font-size: 30px;
     line-height: 2rem;
     text-align: center;
+}
+@media only screen and (min-width: 567px) and (max-width: 768px){
+    font-size: 30px;
+    line-height: 2rem;
 } 
    }  
   
@@ -32,15 +36,15 @@ font-family: var(--font);
    letter-spacing: 0.5px;
    color: var(--black);
    text-align: left;
-@media only screen and (min-width: 320px) and (max-width: 420px){
+@media only screen and (min-width: 320px) and (max-width: 567px){
     font-size: 1.7rem;
     line-height: 2rem;
   text-align: center;
 } 
- @media only screen and (min-width: 421px) and (max-width: 768px){
+ @media only screen and (min-width: 567px) and (max-width: 768px){
       font-size: 2rem;
     line-height: 2rem;
-  text-align: center;
+  //text-align: center;
 } 
 .brand{
   color: var(--green);
@@ -57,10 +61,15 @@ font-family: var(--font);
    font-style: normal;
    text-align: left;
    letter-spacing: 0.5px;
-      @media only screen and (min-width: 320px) and (max-width: 600px){
+      @media only screen and (min-width: 320px) and (max-width: 567px){
     font-size: 1.3rem;
     line-height: 2rem;
     text-align: center;
+} 
+@media only screen and (min-width: 567px) and (max-width: 768px){
+    font-size: 1.5rem;
+    line-height: 2rem;
+    //text-align: center;
 } 
    }
 }

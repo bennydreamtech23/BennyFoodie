@@ -106,7 +106,7 @@ const getStarted = (e) =>{
  
   return(
 <>
-<Row className='bg-container'>
+<Row className='bg-container d-flex align-items-center justify-content-between'>
 <Col lg='6' md='12'>
     <h1 
     className='Title'>
@@ -185,7 +185,7 @@ Dinner
       <Slider {...settings} className='mt-3'>
     {
        menu.map(item =>(
-      <Col lg='4' md='4' xs='12'
+      <Col xl='3' lg='5' md='5' sm='5'
       className='mb-5'
       key={item.id}>
       <ProductCard 
