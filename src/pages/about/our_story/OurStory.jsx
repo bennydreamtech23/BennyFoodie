@@ -6,6 +6,7 @@ const OurStorySection = () =>{
   
   const chef = "https://res.cloudinary.com/dlst0ec4h/image/upload/v1673718971/pngwing.com_zlmc2w.webp"
   return(
+    <>
     <Container 
     className={Styles.Container}>
    <Row>
@@ -57,78 +58,81 @@ Our originator, settled on the choice to close on Sundays in 2022 when he opened
             </div>
           </Col>
 </Row>  
+</Container>
 
- <section className='mt-5 mb-5'> 
- <h1 className={Styles.heading}>
+ <section className={Styles.container}> 
+ <h1 className={Styles.heading} style={{color:'white'}}>
  our Trademark
  </h1>
 
-<Row className='gap-5 mt-5'>
-{/*card 1*/}
-     <Col lg='4' md='6'
-     className={Styles.card}>
+<Row className={` ${Styles.div_transform} gap-5 mt-5`}>
 
+{/*card 1*/}
+     <Col xl='3' lg='5' md='5' sm='5'
+     className={`${Styles.card} ${Styles.card1}`}>
+  
         <h3
         className={Styles.smallTitle}>
-       Mission
+        Mission
         </h3>
-
+        
         <p
         className={Styles.text}>
        Reducing the death rate by providing an affordable and easy to get meal. The company is an open company, meaning they receive feedback from clients.
-       </p>
+        </p>
     </Col>
 
       {/* card 2*/}
       
-     <Col lg='4' md='6'
-     className={Styles.card}>
+     <Col xl='3' lg='5' md='5' sm='5'
+     className={`${Styles.card} ${Styles.card2}`}>
   
         <h3
         className={Styles.smallTitle}>
 Vision
-        </h3>
+</h3>
         
         <p
         className={Styles.text}>
-       We plan to help reduce the gap rate between chefs and customers, by providing a getway for chefs to sell their food when approved by the company.
-         
+ We plan to help reduce the gap rate between chefs and customers, by providing a getway for chefs to sell their food when approved by the company.
         </p>
     </Col>
 
       {/*card 3*/}
-     <Col lg='4' md='6'
-     className={Styles.card}>
+     <Col xl='3' lg='5' md='5' sm='5'
+     className={`${Styles.card} ${Styles.card3}`}>
     
         <h3 
         className={Styles.smallTitle}>
-      Statement 
-      </h3>
+Statement
+</h3>
         
         <p
         className={Styles.text}>
          We believe that quality food, should be affordable and people craving, should be looked upon.
-         </p>
+        </p>
     </Col>
 </Row>
 </section>
 
-   <section className='pt-5 mt-5'> 
+   <section className={Styles.ContainerBox}> 
  <h1 className={Styles.heading}>
  Meet Our Team
  </h1>
 
 <Row className='gap-5 mt-5'>
+
 {/*card 1*/}
      <Col lg='4' md='6'
      className={Styles.card}>
 
 <Card>
-<Card.Img src='https://images.unsplash.com/photo-1581299894007-aaa50297cf16?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80' loading='lazy' alt='team member'/>
+<Card.Img src='https://images.unsplash.com/photo-1581299894007-aaa50297cf16?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
+loading='lazy' 
+alt='team member'/>
 
         <Card.Title
         className='fw-bold pt-5'>
-
 C.E.O
         </Card.Title>
        </Card>
@@ -139,7 +143,9 @@ C.E.O
      <Col lg='4' md='6'
      className={Styles.card}>
  <Card>
-<Card.Img src='https://images.unsplash.com/photo-1555084415-b708df0fef3e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=626&q=80' alt='team member'/>
+<Card.Img src='https://images.unsplash.com/photo-1555084415-b708df0fef3e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=626&q=80' 
+loading='lazy'
+alt='team member'/>
 
         <Card.Title className='fw-bold pt-5'>
 Managing Director
@@ -152,7 +158,9 @@ Managing Director
      className={Styles.card}>
      
     <Card>
-<Card.Img src='https://images.unsplash.com/photo-1487309078313-fad80c3ec1e5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80' alt='team member'/>
+<Card.Img src='https://images.unsplash.com/photo-1487309078313-fad80c3ec1e5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80' 
+loading='lazy'
+alt='team member'/>
 
         <Card.Title
        className='fw-bold pt-5'>
@@ -163,7 +171,7 @@ H.R Head
     </Col>
 </Row>
 </section>
-    </Container>
+</>
     )
 }
 

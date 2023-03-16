@@ -90,7 +90,9 @@ title='Get Started' />
     
  <section className={HeroStyles.smallbox}> 
  <h1 className={HeroStyles.title} id={HeroStyles.title}>WHY CHOOSE US?</h1>
- <p>You should choose us because we deliver the best quality of food at a fast speed limit</p>
+ <p>
+ You should choose us because we deliver the best quality of food at a fast speed limit
+ </p>
  
  <section className={HeroStyles.container}>
 <Row className={`${HeroStyles.div_transform} mt-5 my-auto d-flex align-items-center justify-content-center`}>
