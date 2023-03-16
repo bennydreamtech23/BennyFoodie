@@ -1,56 +1,89 @@
 
-.icon{
-font-size: 2.5rem;
-float: right;
-display: flex;
-align-items: flex-end;
-float: right;
-margin-top: 1rem;
-color: var(--black);
-background: white;
-padding: 5px 10px;
-border-radius: 25%;
-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
-transition: all .2s;
-&:hover{
-transform: scaleX(1.2) scaleY(1.2);
-color: var(--green);
-}
-@media only screen and (min-width: 320px) and (max-width: 360px){
-width: 2.5rem;
-height: 2.5rem;
-padding: 5px 10px;
-margin-right: 1.5rem;
-}
-}
-      .img{
-       width: 300px;
-       height: 250px;
-       display: flex;
-       flex-direction: column;
-       justify-content: center;
-       align-items: center;
-       margin: auto;
-       object-fit: contain;
-       object-position: center;
-       @media only screen and (min-width: 320px) and (max-width: 360px){
-     width: 250px;
-     }
-  
-@media only screen and (min-width: 576px) and (max-width: 768px){
-width: 100%;
-}
-  &:hover{
-    transform: scale(0.9);
-    }
-     }
-  
-  
-   .btnBox{
- display: flex;
-justify-content: center;
-align-items: center;
-gap: 2rem;
+.top_content{
+  position: relative;
+  width: 100%;
+  height: 260px;
+  display: flex;
+ justify-content: space-between;
+ background: #010101;
+ border-top-left-radius:  40px;
+ border-top-right-radius:  40px;
 }
 
+.travel_image{
+  display: flex;
+ align-items: center;
+ justify-content: center;
+}
+
+.top_content .travel_img .img{
+  width: 100%;
+  height: 100%;
+  border-radius: 0% 0% 8% 8%;
+}
+
+.top_bar{
+  position: absolute;
+  top: 10px;
+  left: 0px;
+  padding: 20px 16px;
+  display: flex;
+  justify-content: space-between;
+  width: 88%;
+}
+
+.top_icons{
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  color: white;
+&:hover{
+  color: var(--green);
+}
+}
+
+.mid_content{
+  display: flex;
+  justify-content: center;
+}
+
+.mid_content .short_detail{
+  background: #fff;
+  padding: 7px 13px;
+  position: absolute;
+  top: 50%;
+  box-shadow: 2px 2px 20px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  .name{
+    text-decoration: none;
+    color: #010101;
+    font-weight: bold;
+    font-size: 1rem;
+    &:hover{
+      color: var(--green);
+    }
+  }
+}
+
+.bottom_content{
+position: absolute;
+top: 65%;
+display: flex;
+align-items: center;
+flex-direction: column;
+justify-content: space-between;
+padding: 7px;
+gap: 1rem;
+
+.price{
+  font-size: 1.2rem;
+  font-weight: 600;
+  span{
+    font-weight: 800;
+  }
+}
+}
 

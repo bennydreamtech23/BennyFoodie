@@ -26,40 +26,40 @@ return(
   <Card
          className={className}>
  <div 
-        className={ProductCardStyle.product_pic_outer}>
-        <BsFillSuitHeartFill 
-       className={ProductCardStyle.icon}/>
-       
-              <Card.Img
-              position = 'top'
+        className={ProductCardStyle.top_content}>
+        <div className={ProductCardStyle.travel_image}>
+     <Card.Img
               src={image}
              alt="product_image"
              className={ProductCardStyle.img}/>
-         </div>
+        </div>
+        
+        <div className={ProductCardStyle.top_bar}>
+         <BsFillSuitHeartFill 
+       className={ProductCardStyle.top_icons}/>
+        </div>
+  </div>
 
-      <Card.Body className={ProductCardStyle.boxText}>
+      <Card.Body className={ProductCardStyle.mid_content}>
+      <div className={ProductCardStyle.short_detail}>
        <Card.Title>
-       <Link to={`/menu/${name}`}
-        className="text-center h5 text-dark text-decoration-none
-        d-flex 
-        align-items-center 
-        justify-content-center fw-bold pb-3">
+       <Link
+       to={`/menu/${name}`}
+       className = {ProductCardStyle.name}>
         {name}
         </Link>
         </Card.Title>
-        
-       <div className={ProductCardStyle.btnBox}>
-       <div>
-       <Card.Text 
-               className="text-center lead fw-bold">
-            £{price}
+      </div>
+
+       <div className={ProductCardStyle.bottom_content}>
+       <div className={ProductCardStyle.desc_nav}>
+       <Card.Text className={ProductCardStyle.price}>
+            £{price} <span> Per plate</span>
         </Card.Text>
         </div>
-        <div>
         <Button className='secondarybtn' 
         onClick={addToCart}
         title= 'Add To Cart'/>
-        </div>
         </div>
        </Card.Body>
      </Card>

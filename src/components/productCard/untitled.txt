@@ -1,0 +1,201 @@
+
+
+ <Slider {...settings} className='d-flex flex-column mx-auto w-50'> 
+ <div>
+<img src={img} alt='food-hero-img' className='img-fluid border border-success border-5 rounded-circle'/>
+ </div>
+ 
+  <div>
+<img src="https://img.freepik.com/free-photo/large-set-isolated-vegetables-white-background_485709-44.jpg?w=740&t=st=1678869338~exp=1678869938~hmac=8d6e26d0934e6e1ad1ed383c01877384da6d634199defa596ac0f0ec42a379b4" 
+alt='food-hero-img'
+className='img-fluid border border-success border-5 rounded-circle'/>
+ </div>
+ 
+  <div>
+<img src="https://res.cloudinary.com/dlst0ec4h/image/upload/v1673722305/pngwing.com_25_ybdmcr.png" alt='food-hero-img' 
+className='img-fluid border border-success border-5 rounded-circle'/>
+ </div>
+ </Slider>
+ 
+ //card
+ 
+ <Card
+         className={className}>
+ <div 
+        className={ProductCardStyle.product_pic_outer}>
+        <BsFillSuitHeartFill 
+       className={ProductCardStyle.icon}/>
+       
+              <Card.Img
+              position = 'top'
+              src={image}
+             alt="product_image"
+             className={ProductCardStyle.img}/>
+         </div>
+
+      <Card.Body className={ProductCardStyle.boxText}>
+       <Card.Title>
+       <Link to={`/menu/${name}`}
+        className="text-center h5 text-dark text-decoration-none
+        d-flex 
+        align-items-center 
+        justify-content-center fw-bold pb-3">
+        {name}
+        </Link>
+        </Card.Title>
+        
+       <div className={ProductCardStyle.btnBox}>
+       <div>
+       <Card.Text 
+               className="text-center lead fw-bold">
+            £{price}
+        </Card.Text>
+        </div>
+        <div>
+        <Button className='secondarybtn' 
+        onClick={addToCart}
+        title= 'Add To Cart'/>
+        </div>
+        </div>
+       </Card.Body>
+     </Card>
+     
+     //card style from favourite section
+     
+     .card{
+background: rgba( 255, 255, 255, 0.25);
+box-shadow: 0 8px 10px 0 rgba( 0, 0, 0, 0.25);
+border-radius: 30px;
+font-family: var(--font);
+border: none;
+color: black;
+width: 100%;
+text-align: center;
+padding-top: 1rem;
+padding-bottom: 1rem;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+margin: 0 auto;
+height: 33rem;
+
+&:hover {
+  transform: translateY(-15px);
+}
+
+@media only screen and (min-width: 360px) and (max-width: 380px){
+width: 18.5rem;
+} 
+
+@media only screen and (min-width: 576px) and (max-width: 768px){
+width: 100%;
+} 
+
+@media only screen and (max-width: 320px){
+width: 16.5rem;
+}
+
+
+//card previous styling
+
+icon{
+font-size: 2.5rem;
+float: right;
+display: flex;
+align-items: flex-end;
+float: right;
+margin-top: 1rem;
+color: var(--black);
+background: white;
+padding: 5px 10px;
+border-radius: 25%;
+box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
+transition: all .2s;
+&:hover{
+transform: scaleX(1.2) scaleY(1.2);
+color: var(--green);
+}
+@media only screen and (min-width: 320px) and (max-width: 360px){
+width: 2.5rem;
+height: 2.5rem;
+padding: 5px 10px;
+margin-right: 1.5rem;
+}
+}
+      .img{
+       width: 300px;
+       height: 250px;
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+       margin: auto;
+       object-fit: contain;
+       object-position: center;
+       @media only screen and (min-width: 320px) and (max-width: 360px){
+     width: 250px;
+     }
+  
+@media only screen and (min-width: 576px) and (max-width: 768px){
+width: 100%;
+}
+  &:hover{
+    transform: scale(0.9);
+    }
+     }
+  
+  
+   .btnBox{
+ display: flex;
+justify-content: center;
+align-items: center;
+gap: 2rem;
+}
+
+
+popular card
+  .card{
+background: rgba( 255, 255, 255, 0.25);
+box-shadow: 0 8px 10px 0 rgba( 0, 0, 0, 0.25);
+border-radius: 30px;
+font-family: var(--font);
+border: none;
+color: black;
+width: 21rem;
+text-align: center;
+padding-top: 1rem;
+padding-bottom: 1rem;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+margin: 0 auto;
+height: 33rem;
+
+&:hover {
+  transform: translateY(-15px);
+}
+
+@media only screen and (max-width: 320px){
+width: 14.5rem;
+}
+
+
+@media only screen and (min-width: 360px) and (max-width: 400px){
+width: 17.5rem;
+} 
+
+@media only screen and (min-width: 400px) and (max-width: 576px){
+width: 19rem;
+} 
+
+@media only screen and (min-width: 576px) and (max-width: 768px){
+width: 18rem;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 992px){
+width: 19rem;
+}
+
+}

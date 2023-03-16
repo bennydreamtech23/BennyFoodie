@@ -91,10 +91,13 @@ title='Get Started' />
  <section className={HeroStyles.smallbox}> 
  <h1 className={HeroStyles.title} id={HeroStyles.title}>WHY CHOOSE US?</h1>
  <p>You should choose us because we deliver the best quality of food at a fast speed limit</p>
-<Row className='gap-5 mt-5 my-auto d-flex align-items-center justify-content-center'>
+ 
+ <section className={HeroStyles.container}>
+<Row className={`${HeroStyles.div_transform} mt-5 my-auto d-flex align-items-center justify-content-center`}>
+
 {/*card 1*/}
-     <Col lg='4' md='6'
-     className={HeroStyles.card}>
+     <Col xl='3' lg='5' md='5' sm='5'
+     className={`${HeroStyles.card} ${HeroStyles.card1}`}>
   <TbHandClick 
   className={HeroStyles.Icon}/>
   
@@ -111,8 +114,8 @@ title='Get Started' />
 
       {/* card 2*/}
       
-     <Col lg='4' md='6'
-     className={HeroStyles.card}>
+     <Col xl='3' lg='5' md='5' sm='5'
+     className={`${HeroStyles.card} ${HeroStyles.card2}`}>
   <TbAward
   className={HeroStyles.Icon}/>
   
@@ -129,8 +132,8 @@ title='Get Started' />
     </Col>
 
       {/*card 3*/}
-     <Col lg='4' md='6'
-     className={HeroStyles.card}>
+     <Col xl='3' lg='5' md='5' sm='5'
+     className={`${HeroStyles.card} ${HeroStyles.card3}`}>
     <TbTruckDelivery 
     className={HeroStyles.Icon}/>
     
@@ -145,6 +148,7 @@ title='Get Started' />
         </p>
     </Col>
 </Row>
+</section>
 </section>
     </>
     )

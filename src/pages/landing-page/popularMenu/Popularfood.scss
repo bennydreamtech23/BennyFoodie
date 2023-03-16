@@ -133,50 +133,25 @@ align-items: center;
 }
 }
 
-   .card{
-background: rgba( 255, 255, 255, 0.25);
-box-shadow: 0 8px 10px 0 rgba( 0, 0, 0, 0.25);
-border-radius: 30px;
-font-family: var(--font);
-border: none;
-color: black;
-width: 21rem;
-text-align: center;
-padding-top: 1rem;
-padding-bottom: 1rem;
-display: flex;
-align-items: center;
-justify-content: center;
-flex-direction: column;
-margin: 0 auto;
-height: 33rem;
-
-&:hover {
-  transform: translateY(-15px);
+  .card{
+     width: 260px;
+     height: 460px;
+     background: #FEFEFE;
+     border-radius: 48px;
+     overflow: hidden;
+     position: relative;
+     box-shadow: 2px 2px 30px rgba(0,0,0,0.1);
+     transition: all .2s;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     margin: 0 auto !important;
+&:hover{
+transform: scaleX(1.05) scaleY(1.05);
+color: var(--green);
 }
-
-@media only screen and (max-width: 320px){
-width: 14.5rem;
-}
-
-
-@media only screen and (min-width: 360px) and (max-width: 400px){
-width: 17.5rem;
-} 
-
-@media only screen and (min-width: 400px) and (max-width: 576px){
-width: 19rem;
-} 
-
-@media only screen and (min-width: 576px) and (max-width: 768px){
-width: 18rem;
-}
-
-@media only screen and (min-width: 768px) and (max-width: 992px){
-width: 19rem;
-}
-
-}
-
+   }
+   
 
 }
