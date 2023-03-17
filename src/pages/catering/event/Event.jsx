@@ -22,7 +22,7 @@ const getStarted = (e) =>{
     </h1>
     
    <Row 
-   className={`${Styles.row} pt-5 d-flex align-items-center justify-content-between`}>
+   className={`${Styles.row} gap-5 pt-5 d-flex align-items-center justify-content-between`}>
 
 {/***card1*****/}
   <Col>
@@ -53,7 +53,7 @@ to ='/contact'
 
        <div className={Styles.bottom_content}>
        <div className={Styles.desc_nav}>
-       <Card.Text className={Styles.price}>
+       <Card.Text className={Styles.desc}>
         We cater the food aspect in your corporate events at affordable rate.  
         </Card.Text>
         </div>
@@ -93,7 +93,7 @@ to ='/contact'
 
        <div className={Styles.bottom_content}>
        <div className={Styles.desc_nav}>
-       <Card.Text className={Styles.price}>
+       <Card.Text className={Styles.desc}>
 We cater the food section in your special occasions at affordable rate.
         </Card.Text>
         </div>
@@ -133,7 +133,7 @@ Home Catering
 
        <div className={Styles.bottom_content}>
        <div className={Styles.desc_nav}>
-       <Card.Text className={Styles.price}>
+       <Card.Text className={Styles.desc}>
 We love the fact we can render our services at any level, even providing delicious home cooked meals for you and your family.
         </Card.Text>
         </div>
@@ -173,7 +173,7 @@ Food Trays
 
        <div className={Styles.bottom_content}>
        <div className={Styles.desc_nav}>
-       <Card.Text className={Styles.price}>
+       <Card.Text className={Styles.desc}>
 We love cooking and providing our services, to people at different level, we want to make your event specatular by providing sumptous meals.
         </Card.Text>
         </div>

@@ -62,6 +62,7 @@ color: black;
      color: black;
 &:hover{
 transform: scaleX(1.05) scaleY(1.05);
+color: black !important;
 }
    }
    
@@ -105,8 +106,9 @@ transform: scaleX(1.05) scaleY(1.05);
   display: flex;
   align-content: center;
   justify-content: center;
-  
-  .name{
+}
+
+.name{
     text-decoration: none;
     color: #010101;
     font-weight: bold;
@@ -115,7 +117,6 @@ transform: scaleX(1.05) scaleY(1.05);
       color: var(--green);
     }
   }
-}
 
 .bottom_content{
 position: absolute;
@@ -127,13 +128,16 @@ justify-content: space-between;
 padding: 7px;
 gap: 1rem;
 
-.price{
-  font-size: 1.2rem;
+.desc{
+  font-size: 1.1rem;
   font-weight: 400;
   text-align: center;
   span{
     font-weight: 800;
   }
+&:hover{
+  color: black !important;
+}
 }
 }
 

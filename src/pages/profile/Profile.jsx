@@ -49,14 +49,17 @@ function Profile(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <h4 className='name-title'> Name: <strong className='ms-3'>{name}
+        <h4 className='name-title'> Name: <strong className='ms-3'>
+        {name}
         </strong>
         </h4>
- <h4 className='name-title'> Phone Number: <strong className='ms-3'>{phone_number}
+ <h4 className='name-title'> Phone Number: <strong className='ms-3'>
+ {phone_number}
  </strong>
  </h4>
  
-    <h4 className='name-title'>Email: <strong className='ms-3'>{user?.email}
+    <h4 className='name-title'>Email: <strong className='ms-3'>
+    {user?.email}
     </strong>
     </h4>
       </Modal.Body>

@@ -109,7 +109,7 @@ const getStarted = (e) =>{
 <Row className='bg-container d-flex align-items-center justify-content-between'>
 <Col lg='6' md='12'>
     <h1 
-    className='Title'>
+    className='popularTitle'>
     Our Popular Menu
     </h1>
     

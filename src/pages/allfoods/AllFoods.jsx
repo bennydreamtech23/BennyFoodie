@@ -13,10 +13,10 @@ import {BsSearch} from "react-icons/bs";
 
 const AllfoodsPage = () =>{
  const [searchItem, setSearchItem] = useState('')
-  //const [productData, setProductData] = useState(allfoods)
+  const [sortState, setSortState] = useState(null)
 const [pageNumber, setPageNumber] = useState(0)
   
-  const searchedPage = allfoods.filter((item) => {
+  const searchedProduct = allfoods.filter((item) => {
   if(searchItem.value === '') return item;
     if(
     item.name
@@ -24,21 +24,53 @@ const [pageNumber, setPageNumber] = useState(0)
     .includes(searchItem.toLowerCase())) 
     return item;
   });
-  
+
   const ProductPerPage = 6;
   const visitedPage = pageNumber * ProductPerPage;
   
-  const displayPage = searchedPage.slice(visitedPage, visitedPage + ProductPerPage)
+  const [displayPage, setDisplayPage] = useState(searchedProduct.slice(visitedPage, visitedPage + ProductPerPage))
+  //const displayPage = searchedProduct.slice(visitedPage, visitedPage + ProductPerPage)
   
-  const pageCount = Math.ceil(allfoods.length / ProductPerPage)
+  const pageCount = Math.ceil(searchedProduct.length / ProductPerPage)
   
   const changePage = ({selected}) =>{
     setPageNumber(selected)
   }
   
+  //sorting data
+//const sortMethods = {
+/*    none: { method: (a, b) => null },
+    ascending: { method: undefined },
+    descending: { method: (a, b) => (a > b ? -1 : 1) },
+  };
+*/
+
+  const handleChange = (e) => {
+    const value = e.target.value
+
+    switch(value) {
+        case "ascending":
+            setDisplayPage(displayPage.sort((a, b) => a.name.localeCompare(b.name)))
+            break
+        case "descending":
+  setDisplayPage(displayPage.sort((a, b) => b.name.localeCompare(a.name)))
+  
+            break
+        case "high-price":
+            setDisplayPage(displayPage.sort((a, b) => b.price - a.price))
+            break
+        case "low-price":
+             setDisplayPage(displayPage.sort((a, b) => a.price - b.price))
+            break
+    }
+}
+  
+  
   return(
     <section className={FoodStyles.Container}>
- <HeaderSection title='All Dishes'/>
+ <HeaderSection 
+ title='All Dishes'
+className = {FoodStyles.Title} />
  
  <Container>
 <Row className="d-flex align-items-center justify-content-between my-5">
@@ -58,23 +90,23 @@ onChange={(e) => setSearchItem(e.target.value)}/>
 
 <Col  className='text-end'>
 <div className={FoodStyles.searchOption}>
-<select className='bg-success text-white'>
-<option>Default</option>
-<option value='ascending'>A-Z</option>
+<select className='bg-success text-white'
+defaultValue= {'DEFAULT'} onChange={handleChange}>
+<option value='DEFAULT' disabled>Default</option>
+<option value='ascending'>
+A-Z
+</option>
 <option value='descending'>Z-A</option>
-<option value='high-price'>High Price</option>
-<option value='low-price'>Low Price </option>
 </select>
 <span className={FoodStyles.focus}></span>
 </div>
 </Col>
 </Row>
 
-<Row className='d-flex justify-content-between'>
+<Row className='gap-5 d-flex justify-content-between'>
 {
-displayPage
-.map(item => 
-  <Col lg='4' md='4' 
+displayPage.map(item => 
+  <Col xl='3' lg='3' md='4' sm='6'
       className='mb-5'
         key={item.id}>
   <ProductCard item={item}
