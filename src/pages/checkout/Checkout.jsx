@@ -19,6 +19,9 @@ import {MdMail, MdLocationOn,
 MdOutlinePhoneLocked, 
   MdErrorOutline, 
   MdPersonOutline } from "react-icons/md";
+import {db, auth} from "../core/auth/firebase";
+ import {collection} from "firebase/firestore"
+
 
 const Checkout = () =>{
 //data for shipping address entry
@@ -135,6 +138,22 @@ setIsLoading(true)
     e.preventDefault()
     navigate('/payment')
   }
+  
+const getData = async () => {
+    //get the user
+    const user = db.collection("users");
+    const doc = await user.get()
+    //check if user exists
+    if (doc.exists) {
+      console.log("User Exists!");
+    } else {
+      console.log("User does not exist!");
+    }
+  };
+  getData();
+  
+  
+  
   
   return(
     <section>
@@ -269,7 +288,7 @@ payment
 </Col>
 
 
-<Col lg='4' md='6'>
+<Col lg='4' md='6' className="mt-4">
 <div className='checkout_bill'>
 <h6 
 className='d-flex align-items-center justify-content-between mb-3'>subtotal: <span>{cartTotalAmount}</span></h6>
