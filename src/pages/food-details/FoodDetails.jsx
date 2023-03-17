@@ -1,11 +1,23 @@
+import {db} from "../core/auth/firebase";
+import {collection, addDoc, query, getDocs, where } from "firebase/firestore"
 
 import { useState, useEffect } from "react";
 import "./FoodDetails.scss";
 import allfoods from "../../components/data/allFoodData";
 import { useParams, Link } from "react-router-dom";
 import HeaderSection from "../../components/headerSection/HeaderSection";
-import { Container, Row, Col, Form, InputGroup } from "react-bootstrap";
+import { Container,
+Row, 
+Col,
+Form, 
+InputGroup,
+Toast,
+Spinner, 
+  Button
+} from "react-bootstrap";
 import ProductCard from '../../components/productCard/ProductCard'
+
+//react-redux
 import {useDispatch} from 'react-redux'
 import {cartActions} from "../../store/shopping-cart/cartSlice"
 
@@ -13,16 +25,131 @@ const FoodDetails = () => {
 const dispatch = useDispatch()
 //data to toggle between desc and review
   const [tabs, setTabs] = useState("desc");
+  
+  //form validation
+  const[isLoading, setIsLoading] = useState(false)
+  const [formValues, setFormValues] = useState({})
+
+  const [touched, setTouched] = useState({})
+
+  //error
+  const [formError, setFormError] = useState({})
+
+  //toast usestate component
+  const [showToast, setShowToast] = useState(false)
+  const [errorType, setErrorType] = useState('')
+  const [messageType, setMessageType] = useState('')
+
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setFormValues({ ...formValues, [name]: value })
+
+    setTouched((prevState) => ({
+      ...prevState,
+      [e.target.name]: true,
+    }))
+  }
+
+
+  const validate = (values) => {
+    const errors = {}
+    //const regex =
+    //  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+
+    if (!values.Username) {
+      errors.Username = 'Name is required'
+    }
+    
+    if (!values.mail) {
+      errors.mail = 'Email is required'
+    } //else if (!regex.test(values.email)) {
+      //errors.mail = 'This is not a valid email'
+  //  }
+    
+    if (!values.message) {
+      errors.message = 'Please tell us what you think'
+    }
+    return errors
+  }
+
+  useEffect(() => {
+    validate(formValues)
+    //console.log(formError)
+    setFormError(validate(formValues))
+    // if (Object.keys(formError).length === 0) {
+    // }
+  }, [formValues, touched])
+  
+  
   //data for review form
-  const [enteredName, setEnteredName] = useState('')
-  const[enteredMail, setEnteredMail] =  useState('')
-  const [enteredMessage, SetEnteredMessage] = useState('')
-  const [submittedName, setSubmittedName] = useState(localStorage.getItem('submittedName') ? localStorage.getItem("submittedName") : "Benny");
+  const {Username, mail, message} = formValues;
   
-  const [submittedEmail, setSubmittedEmail] = useState(localStorage.getItem('submittedEmail') ? localStorage.getItem("submittedEmail") : "bennyfoodie@gmail.com");
+  //data to display the review
+  const [reviews, setReviews] = useState([])
+        
+  const submittedHandler = async (e) => {
+    e.preventDefault();
+         setIsLoading(true)
+         console.log(formValues)
+         
+      if (Object.keys(formError).length > 0) {
+      setTouched({
+        Username: true,
+        message: true,
+        mail: true,
+      })
+      setIsLoading(false)
+    }
+    
+    if (Object.keys(formError).length === 0) {
+      setTouched({
+        Username: false,
+        message: false,
+        mail: false,
+      })   
+        // Add data to the store
+   const docRef = await addDoc (collection(db, "reviews"),{
+            Username: Username,
+            mail: mail,
+           message: message
+        })
+        .then((docRef) => {
+            console.log("Data Successfully Submitted");
+            setErrorType('success')
+            setMessageType('Review receive success')
+            setShowToast(true)
+            setFormValues({})
+            setFormValues({message: ""})
+            setFormError({})
+            e.target.reset()
+            setIsLoading(false)
+        })
+        .catch((error) => {
+            console.error("Error adding document: ", error);
+           setErrorType('danger')
+            setMessageType("Opps Review Failed")
+            setShowToast(true)
+            setIsLoading(false)
+        });
+        setIsLoading(false)
+    }
+  }
   
-  const [submittedMsg, setSubmittedMsg] = useState(localStorage.getItem('submittedMsg') ? localStorage.getItem("submittedMsg") : "I love the hamburger");
-  
+  //fetch post
+  const fetchPost = async () => {
+        await getDocs(collection(db, "reviews"))
+            .then((querySnapshot)=>{              
+              const newData = querySnapshot.docs
+                  .map((doc) => ({...doc.data(), id:doc.id }));
+                setReviews(newData);                
+               console.log(reviews, newData);
+         })
+    }
+   
+ useEffect(() =>{
+    fetchPost()
+  }, []) 
+
   const { name } = useParams();
   // const [foodid, setFoodId] = useState({ id });
 
@@ -31,6 +158,7 @@ const dispatch = useDispatch()
   });
 
 const {
+id,
 price,
 category,
 desc,image} = product ?? {};
@@ -56,19 +184,6 @@ useEffect(()=>{
 window.scrollTo(0,0)
 },[product])
 
-//local storage
-
-
-const submittedHandler = (e) =>{
-  e.preventDefault()
-  setSubmittedName(localStorage.setItem('submittedName', enteredName))
-  setSubmittedEmail(localStorage.setItem('submittedEmail', enteredMail))
-  setSubmittedMsg(localStorage.setItem('submittedMsg', enteredMessage))
-  setEnteredName('')
-  setEnteredMail('')
-  SetEnteredMessage('')
-}
-
 
   if (!product) {
     //If no product with the given ID is found, render an error message
@@ -91,7 +206,7 @@ const submittedHandler = (e) =>{
 
   return (
     <section className="container-box">
-      <HeaderSection title={name} />
+      <HeaderSection title={name} className="Title"/>
 
       <Container fluid className="py-5">
         <Row>
@@ -167,59 +282,87 @@ const submittedHandler = (e) =>{
             </div> :
             <div className="tab_form mb-3 pt-5">
             <div>
-              <div className="review">
-                <p className="user_name mb-0">
-                {submittedName}</p>
-                <p className="user_email mb-0">
-                {submittedEmail}
-                </p>
-                <p className="review_text mt-2">
-                {submittedMsg}
-                </p>
-              </div>
+             {
+            reviews.map((data, i) => (
+            <Frame Username={data.Username}
+                   mail={data.mail}
+                   message={data.message}
+                   key={i}/>
+            ))
+        }
 </div>
               <Form className="form" onSubmit={submittedHandler}>
                 <Form.Group className="form_group">
                   <InputGroup>
                     <Form.Control
+                    name="Username"
                       type="text"
                       placeholder="Enter your Name"
                       className="inputfield"
-                      value={enteredName}
-                      onChange={(e)=> setEnteredName(e.target.value)}
-                    required/>
+                      value={formValues.Username}
+                      onChange={handleChange}
+                    />
                   </InputGroup>
+                  
+              <div className="errorMsg">
+                {touched.Username && formError.Username}
+              </div>
                 </Form.Group>
 
                 <Form.Group className="form_group">
                   <InputGroup>
                     <Form.Control
+                    name="mail"
                       type="email"
                       className="inputfield"
                       placeholder="Enter your Email"
-                       value={enteredMail}
-                      onChange={(e)=> setEnteredMail(e.target.value)}
-                    required/>
+                       value={formValues.mail}
+                      onChange={handleChange}
+                    />
                   </InputGroup>
+                
+                 <div className="errorMsg">
+                {touched.mail && formError.mail}
+              </div>
                 </Form.Group>
 
                 <Form.Group className="form_group">
                   <InputGroup>
                     <Form.Control
+                    name="message"
                       as="textarea"
-                      rows={6}
+                      rows={4}
                       type="text"
                       className="inputfield"
                       placeholder="Write your Message"
-                        value={enteredMessage}
-                      onChange={(e)=> SetEnteredMessage(e.target.value)}
-                    required/>
+                        value={formValues.message}
+                      onChange={handleChange}/>
                   </InputGroup>
+              
+              <div className="errorMsg">
+                {touched.message && formError.message}
+              </div>
                 </Form.Group>
-
-                <button type="submit" className="btn">
-                  send
-                </button>
+<div>
+          {isLoading ? (
+           <Button 
+           variant="success"
+           disabled>
+        <Spinner
+          as="span"
+          animation="grow"
+          size="sm"
+          role="status"
+          aria-hidden="true"
+        />
+        Loading...
+      </Button>     
+          ) : (
+     <Button variant="success" type='submit'>
+       Send
+      </Button>
+          )}
+          </div>
               </Form>
             </div>
 }
@@ -237,15 +380,67 @@ const submittedHandler = (e) =>{
             <Col  key={item.id} 
             xl='3' 
             lg='5' md='5' sm='5'>
-            <ProductCard item={item}/>
+            <ProductCard item={item}
+            className="card"/>
             </Col>
             ))
           }
           </Row>
         </Row>
+        
+        
+
+      {showToast ? (
+        <>
+          <div className="ToastContainer"/>
+          <div className="centered">
+            <Toast
+              bg={errorType}
+              onClose={() => {
+                setShowToast(!showToast)
+              }}
+              className="toast"
+            >
+              <Toast.Header className='mt-3'>
+                <img
+                  src='holder.js/20x20?text=%20'
+                  className='rounded me-2'
+                  alt=''
+                />
+                <strong className='me-auto'>BennyFoodie</strong>
+              </Toast.Header>
+              <Toast.Body className='text-dark'>{messageType}</Toast.Body>
+            </Toast>
+          </div>
+        </>
+      ) : (
+        ''
+      )}
+            
+            
       </Container>
 </section>
   );
 };
+
+// Define how each display entry will be structured
+const Frame = ({Username , mail , message}) => {
+    console.log(useState + " " + mail + " " + message);
+    return (
+            <div className="review w-100">
+                 
+<p className="user_name mb-0">Name: {Username}</p>
+  
+                 
+<p className="user_email mb-0">Email : {mail}</p>
+ 
+                 
+<p className="review_text mt-2">message : {message}</p>
+  
+            </div>
+    );
+}
+
+
 
 export default FoodDetails;

@@ -25,7 +25,7 @@ const getStarted = (e) =>{
    className={`${Styles.row} pt-5 d-flex align-items-center justify-content-between`}>
 
 {/***card1*****/}
-  
+  <Col>
   <Card 
   as={Link}
 to ='/contact'
@@ -63,8 +63,10 @@ to ='/contact'
         </div>
        </Card.Body>
      </Card>
+ </Col>
  
 {/***card2*****/}
+<Col>
   <Card 
   as={Link}
 to ='/contact'
@@ -101,8 +103,10 @@ We cater the food section in your special occasions at affordable rate.
         </div>
        </Card.Body>
      </Card>
+</Col>
 
 {/***card3*****/}
+<Col>
   <Card 
   as={Link}
 to ='/contact'
@@ -139,9 +143,10 @@ We love the fact we can render our services at any level, even providing delicio
         </div>
        </Card.Body>
      </Card>
-
+</Col>
 
 {/***card4*****/}
+<Col>
   <Card 
   as={Link}
 to ='/contact'
@@ -178,8 +183,10 @@ We love cooking and providing our services, to people at different level, we wan
         </div>
        </Card.Body>
      </Card>
+     </Col>
 </Row>   
-<p className='text-muted pt-5 mt-5'>
+
+<p className='text-muted pt-5 mt-3'>
 <AiFillInfoCircle/> Please be informed that payment is based on the catering service offered and the number of guest catered for.
 Thankyou
 </p>

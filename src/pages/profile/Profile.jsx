@@ -6,12 +6,15 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { auth, db, logout } from "../core/auth/firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
+import {BsPersonCircle} from "react-icons/bs"
+
 
 function Profile(props) {
   const [user, loading, error] = useAuthState(auth);
   const [name, setName] = useState("");
  const [phone_number, setPhone_number] = useState("");
   const navigate = useNavigate();
+  
   const fetchUser = async () => {
     try {
       const q = query(collection(db, "users"), where("uid", "==", user?.uid));
@@ -42,7 +45,7 @@ function Profile(props) {
         <Modal.Title 
         className='title'
         id="contained-modal-title-vcenter">
-         User Profile
+       <BsPersonCircle className="me-3"/>  User Profile
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>

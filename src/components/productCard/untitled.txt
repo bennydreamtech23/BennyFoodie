@@ -1,0 +1,10 @@
+              <div className="review">
+                <p className="user_name mb-0">
+                paul</p>
+                <p className="user_email mb-0">
+              paul@gmail.com
+                </p>
+                <p className="review_text mt-2">
+                Thanks for the fast delivery
+                </p>
+              </div>

@@ -123,52 +123,136 @@ Statement
 <Row className='gap-5 mt-5'>
 
 {/*card 1*/}
-     <Col lg='4' md='6'
-     className={Styles.card}>
-
-<Card>
+     <Col>
+     
+<Card className={Styles.cardTool}>
+<div className={Styles.top_content}>
 <Card.Img src='https://images.unsplash.com/photo-1581299894007-aaa50297cf16?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
 loading='lazy' 
-alt='team member'/>
+alt='team member'
+className={Styles.img}/>
+</div>
 
+<div className={Styles.mid_content}>
+<div className={Styles.short_detail}>
         <Card.Title
-        className='fw-bold pt-5'>
+        className={Styles.name}>
 C.E.O
         </Card.Title>
+        </div>
+        </div>
        </Card>
     </Col>
 
       {/* card 2*/}
       
-     <Col lg='4' md='6'
-     className={Styles.card}>
- <Card>
+     <Col>
+ <Card className={Styles.cardTool}>
+ <div className={Styles.top_content}>
 <Card.Img src='https://images.unsplash.com/photo-1555084415-b708df0fef3e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=626&q=80' 
 loading='lazy'
-alt='team member'/>
-
-        <Card.Title className='fw-bold pt-5'>
+alt='team member'
+className={Styles.img}/>
+ </div>
+ 
+ <div className={Styles.mid_content}>
+<div className={Styles.short_detail}>
+        <Card.Title className={Styles.name}>
 Managing Director
         </Card.Title>
+        </div>
+        </div>
        </Card>
     </Col>
 
       {/*card 3*/}
-     <Col lg='4' md='6'
-     className={Styles.card}>
+     <Col>
      
-    <Card>
+    <Card className={Styles.cardTool}>
+    <div className={Styles.top_content}>
 <Card.Img src='https://images.unsplash.com/photo-1487309078313-fad80c3ec1e5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80' 
 loading='lazy'
-alt='team member'/>
+alt='team member'
+className={Styles.img}/>
+</div>
 
+<div className={Styles.mid_content}>
+<div className={Styles.short_detail}>
         <Card.Title
-       className='fw-bold pt-5'>
+       className={Styles.name}>
 H.R Head
         </Card.Title>
+      </div>
+     </div>
        </Card>
-     
     </Col>
+    
+          {/*card 4*/}
+     <Col>
+     
+    <Card className={Styles.cardTool}>
+    <div className={Styles.top_content}>
+<Card.Img src='https://img.freepik.com/free-photo/young-woman-holding-tablet-work_23-2149116576.jpg?w=900&t=st=1679001653~exp=1679002253~hmac=563d45d9da3c6c5ffd2060d9562f294b9333a59db609e1de5eb445a802a9fb57' 
+loading='lazy'
+alt='team member'
+className={Styles.img}/>
+</div>
+
+<div className={Styles.mid_content}>
+<div className={Styles.short_detail}>
+        <Card.Title
+       className={Styles.name}>
+Admin
+        </Card.Title>
+      </div>
+     </div>
+       </Card>
+    </Col>
+    
+          {/*card 5*/}
+     <Col>
+     
+    <Card className={Styles.cardTool}>
+    <div className={Styles.top_content}>
+<Card.Img src='https://img.freepik.com/free-photo/customer-care-webpage-interface-word_53876-134070.jpg?w=740&t=st=1679001951~exp=1679002551~hmac=baf745b86a682d1f2c2974956aeaefdb9b08f81f17cacf3d266f9b216e9c728d' 
+loading='lazy'
+alt='team member'
+className={Styles.img}/>
+</div>
+
+<div className={Styles.mid_content}>
+<div className={Styles.short_detail}>
+        <Card.Title
+       className={Styles.name}>
+Customer Care 
+        </Card.Title>
+      </div>
+     </div>
+       </Card>
+    </Col>
+    
+        {/*card 6*/}
+     <Col>
+     
+    <Card className={Styles.cardTool}>
+    <div className={Styles.top_content}>
+<Card.Img src='https://img.freepik.com/free-photo/confident-young-female-cook-wearing-chef-uniform-holding-frying-pan-crossing-hands-isolated-white-wall_141793-120213.jpg?w=900&t=st=1678482605~exp=1678483205~hmac=42a5ee9bc531f8b89fdaa424f65a29ba4a1f1e439fc696662e0284867c4bbb80' 
+loading='lazy'
+alt='team member'
+className={Styles.img}/>
+</div>
+
+<div className={Styles.mid_content}>
+<div className={Styles.short_detail}>
+        <Card.Title
+       className={Styles.name}>
+Head Chef
+        </Card.Title>
+      </div>
+     </div>
+       </Card>
+    </Col>  
+    
 </Row>
 </section>
 </>

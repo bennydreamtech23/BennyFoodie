@@ -4,7 +4,6 @@ import styles from './Form.module.scss'
 import {
   Container,
   Toast,
-  ToastContainer,
   Row,
   Col,
   Form,
@@ -206,8 +205,9 @@ No 15 Jonnesburg Street Washington DC
     
  <Form onSubmit={handlesubmit} 
         className={styles.form}>
-          <p className='h5 text-center fw-bold text-uppercase mb-3'>
-          If you got any question don't hesitate to send us a message 
+        <h1 className="fw-bold pb-3">____OR_____</h1>
+          <p className='h5 text-center fw-bold text-uppercase pb-3'>
+          Send A Message
           </p>
           <Form.Group className={styles.box}>
           
@@ -286,7 +286,9 @@ No 15 Jonnesburg Street Washington DC
           <input type='hidden' />
           <input type='hidden' />
           {isLoading ? (
-           <Button disabled>
+           <Button 
+           variant="success"
+           disabled>
         <Spinner
           as="span"
           animation="grow"
@@ -297,7 +299,7 @@ No 15 Jonnesburg Street Washington DC
         Loading...
       </Button>     
           ) : (
-     <Button variant="primary" type='submit'>
+     <Button variant="success" type='submit'>
        Send
       </Button>
           )}
