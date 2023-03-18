@@ -1,0 +1,9 @@
+ const docRef = await addDoc (collection(db, "paymentInfo"),{
+       name: name,
+       email: email,
+       phoneNumber: phoneNumber,
+       country: country,
+       city: city,
+       postalCode:postalCode,
+        })
+    
