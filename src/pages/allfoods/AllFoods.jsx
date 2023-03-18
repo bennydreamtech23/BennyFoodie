@@ -1,133 +1,142 @@
-import {useState, useEffect} from 'react';
-import ReactPaginate from 'react-paginate';
-import FoodStyles from "./AllFoods.module.scss";
+import { useState, useEffect } from 'react'
+import ReactPaginate from 'react-paginate'
+import FoodStyles from './AllFoods.module.scss'
 //dummy data for all item
-import allfoods from "../../components/data/allFoodData"
+import allfoods from '../../components/data/allFoodData'
 //components from react and folder
-import {Container, Row, Col} from "react-bootstrap"
+import { Container, Row, Col } from 'react-bootstrap'
 import HeaderSection from '../../components/headerSection/HeaderSection'
 import ProductCard from '../../components/productCard/ProductCard'
 
 //icons
-import {BsSearch} from "react-icons/bs";
+import { BsSearch } from 'react-icons/bs'
 
-const AllfoodsPage = () =>{
- const [searchItem, setSearchItem] = useState('')
-  const [sortState, setSortState] = useState(null)
-const [pageNumber, setPageNumber] = useState(0)
-  
+const AllfoodsPage = () => {
+  const [searchItem, setSearchItem] = useState('')
+  const [sortState, setSortState] = useState('ascending')
+  const [pageNumber, setPageNumber] = useState(0)
+
   const searchedProduct = allfoods.filter((item) => {
-  if(searchItem.value === '') return item;
-    if(
-    item.name
-    .toLowerCase()
-    .includes(searchItem.toLowerCase())) 
-    return item;
-  });
+    if (searchItem.value === '') return item
+    if (item.name.toLowerCase().includes(searchItem.toLowerCase())) return item
+  })
 
-  const ProductPerPage = 6;
-  const visitedPage = pageNumber * ProductPerPage;
-  
-  const [displayPage, setDisplayPage] = useState(searchedProduct.slice(visitedPage, visitedPage + ProductPerPage))
+  const ProductPerPage = 6
+  const visitedPage = pageNumber * ProductPerPage
+
+  const [displayPage, setDisplayPage] = useState(
+    searchedProduct.slice(visitedPage, visitedPage + ProductPerPage)
+  )
   //const displayPage = searchedProduct.slice(visitedPage, visitedPage + ProductPerPage)
-  
+
   const pageCount = Math.ceil(searchedProduct.length / ProductPerPage)
-  
-  const changePage = ({selected}) =>{
+  const changePage = ({ selected }) => {
     setPageNumber(selected)
   }
-  
-  //sorting data
-//const sortMethods = {
-/*    none: { method: (a, b) => null },
-    ascending: { method: undefined },
-    descending: { method: (a, b) => (a > b ? -1 : 1) },
-  };
-*/
 
   const handleChange = (e) => {
-    const value = e.target.value
+    setSortState(e.target.value)
+  }
 
-    switch(value) {
-        case "ascending":
-            setDisplayPage(displayPage.sort((a, b) => a.name.localeCompare(b.name)))
-            break
-        case "descending":
-  setDisplayPage(displayPage.sort((a, b) => b.name.localeCompare(a.name)))
-  
-            break
-        case "high-price":
-            setDisplayPage(displayPage.sort((a, b) => b.price - a.price))
-            break
-        case "low-price":
-             setDisplayPage(displayPage.sort((a, b) => a.price - b.price))
-            break
+  useEffect(() => {
+    const sorted = [...searchedProduct]
+
+    //console.log(sorted)
+
+    switch (sortState) {
+      case 'ascending':
+        sorted.sort((a, b) => a.name.localeCompare(b.name))
+        break
+
+      case 'descending':
+        sorted.sort((a, b) => b.name.localeCompare(a.name))
+        break
+
+      case 'low-price':
+        sorted.sort((a, b) => a.price - b.price)
+        break
+
+      case 'high-price':
+        sorted.sort((a, b) => b.price - a.price)
+        break
+
+      default:
+        sorted.sort((a, b) => a.name.localeCompare(b.name))
+        break
     }
-}
-  
-  
-  return(
+
+    setDisplayPage(sorted.slice(visitedPage, visitedPage + ProductPerPage))
+  }, [visitedPage, sortState])
+
+  return (
     <section className={FoodStyles.Container}>
- <HeaderSection 
- title='All Dishes'
-className = {FoodStyles.Title} />
- 
- <Container>
-<Row className="d-flex align-items-center justify-content-between my-5">
+      <HeaderSection title='All Dishes' className={FoodStyles.Title} />
 
-<Col>
-<div className="d-flex align-items-center justify-content-between searchContainer">
-<input type='text'
-className={FoodStyles.searchbar}
-placeholder='food search'
-value={searchItem}
-onChange={(e) => setSearchItem(e.target.value)}/>
-<span>
-<BsSearch/>
-</span>
-</div>
-</Col>
+      <Container>
+        <Row className='d-flex align-items-center justify-content-between my-5'>
+          <Col>
+            <div className='d-flex align-items-center justify-content-between searchContainer'>
+              <input
+                type='text'
+                className={FoodStyles.searchbar}
+                placeholder='food search'
+                value={searchItem}
+                onChange={(e) => setSearchItem(e.target.value)}
+              />
+              <span>
+                <BsSearch />
+              </span>
+            </div>
+          </Col>
 
-<Col  className='text-end'>
-<div className={FoodStyles.searchOption}>
-<select className='bg-success text-white'
-defaultValue= {'DEFAULT'} onChange={handleChange}>
-<option value='DEFAULT' disabled>Default</option>
-<option value='ascending'>
-A-Z
-</option>
-<option value='descending'>Z-A</option>
-</select>
-<span className={FoodStyles.focus}></span>
-</div>
-</Col>
-</Row>
+          <Col className='text-end'>
+            <div className={FoodStyles.searchOption}>
+              <select
+                className='bg-success text-white'
+                defaultValue={'ascending'}
+                onChange={handleChange}
+              >
+                <option value='DEFAULT' disabled>
+                  Default
+                </option>
+                <option value='ascending' onChange={handleChange}>
+                  Name A-Z
+                </option>
+                <option value='descending' onChange={handleChange}>
+                  Name Z-A
+                </option>
+                <option value='high-proce' onChange={handleChange}>
+                  Price High-Low
+                </option>
+                <option value='low-price' onChange={handleChange}>
+                  Price Low-High
+                </option>
+              </select>
+              <span className={FoodStyles.focus}></span>
+            </div>
+          </Col>
+        </Row>
 
-<Row className='gap-5 d-flex justify-content-between'>
-{
-displayPage.map(item => 
-  <Col xl='3' lg='3' md='4' sm='6'
-      className='mb-5'
-        key={item.id}>
-  <ProductCard item={item}
-/>
-</Col>
+        <Row className='gap-5 d-flex justify-content-between'>
+          {displayPage.map((item) => (
+            <Col xl='3' lg='3' md='4' sm='6' className='mb-5' key={item.id}>
+              <ProductCard item={item} />
+            </Col>
+          ))}
+        </Row>
+
+        <div className='mt-5'>
+          <ReactPaginate
+            pageCount={pageCount}
+            onPageChange={changePage}
+            previousLabel={'Prev'}
+            nextLabel={'Next'}
+            containerClassName='Pagination'
+          />
+        </div>
+      </Container>
+    </section>
   )
 }
-</Row>
 
-<div className='mt-5'>
-<ReactPaginate
-pageCount={pageCount}
-onPageChange= {changePage}
-previousLabel = {'Prev'}
-nextLabel = {'Next'}
-containerClassName = 'Pagination'
-/>
-</div>
- </Container>
-    </section>
-    )
-}
-
-export default AllfoodsPage 
+export default AllfoodsPage
