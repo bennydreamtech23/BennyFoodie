@@ -20,8 +20,8 @@ MdOutlinePhoneLocked,
   MdErrorOutline, 
   MdPersonOutline } from "react-icons/md";
 import {db, auth} from "../core/auth/firebase";
- import {collection} from "firebase/firestore"
 
+ import { collection, query, where, getDocs, updateDoc} from "firebase/firestore";
 
 const Checkout = () =>{
 //data for shipping address entry
@@ -29,7 +29,7 @@ const navigate = useNavigate()
 
 const[isLoading, setIsLoading] = useState(false)
   const [formValues, setFormValues] = useState({})
-
+  
   const [touched, setTouched] = useState({})
 
   //error
@@ -92,43 +92,63 @@ const[isLoading, setIsLoading] = useState(false)
     // }
   }, [formValues, touched])
 
-  const handlesubmit = (e) => {
-    e.preventDefault()
-    console.log(formValues)
-setIsLoading(true)
+const {email, city, country} = formValues
 
-    if (Object.keys(formError).length > 0) {
-      setTouched({
-      full_name: true,
-      phone_number: true,
-      email: true,
-      country: true,
-      city: true, 
-      postal_code: true,
-      })
-      setIsLoading(false)
-    }
+  //const handlesubmit = async (documentId) => {
+    //documentId.preventDefault()
+   // console.log(formValues)
+//setIsLoading(true)
 
-    if (Object.keys(formError).length === 0) {
-      setTouched({
-      full_name: false,
-      phone_number: false,
-      email: false,
-      country: false,
-      city: false, 
-      postal_code: false,
-      })
-      navigate('/payment')
-      setErrorType('success')
-      setMessageType('Data Received Successful')
-      setShowToast(true)
-      setFormValues({})
-      setFormError({})
-     e.target.reset()
-    setIsLoading(false)
-    setIsLoading(false)   
+    //if (Object.keys(formError).length > 0) {
+     // setTouched({
+     // full_name: true,
+     // phone_number: true,
+     // email: true,
+      //country: true,
+      //city: true, 
+     // postal_code: true,
+     // })
+     // setIsLoading(false)
+    //}
+
+   // if (Object.keys(formError).length === 0) {
+     // setTouched({
+     // full_name: false,
+    //  phone_number: false,
+     // email: false,
+      //country: false,
+      //city: false, 
+    //  postal_code: false,
+     // })
+      
+      
+      
+     // navigate('/payment')
+      //setErrorType('success')
+    //  setMessageType('Data Received Successful')
+     // setShowToast(true)
+    //  setFormValues({})
+     // setFormError({})
+    // e.target.reset()
+   // setIsLoading(false)
+  //  setIsLoading(false)   
+ // }
+  //}
+  
+const updateData = async (documentId) => {
+  documentId.preventDefault()
+  //const db = firebase.firestore();
+  try {
+    await db.collection('users').doc(documentId).update({
+      name: name,
+      country: country,
+      city: city,
+    });
+    console.log('Document successfully updated!');
+  } catch (error) {
+    console.error('Error updating document: ', error);
   }
-  }
+}
 
  const cartTotalAmount = useSelector(state => state.cart.totalAmount) 
   const shippingCost = 40
@@ -139,32 +159,20 @@ setIsLoading(true)
     navigate('/payment')
   }
   
-const getData = async () => {
-    //get the user
-    const user = db.collection("users");
-    const doc = await user.get()
-    //check if user exists
-    if (doc.exists) {
-      console.log("User Exists!");
-    } else {
-      console.log("User does not exist!");
-    }
-  };
-  getData();
-  
-  
-  
+
   
   return(
     <section>
-<HeaderSection title='Checkout'/>
+<HeaderSection
+title='Checkout'
+className="CheckoutTitle"/>
 <section>
 <Container className='py-5'>
 <Row>
 <Col lg='8' m='6'>
 <h6 className='mb-3'>Shipping Address</h6>
 <Form className='checkout_form' 
-onSubmit={handlesubmit}>
+onSubmit={updateData}>
 
 <Form.Group className='form_group'>
 <InputGroup>

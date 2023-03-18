@@ -17,7 +17,9 @@ const CartPage = () =>{
   return(
     <section 
     className='CartContainer'>
- <HeaderSection title='Cart'/>
+ <HeaderSection 
+ title='Cart'
+ className="CartTitle"/>
  <section>
  <Container fluid className='p-5'>
  <Row>
