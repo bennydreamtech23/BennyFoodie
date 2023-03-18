@@ -41,27 +41,52 @@ const AllfoodsPage = () => {
   useEffect(() => {
     const sorted = [...searchedProduct]
 
-    //console.log(sorted)
+    console.log(sorted)
 
     switch (sortState) {
       case 'ascending':
-        sorted.sort((a, b) => a.name.localeCompare(b.name))
+        sorted.sort((a, b) =>
+          new Intl.Collator(undefined, {
+            sensitivity: 'base',
+            ignorePunctuation: true,
+          }).compare(a.name, b.name)
+        )
         break
 
       case 'descending':
-        sorted.sort((a, b) => b.name.localeCompare(a.name))
+        sorted.sort((a, b) =>
+          new Intl.Collator(undefined, {
+            sensitivity: 'base',
+            ignorePunctuation: true,
+          }).compare(b.name, a.name)
+        )
         break
 
       case 'low-price':
-        sorted.sort((a, b) => a.price - b.price)
+        sorted.sort((a, b) =>
+          new Intl.Collator(undefined, {
+            numeric: true,
+            sensitivity: 'base',
+          }).compare(a.price, b.price)
+        )
         break
 
       case 'high-price':
-        sorted.sort((a, b) => b.price - a.price)
+        sorted.sort((a, b) =>
+          new Intl.Collator(undefined, {
+            numeric: true,
+            sensitivity: 'base',
+          }).compare(b.price, a.price)
+        )
         break
 
       default:
-        sorted.sort((a, b) => a.name.localeCompare(b.name))
+        sorted.sort((a, b) =>
+          new Intl.Collator(undefined, {
+            sensitivity: 'base',
+            ignorePunctuation: true,
+          }).compare(a.name, b.name)
+        )
         break
     }
 
@@ -105,7 +130,7 @@ const AllfoodsPage = () => {
                 <option value='descending' onChange={handleChange}>
                   Name Z-A
                 </option>
-                <option value='high-proce' onChange={handleChange}>
+                <option value='high-price' onChange={handleChange}>
                   Price High-Low
                 </option>
                 <option value='low-price' onChange={handleChange}>
