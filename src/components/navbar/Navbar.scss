@@ -107,8 +107,10 @@ position: fixed;
      background: rgba(33,37,41, 0.8);
 box-shadow: 5px 5px 15px -5px rgba(80,200,120, 0.5 );
 }
+.person{
+  color: white;
 }
-
+}
  .iconPlus{
     position: relative;
     font-size: 16px;
@@ -119,9 +121,7 @@ box-shadow: 5px 5px 15px -5px rgba(80,200,120, 0.5 );
       font-size: 14px;
     }
   }
-
-
-
+  
 .nav-link{
 font-family: var(--font);
   color: var(--black);
@@ -189,3 +189,9 @@ text-decoration: none;
   color: var(--green);
   background: transparent;
 }  
+
+.person{
+  color: black;
+  font-size: 1.5rem;
+  font-weight: bold;
+}

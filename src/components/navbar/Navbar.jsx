@@ -245,7 +245,9 @@ Catering
         
           <li className="nav-item">
           <Link to="/contact_us" 
-          className="nav-link">
+          className="nav-link"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close">
        Contact
           </Link>
         </li>
@@ -254,15 +256,20 @@ Catering
 <>
       <li className="nav-item">
            <Link  to="/menu" 
-          className="nav-link">
+          className="nav-link"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close">
           Menu
           </Link>
         </li>
         
         
          <li className="nav-item">
-           <Link  to="/cart" 
-          className="nav-link">
+           <Link  
+           to="/cart" 
+          className="nav-link"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close">
           Cart
           </Link>
         </li>
@@ -270,7 +277,7 @@ Catering
       }
 
      
-  <form className="d-flex me-5">
+  <form className="d-flex me-5 gap-3">
         <span className="iconPlus" to="/cart" onClick={user ? toggleCart : newuser}>
         <BsCart4 className="h3 text-dark"/>
         <Badge bg="secondary" className="badge__content">{user ? totalQuantity : 0}
@@ -278,13 +285,13 @@ Catering
         </span>
         
         {user ?
-        <BsPerson className="h3 text-light ms-4" 
+        <BsPerson className="h3  ms-4 person" 
         onClick={() => setModalShow(true)}/> 
         :
         ""}
       </form>
      
-       <form className="d-flex gap-4">
+       <form className="d-flex gap-4 d-flex">
       
       {!user ? 
       <>

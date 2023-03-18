@@ -10,40 +10,9 @@ const OurStorySection = () =>{
     <Container 
     className={Styles.Container}>
    <Row>
-    <Col lg="6" md="2">
-            <div className="product_images">
-              <div
-                className="img__item"
-              >
-                <img
-                  src='https://res.cloudinary.com/dlst0ec4h/image/upload/v1673721735/pngwing.com_16_zurgty.webp'
-                  alt="product images"
-                  className="w-50"
-                />
-              </div>
-
-              <div
-                className="img__item">
-                <img
-                  src="https://res.cloudinary.com/dlst0ec4h/image/upload/v1673720496/pngwing.com-_8__sxocwn.webp"
-                  alt="product images"
-                  className="w-50"
-                />
-              </div>
-
-              <div
-                className="img__item" >
-                <img
-                  src={previewImg}
-                  alt="product images"
-                  className="w-50"
-                />
-              </div>
-            </div>
-          </Col>
-  
-          <Col lg="6" md="6">
-            <div className="single_product-content">
+   
+          <Col lg="12" md="12">
+            <div>
               <h2 className={Styles.title}>Who Are We?</h2>
               <p className={Styles.text}>
               “We ought to be about something beyond moving chicken. We ought to be a piece of our client’s lives and the networks in which we serve.”
@@ -64,7 +33,6 @@ Our originator, settled on the choice to close on Sundays in 2022 when he opened
  <h1 className={Styles.heading} style={{color:'white'}}>
  our Trademark
  </h1>
-
 <Row className={` ${Styles.div_transform} gap-5 mt-5`}>
 
 {/*card 1*/}

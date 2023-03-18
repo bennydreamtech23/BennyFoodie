@@ -31,6 +31,11 @@ Site map
      className={footerStyles.link}>
      About
      </Link>
+     
+          <Link to="/contact_us" 
+     className={footerStyles.link}>
+    Contact
+     </Link>
     </Nav>
  </Col>
   
