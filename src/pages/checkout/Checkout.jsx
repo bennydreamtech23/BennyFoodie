@@ -1,3 +1,4 @@
+import { initializeApp } from 'firebase/app'
 import { useState, useEffect } from "react"
 import {useNavigate} from 'react-router-dom'
 import './Checkout.scss';
@@ -19,14 +20,27 @@ import {MdMail, MdLocationOn,
 MdOutlinePhoneLocked, 
   MdErrorOutline, 
   MdPersonOutline } from "react-icons/md";
-import {db, auth} from "../core/auth/firebase";
+//import {db, auth} from "../core/auth/firebase";
 
- import { collection, query, where, getDocs, updateDoc} from "firebase/firestore";
+ import { getFirestore, doc, updateDoc } from "firebase/firestore";
 
 const Checkout = () =>{
+  const firebaseConfig = {
+  apiKey: 'AIzaSyAJqpt2YskO0szupwuHmKRgQjHk0R5c3fI',
+  authDomain: 'bennyfoodie-bd6b9.firebaseapp.com',
+  projectId: 'bennyfoodie-bd6b9',
+  storageBucket: 'bennyfoodie-bd6b9.appspot.com',
+  messagingSenderId: '779893905402',
+  appId: '1:779893905402:web:fe70e3d2bb941351b37643',
+  measurementId: 'G-E4BTZXNYN3',
+}
+
+const app = initializeApp(firebaseConfig)
+const db = getFirestore(app)
+
+
 //data for shipping address entry
 const navigate = useNavigate()
-
 const[isLoading, setIsLoading] = useState(false)
   const [formValues, setFormValues] = useState({})
   
@@ -92,7 +106,9 @@ const[isLoading, setIsLoading] = useState(false)
     // }
   }, [formValues, touched])
 
-const {email, city, country} = formValues
+const {email, city, country, postal_code} = formValues
+
+
 
   //const handlesubmit = async (documentId) => {
     //documentId.preventDefault()
@@ -120,9 +136,7 @@ const {email, city, country} = formValues
       //city: false, 
     //  postal_code: false,
      // })
-      
-      
-      
+     
      // navigate('/payment')
       //setErrorType('success')
     //  setMessageType('Data Received Successful')
@@ -135,19 +149,25 @@ const {email, city, country} = formValues
  // }
   //}
   
-const updateData = async (documentId) => {
-  documentId.preventDefault()
-  //const db = firebase.firestore();
-  try {
-    await db.collection('users').doc(documentId).update({
-      name: name,
-      country: country,
-      city: city,
-    });
-    console.log('Document successfully updated!');
-  } catch (error) {
-    console.error('Error updating document: ', error);
-  }
+  
+const updateData = (e) =>{
+  e.preventDefault()
+ const docRef = doc(db, "users", doc.id);
+
+const data = {
+  country: country,
+  city: city,
+  postal_code: postal_code
+};
+
+updateDoc(docRef, data)
+.then(docRef => {
+    console.log("A New Document Field has been added to an existing document");
+})
+.catch(error => {
+    console.log(error);
+})
+
 }
 
  const cartTotalAmount = useSelector(state => state.cart.totalAmount) 
@@ -160,7 +180,7 @@ const updateData = async (documentId) => {
   }
   
 
-  
+ 
   return(
     <section>
 <HeaderSection
