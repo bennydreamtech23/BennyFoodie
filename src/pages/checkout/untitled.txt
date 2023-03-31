@@ -7,3 +7,132 @@
        postalCode:postalCode,
         })
     
+    const Tr = props =>{
+  const {id, image, name, price, quantity} = props.item
+  const dispatch = useDispatch()
+  
+  const deleteItem = () =>{
+  dispatch(cartActions.deleteItem(id))
+  }
+  
+  return <tr>
+  <td className='text-center cart__img-box'>
+  <img src={image} alt='product-image'/>
+  </td>
+   <td className='text-center'>{name}</td>
+   <td className='text-center'>€{price}</td>
+    <td className='text-center'>{quantity}</td>
+    <td className='text-center cart_item-delete'><MdDeleteOutline 
+    className='del_icon'
+    onClick={(e) => deleteItem(e)}/>
+    </td>
+  </tr>
+}
+
+<tbody>
+{cartItems.map(item => <Tr item={item}
+key={item.id}/>)}
+</tbody>
+
+
+
+.card {
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+  margin-top: 0.5rem;
+}
+
+.alert {
+  padding: 1rem;
+  background-color: #ff4040;
+  color: white;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.alert-success {
+  padding: 1rem;
+  background-color: #4bb543;
+  color: white;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.alert-danger {
+  padding: 1rem;
+  background-color: #ff4040;
+  color: white;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.alert-text {
+  color: #ff4040;
+  margin-bottom: 15px;
+}
+
+.notification {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 100;
+  padding: 1rem 1.5rem;
+  color: white;
+  border-radius: 0.5rem;
+}
+
+.notification-success {
+  background-color: #00a762;
+}
+
+
+.notification-danger {
+  background-color: #ff4040;
+}
+
+/* Login/Signup forms*/
+
+.login-signup-form {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-signup-form .form {
+  width: 360px;
+  position: relative;
+  z-index: 1;
+  background: #ffffff;
+  max-width: 360px;
+  padding: 34px;
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+.login-signup-form .title {
+  font-size: 20px;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.login-signup-form .form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 16px;
+  text-align: center;
+}
+
+.login-signup-form .form .message a {
+  color: #009688;
+  text-decoration: none;
+}
+
+
+			<span style ={{textTransform : 'capitalize'}}>{location}</span>
+			
+	      {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNumber) => (
+        <button key={pageNumber} onClick={() => handlePageChange(pageNumber)}>
+        {pageNumber}

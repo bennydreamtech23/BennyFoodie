@@ -1,110 +1,110 @@
-import { useState, useEffect } from 'react'
-import ReactPaginate from 'react-paginate'
-import FoodStyles from './AllFoods.module.scss'
+import { useState, useEffect } from "react";
+import ReactPaginate from "react-paginate";
+import FoodStyles from "./AllFoods.module.scss";
 //dummy data for all item
-import allfoods from '../../components/data/allFoodData'
+import allfoods from "../../components/data/allFoodData";
 //components from react and folder
-import { Container, Row, Col } from 'react-bootstrap'
-import HeaderSection from '../../components/headerSection/HeaderSection'
-import ProductCard from '../../components/productCard/ProductCard'
+import { Container, Row, Col } from "react-bootstrap";
+import HeaderSection from "../../components/headerSection/HeaderSection";
+import ProductCard from "../../components/productCard/ProductCard";
 
 //icons
-import { BsSearch } from 'react-icons/bs'
+import { BsSearch } from "react-icons/bs";
 
 const AllfoodsPage = () => {
-  const [searchItem, setSearchItem] = useState('')
-  const [sortState, setSortState] = useState('ascending')
-  const [pageNumber, setPageNumber] = useState(0)
+  const [searchItem, setSearchItem] = useState("");
+  const [sortState, setSortState] = useState("ascending");
+  const [pageNumber, setPageNumber] = useState(0);
 
   const searchedProduct = allfoods.filter((item) => {
-    if (searchItem.value === '') return item
-    if (item.name.toLowerCase().includes(searchItem.toLowerCase())) return item
-  })
+    if (searchItem.value === "") return item;
+    if (item.name.toLowerCase().includes(searchItem.toLowerCase())) return item;
+  });
 
-  const ProductPerPage = 6
-  const visitedPage = pageNumber * ProductPerPage
+  const ProductPerPage = 6;
+  const visitedPage = pageNumber * ProductPerPage;
 
   const [displayPage, setDisplayPage] = useState(
     searchedProduct.slice(visitedPage, visitedPage + ProductPerPage)
-  )
+  );
   //const displayPage = searchedProduct.slice(visitedPage, visitedPage + ProductPerPage)
 
-  const pageCount = Math.ceil(searchedProduct.length / ProductPerPage)
+  const pageCount = Math.ceil(searchedProduct.length / ProductPerPage);
   const changePage = ({ selected }) => {
-    setPageNumber(selected)
-  }
+    setPageNumber(selected);
+  };
 
   const handleChange = (e) => {
-    setSortState(e.target.value)
-  }
+    setSortState(e.target.value);
+  };
 
   useEffect(() => {
-    const sorted = [...searchedProduct]
+    const sorted = [...searchedProduct];
 
-    console.log(sorted)
+    console.log(sorted);
 
     switch (sortState) {
-      case 'ascending':
+      case "ascending":
         sorted.sort((a, b) =>
           new Intl.Collator(undefined, {
-            sensitivity: 'base',
+            sensitivity: "base",
             ignorePunctuation: true,
           }).compare(a.name, b.name)
-        )
-        break
+        );
+        break;
 
-      case 'descending':
+      case "descending":
         sorted.sort((a, b) =>
           new Intl.Collator(undefined, {
-            sensitivity: 'base',
+            sensitivity: "base",
             ignorePunctuation: true,
           }).compare(b.name, a.name)
-        )
-        break
+        );
+        break;
 
-      case 'low-price':
+      case "low-price":
         sorted.sort((a, b) =>
           new Intl.Collator(undefined, {
             numeric: true,
-            sensitivity: 'base',
+            sensitivity: "base",
           }).compare(a.price, b.price)
-        )
-        break
+        );
+        break;
 
-      case 'high-price':
+      case "high-price":
         sorted.sort((a, b) =>
           new Intl.Collator(undefined, {
             numeric: true,
-            sensitivity: 'base',
+            sensitivity: "base",
           }).compare(b.price, a.price)
-        )
-        break
+        );
+        break;
 
       default:
         sorted.sort((a, b) =>
           new Intl.Collator(undefined, {
-            sensitivity: 'base',
+            sensitivity: "base",
             ignorePunctuation: true,
           }).compare(a.name, b.name)
-        )
-        break
+        );
+        break;
     }
 
-    setDisplayPage(sorted.slice(visitedPage, visitedPage + ProductPerPage))
-  }, [visitedPage, sortState])
+    setDisplayPage(sorted.slice(visitedPage, visitedPage + ProductPerPage));
+  }, [visitedPage, sortState]);
 
   return (
     <section className={FoodStyles.Container}>
-      <HeaderSection title='All Dishes' className={FoodStyles.Title} />
+      <HeaderSection title="All Dishes" className={FoodStyles.Title} />
 
       <Container>
-        <Row className='d-flex align-items-center justify-content-between my-5'>
+        <Row className="d-flex align-items-center justify-content-between my-5">
           <Col>
-            <div className='d-flex align-items-center justify-content-between searchContainer'>
+            <div className="d-flex align-items-center justify-content-between searchContainer">
               <input
-                type='text'
+                type="text"
                 className={FoodStyles.searchbar}
-                placeholder='food search'
+                placeholder="food search"
                 value={searchItem}
                 onChange={(e) => setSearchItem(e.target.value)}
               />
@@ -114,26 +114,26 @@ const AllfoodsPage = () => {
             </div>
           </Col>
 
-          <Col className='text-end'>
+          <Col className="text-end">
             <div className={FoodStyles.searchOption}>
               <select
-                className='bg-success text-white'
-                defaultValue={'ascending'}
+                className="bg-success text-white"
+                defaultValue={"ascending"}
                 onChange={handleChange}
               >
-                <option value='DEFAULT' disabled>
+                <option value="DEFAULT" disabled>
                   Default
                 </option>
-                <option value='ascending' onChange={handleChange}>
+                <option value="ascending" onChange={handleChange}>
                   Name A-Z
                 </option>
-                <option value='descending' onChange={handleChange}>
+                <option value="descending" onChange={handleChange}>
                   Name Z-A
                 </option>
-                <option value='high-price' onChange={handleChange}>
+                <option value="high-price" onChange={handleChange}>
                   Price High-Low
                 </option>
-                <option value='low-price' onChange={handleChange}>
+                <option value="low-price" onChange={handleChange}>
                   Price Low-High
                 </option>
               </select>
@@ -142,26 +142,26 @@ const AllfoodsPage = () => {
           </Col>
         </Row>
 
-        <Row className='gap-5 d-flex justify-content-between'>
+        <Row className="gap-5 d-flex justify-content-between">
           {displayPage.map((item) => (
-            <Col xl='3' lg='3' md='4' sm='6' className='mb-5' key={item.id}>
+            <Col xl="3" lg="3" md="4" sm="6" className="mb-5" key={item.id}>
               <ProductCard item={item} />
             </Col>
           ))}
         </Row>
 
-        <div className='mt-5'>
+        <div className="mt-5">
           <ReactPaginate
             pageCount={pageCount}
             onPageChange={changePage}
-            previousLabel={'Prev'}
-            nextLabel={'Next'}
-            containerClassName='Pagination'
+            previousLabel={"Prev"}
+            nextLabel={"Next"}
+            containerClassName="Pagination"
           />
         </div>
       </Container>
     </section>
-  )
-}
+  );
+};
 
-export default AllfoodsPage
+export default AllfoodsPage;

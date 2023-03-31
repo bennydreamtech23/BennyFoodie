@@ -5,7 +5,6 @@ import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
  import {Routes, Route, Navigate } from "react-router-dom";
 import {AuthProvider} from './pages/core/auth/AuthContext'
-//import { useAuthState } from "react-firebase-hooks/auth";
 import {onAuthStateChanged} from 'firebase/auth'
 import { auth } from "./pages/core/auth/firebase";
 //pages

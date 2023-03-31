@@ -1,88 +1,88 @@
- .Container{
-     background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.3)), url("https://img.freepik.com/free-photo/top-view-assortment-organic-vegetables_23-2148479168.jpg?w=900&t=st=1678872294~exp=1678872894~hmac=82517f8dde2106104885ab6302decfcf85997668706fccd4353220b7fb3116cb");
-    background-size: cover;
-     background-repeat: no-repeat;
-     //background-position: center center;
-     padding: 80px 64px;
-     object-fit: cover;
-     height: 100%;
-     font-family: var(--font);
-     @media only screen and (min-width: 320px) and (max-width: 768px){
-  padding: 80px 32px;
-} 
+.Container {
+  background: linear-gradient(
+    90deg,
+    rgba(61, 89, 1, 0.25) 14%,
+    rgba(61, 89, 1, 0.25) 62%
+  );
+  padding: 80px 64px;
+  object-fit: cover;
+  height: 100%;
+  font-family: var(--font);
+  @media only screen and (min-width: 320px) and (max-width: 768px) {
+    padding: 80px 32px;
+  }
 
-.content{
-background: white;
-border-radius: 10px;
- display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-padding: 3rem 0rem;
- @media only screen and (min-width: 320px) and (max-width: 576px){
-padding: 3rem 1rem;
-} 
-}
+  .content {
+    background: var(--olivegreen);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 0rem;
+    @media only screen and (min-width: 320px) and (max-width: 576px) {
+      padding: 3rem 1rem;
+    }
+  }
 
-.title{
-   font-size: 4rem;
+  .title {
+    font-size: 4rem;
     line-height: 4.5rem;
-   font-weight: 800;
-   font-style: normal;
-   letter-spacing: 0.5px;
-   color: var(--black);
-   text-align: center;
-@media only screen and (min-width: 320px) and (max-width: 576px){
-    font-size: 1.7rem;
-    line-height: 2.5rem;
-} 
- @media only screen and (min-width: 576px) and (max-width: 1024px){
-   font-size: 2.5rem;
-} 
-}
+    font-weight: 800;
+    font-style: normal;
+    letter-spacing: 0.5px;
+    color: white;
+    text-align: center;
+    @media only screen and (min-width: 320px) and (max-width: 576px) {
+      font-size: 1.7rem;
+      line-height: 2.5rem;
+    }
+    @media only screen and (min-width: 576px) and (max-width: 1024px) {
+      font-size: 2.5rem;
+    }
+  }
 
- .paraText{
-     color: var(--black);
+  .paraText {
+    color: var(--white);
     font-size: 1.5rem;
     line-height: 2rem;
-   font-family: var(--font);
-   font-weight: 400;
-   font-style: normal;
-   letter-spacing: 0.5px;
-      @media only screen and (min-width: 320px) and (max-width: 576px){
-    font-size: 1.3rem;
-    line-height: 1.7rem;
+    font-family: var(--font);
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 0.5px;
     text-align: center;
-} 
- @media only screen and (min-width: 600px) and (max-width: 1024px){
-   font-size: 1.5rem;
-  text-align: center;
-} 
-   }
-   
-   .smalltitle{
-     padding-top: 1rem;
-    text-align: center;
-     font-size: 3rem;
-     font-weight: 800;
-     text-transform: capitalize;
-     @media only screen and (min-width: 320px) and (max-width: 600px){
-    font-size: 28px;
-    line-height: 2.5rem;
-    text-align: center;
-} 
+    @media only screen and (min-width: 320px) and (max-width: 576px) {
+      font-size: 1.3rem;
+      line-height: 1.7rem;
+    }
+    @media only screen and (min-width: 600px) and (max-width: 1024px) {
+      font-size: 1.5rem;
+    }
+  }
 
-   }
-   
-  .ruler{
-     background: black;
-     height: 5px;
-     width: 200px;
-     text-align: center;
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     justify-content: center;
-     margin: auto;
-   }
-   }
+  .smalltitle {
+    padding-top: 1rem;
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 800;
+    text-transform: capitalize;
+    color: var(--white);
+    @media only screen and (min-width: 320px) and (max-width: 600px) {
+      font-size: 28px;
+      line-height: 2.5rem;
+      text-align: center;
+    }
+  }
+
+  .ruler {
+    background: white;
+    height: 5px;
+    width: 100px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+  }
+}

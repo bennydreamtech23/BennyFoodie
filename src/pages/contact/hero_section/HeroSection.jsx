@@ -5,7 +5,7 @@ const HeroSection = () =>{
   return(
     <section>
     <HeaderSection 
-    title='Contact Us'
+    title='CAtering contact form'
     className={Styles.Title}/>
     </section>
     )

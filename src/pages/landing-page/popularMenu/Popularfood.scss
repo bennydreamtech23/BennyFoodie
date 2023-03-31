@@ -1,157 +1,162 @@
-.bg-container{
-background-color: black;
-color: white;
-padding: 48px 64px;
-   font-family: var(--font);
-   color: #black;
-     @media only screen and (min-width: 320px) and (max-width: 768px){
-  padding: 48px 32px;
-}
+.bg-container {
+  background-color: var(--black);
+  color: white;
+  padding: 48px 64px;
+  font-family: var(--font);
+  color: #black;
+  @media only screen and (min-width: 320px) and (max-width: 768px) {
+    padding: 48px 32px;
+  }
 
-.popularTitle{
-     font-size: 3rem;
+  .popularTitle {
+    font-size: 3rem;
     line-height: 3rem;
-   font-family: var(--font);
-   font-weight: 800;
-   font-style: normal;
-   text-align: center;
-   letter-spacing: 0.5px;
-   text-align: left;
-   text-transform: uppercase;
-@media only screen and (min-width: 320px) and (max-width: 576px){
-    font-size: 1.7rem;
-    line-height: 2rem;
+    font-family: var(--font);
+    font-weight: 800;
+    font-style: normal;
     text-align: center;
-} 
-@media only screen and (min-width: 576px) and (max-width: 900px){
-    text-align: center;
-    font-size: 2.5rem;
-} 
-   }  
-   
-  .subHeading{
+    letter-spacing: 0.5px;
+    text-align: left;
+    color: var(--red);
+    text-transform: uppercase;
+    @media only screen and (min-width: 320px) and (max-width: 576px) {
+      font-size: 1.7rem;
+      line-height: 2rem;
+      text-align: center;
+    }
+    @media only screen and (min-width: 576px) and (max-width: 900px) {
+      text-align: center;
+      font-size: 2.5rem;
+    }
+  }
+
+  .subHeading {
     padding-top: 1rem;
-     font-size: 1.8rem;
+    font-size: 1.8rem;
     line-height: 2.5rem;
-   font-family: var(--font);
-   font-weight: 400;
-   font-style: normal;
-   letter-spacing: 0.5px;
-   text-align: left;
-  @media only screen and (min-width: 320px) and (max-width: 576px){
-    text-align: center;
-    font-size: 1.3rem;
-    line-height: 2rem;
-} 
-@media only screen and (min-width: 576px) and (max-width: 900px){
-    text-align: center;
-} 
-   }
- 
-.column{
+    font-family: var(--font);
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 0.5px;
+    text-align: left;
+    @media only screen and (min-width: 320px) and (max-width: 576px) {
+      text-align: center;
+      font-size: 1.3rem;
+      line-height: 2rem;
+    }
+    @media only screen and (min-width: 576px) and (max-width: 900px) {
+      text-align: center;
+    }
+  }
+
+  .column {
     display: flex;
     justify-content: center;
     align-items: flex-end;
     flex-direction: column;
-      @media only screen and (min-width: 320px) and (max-width: 900px){
-align-items: center;
+    @media only screen and (min-width: 320px) and (max-width: 900px) {
+      align-items: center;
+    }
+
+    .Img {
+      width: 60%;
+      height: 60%;
+      object-fit: contain;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: dance 1s linear infinite;
+      @media only screen and (min-width: 320px) and (max-width: 600px) {
+        width: 100%;
+        height: 80%;
+      }
+
+      @media only screen and (min-width: 600px) and (max-width: 900px) {
+        width: 60%;
+        height: 60%;
+      }
+    }
+
+    @keyframes dance {
+      0% {
+        transform: rotate(0);
+      }
+      25% {
+        transform: rotate(-45deg);
+      }
+      75% {
+        transform: rotate(45deg);
+      }
+      100% {
+        transform: rotate(0deg);
+      }
+    }
   }
-  
- .Img{
-    width: 60%;
-    height: 60%;
-    object-fit: contain;
-display: flex;
-justify-content: center;
-align-items: center;
-  animation: dance 1s linear infinite;
-  @media only screen and (min-width: 320px) and  (max-width: 600px){
-   width: 100%;
-    height: 80%;
- }
- 
- @media only screen and (min-width: 600px) and  (max-width: 900px){
-   width: 60%;
-    height: 60%;
- }
 }
 
-@keyframes dance{
-    0%{transform: rotate(0)}
-   25%{transform: rotate(-45deg)}
-    75%{transform: rotate(45deg)}
-    100%{transform: rotate(0deg)}
-}
-}
-}
-
-
-   .foodBtnActive{
-  color: var(--green);
+.foodBtnActive {
+  color: var(--olivegreen);
   border-radius: 10px;
   outline: none;
-  background: rgba( 255, 255, 255, 0.15 );
-box-shadow: 0 8px 20px 0 rgba( 0, 0, 0, 0.25);
-border-radius: 10px;
-    border: none;
-    padding: 7px 20px;
-    height: 4rem;
-    font-weight: bolder;
-    transition: all 0.5s ease;
-  @media only screen and (min-width: 320px) and  (max-width: 600px){
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  border: none;
+  padding: 7px 20px;
+  height: 4rem;
+  font-weight: bolder;
+  transition: all 0.5s ease;
+  @media only screen and (min-width: 320px) and (max-width: 600px) {
     width: 100%;
-overflow: auto;
+    overflow: auto;
   }
-    &:hover{
-      background: var(--green) !important;
-      color: white !important;
+  &:hover {
+    background: var(--olivegreen) !important;
+    color: white !important;
     transform: translate(5px);
   }
+}
+
+.popularFoodContainer {
+  padding: 48px 64px;
+  font-family: var(--font);
+  color: #black;
+  @media only screen and (min-width: 320px) and (max-width: 768px) {
+    padding: 48px 32px;
   }
 
+  .tranding_product_inn {
+    margin-top: 2rem;
+  }
+  .btnBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-.popularFoodContainer{
-   padding: 48px 64px;
-   font-family: var(--font);
-   color: #black;
-     @media only screen and (min-width: 320px) and (max-width: 768px){
-  padding: 48px 32px;
-} 
+  .boxText {
+    @media only screen and (min-width: 768px) and (max-width: 1200px) {
+      padding-top: 2.2rem;
+    }
+  }
 
-.tranding_product_inn{
-  margin-top: 2rem;
-}
-   .btnBox{
- display: flex;
-justify-content: center;
-align-items: center;
-}
-
-.boxText{
-  @media only screen and (min-width: 768px) and (max-width: 1200px){
-    padding-top: 2.2rem;
-}
-}
-
-  .card{
-     width: 260px;
-     height: 460px;
-     background: #FEFEFE;
-     border-radius: 48px;
-     overflow: hidden;
-     position: relative;
-     box-shadow: 2px 2px 30px rgba(0,0,0,0.1);
-     transition: all .2s;
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     justify-content: center;
-     margin: 0 auto !important;
-&:hover{
-transform: scaleX(1.05) scaleY(1.05);
-color: var(--green);
-}
-   }
-   
-
+  .card {
+    width: 260px;
+    height: 460px;
+    background: #fefefe;
+    border-radius: 48px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto !important;
+    &:hover {
+      transform: scaleX(1.05) scaleY(1.05);
+      color: var(--green);
+    }
+  }
 }
