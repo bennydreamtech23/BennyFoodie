@@ -1,114 +1,116 @@
-.Title{
+.Title {
   color: white;
   font-weight: 800;
   font-size: 3rem;
   text-align: center;
   margin-top: 2rem;
-  border: 2px solid white;
+  border: 2px solid var(--red);
   width: 400px;
   display: flex;
   margin: auto;
   align-items: center;
   justify-content: center;
-  border-radius: 3px;
+  border-radius: 15px;
   text-transform: uppercase;
-   @media only screen and (min-width: 320px) and (max-width: 768px){
- font-size: 2rem;
- width: 100%;
-}
-}
-
-.Container{
-font-family: var(--font);
-
-.searchbar{
-  border: none;
-  width: 80%;
-  outline: none;
-  .searchbar:focus{
-  outline: none;
-}
+  @media only screen and (min-width: 320px) and (max-width: 768px) {
+    font-size: 2rem;
+    width: 100%;
+  }
 }
 
-.searchOption select{
-   padding: 7px 15px;
-     border: 1.5px solid var(--green);
-     border-radius: 10%;
-     background: transparent;
-     curor: pointer;
-     width: 50%;
-   // margin: 3rem 0rem;
-    &:focus{
-     outline: none;
-}
-   @media only screen and (min-width: 320px) and (max-width: 768px){
-width: 100%;
-//margin-top: 0rem;
-     }
-}
+.Container {
+  font-family: var(--font);
 
-.foodContainer{
-   max-width: 1200px;
- display: grid; 
- grid-gap: 1rem; 
- /* Screen larger than 600px? 2 column */ @media (min-width: 768px) {  
-   grid-template-columns: repeat(2, 1fr);
-   } 
-   /* Screen larger than 900px? 4 columns */ @media (min-width: 1200px) {
-     grid-template-columns: repeat(3, 1fr);
-}
-}
+  .searchbar {
+    border: none;
+    width: 80%;
+    outline: none;
+    .searchbar:focus {
+      outline: none;
+    }
+  }
 
-.ToastContainer{
- position: fixed; /* Sit on top of the page content */
-  width: 100%; /* Full width (cover the whole page) */
-  height: 100%; /* Full height (cover the whole page) */
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
-  z-index: 0; /* Specify a stack order in case you're using a different order for other elements */
-  cursor: pointer; /* Add a pointer on hover */
-}
-.centered{
-  position: fixed; 
-     top: 30%; 
-     left: 50%;
-     transform: translate(-50%, -50%); 
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     justify-content: center;
-     overflow-x: hidden;
-     overflow-y: auto;
-     z-index: 50;
-     outline: none;
-.toast{
-     @media screen and (max-width: 768px)  {
-             position: relative;
-             border-radius: 10px;
-             z-index: 10; 
-             box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
-             display: flex;
-             flex-direction: column;
-             margin: auto;
-          }
-       position: relative;
-       border-radius: 10px;
-       z-index: 10; 
-       box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
-       display: flex;
-       flex-direction: column;
-       justify-content: center;
-       align-items: center;
-       margin: auto;
-     }
-}
+  .searchOption select {
+    padding: 7px 15px;
+    border: 1.5px solid var(--olivegreen);
+    border-radius: 15px;
+    background: transparent;
+    curor: pointer;
+    width: 50%;
+    // margin: 3rem 0rem;
+    &:focus {
+      outline: none;
+    }
+    @media only screen and (min-width: 320px) and (max-width: 768px) {
+      width: 100%;
+      //margin-top: 0rem;
+    }
+  }
 
- .errorMsg {
+  .foodContainer {
+    max-width: 1200px;
+    display: grid;
+    grid-gap: 1rem;
+    /* Screen larger than 600px? 2 column */
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    /* Screen larger than 900px? 4 columns */
+    @media (min-width: 1200px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .ToastContainer {
+    position: fixed; /* Sit on top of the page content */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+    z-index: 0; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+  }
+  .centered {
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: 50;
+    outline: none;
+    .toast {
+      @media screen and (max-width: 768px) {
+        position: relative;
+        border-radius: 10px;
+        z-index: 10;
+        box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+      }
+      position: relative;
+      border-radius: 10px;
+      z-index: 10;
+      box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: auto;
+    }
+  }
+
+  .errorMsg {
     font-size: 13px;
-    color:  #dc3545;
+    color: #dc3545;
     display: flex;
     flex-direction: row;
     column-gap: 0.5rem;

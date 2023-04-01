@@ -1,102 +1,103 @@
-   .CheckoutTitle{
+.CheckoutTitle {
   color: white;
   font-weight: 800;
   font-size: 3rem;
   text-align: center;
   margin-top: 2rem;
-  border: 2px solid white;
-  width: 300px;
+  border: 2px solid var(--red);
+  width: 320px;
   display: flex;
   margin: auto;
   align-items: center;
   justify-content: center;
-  border-radius: 3px;
+  border-radius: 15px;
   text-transform: uppercase;
-   @media only screen and (min-width: 320px) and (max-width: 768px){
- font-size: 2rem;
- width: 100%;
+  @media only screen and (min-width: 320px) and (max-width: 768px) {
+    font-size: 2rem;
+    width: 100%;
+  }
 }
+
+.checkout_form {
+  .form_group {
+    margin-bottom: 1rem;
+
+    .inputfield {
+      background: transparent;
+      padding: 7px 20px;
+      border: none;
+      border-bottom: 1.5px solid #ccc;
+      outline: none;
+    }
+    .inputfield:focus {
+      outline: none;
+      border: none;
+    }
+  }
 }
-   
-   .checkout_form{
-   .form_group{
-       margin-bottom: 1rem;
-       .inputfield{
-         background: transparent;
-         padding: 7px 20px;
-         border: none;
-         border-bottom: 1.5px solid #ccc;
-         outline: none;
-       }
-       .inputfield:focus{
-           outline: none;
-           border: none;
-         }
-     }
-   }
-   
-   .checkout_bill{
-     background: rgba(80,200,120, 0.3);
-     padding: 30px;
-     border-radius: 10px;
-   }
-   .checkout_total{
-     border: 1.2px solid rgba(80,200,120,0.9);
-     padding: 20px 10px;
-     border-radius: 10px;
-   }
-   
-   .ToastContainer{
- position: fixed; /* Sit on top of the page content */
+
+.checkout_bill {
+  background: rgba(176, 202, 100, 0.3);
+  padding: 30px;
+  border-radius: 10px;
+}
+.checkout_total {
+  border: 1.2px solid rgba(176, 202, 100, 0.9);
+  padding: 20px 10px;
+  border-radius: 10px;
+}
+
+.ToastContainer {
+  position: fixed; /* Sit on top of the page content */
   width: 100%; /* Full width (cover the whole page) */
   height: 100%; /* Full height (cover the whole page) */
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+  background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
   z-index: 0; /* Specify a stack order in case you're using a different order for other elements */
   cursor: pointer; /* Add a pointer on hover */
 }
-.centered{
-  position: fixed; 
-     top: 30%; 
-     left: 50%;
-     transform: translate(-50%, -50%); 
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     justify-content: center;
-     overflow-x: hidden;
-     overflow-y: auto;
-     z-index: 50;
-     outline: none;
-.toast{
-     @media screen and (max-width: 768px)  {
-             position: relative;
-             border-radius: 10px;
-             z-index: 10; 
-             box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
-             display: flex;
-             flex-direction: column;
-             margin: auto;
-          }
-       position: relative;
-       border-radius: 10px;
-       z-index: 10; 
-       box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
-       display: flex;
-       flex-direction: column;
-       justify-content: center;
-       align-items: center;
-       margin: auto;
-     }
-}
- .errorMsg {
-    font-size: 13px;
-    color:  #dc3545;
+.centered {
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+  overflow-y: auto;
+  z-index: 50;
+  outline: none;
+  .toast {
+    @media screen and (max-width: 768px) {
+      position: relative;
+      border-radius: 10px;
+      z-index: 10;
+      box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
+      display: flex;
+      flex-direction: column;
+      margin: auto;
+    }
+    position: relative;
+    border-radius: 10px;
+    z-index: 10;
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
     display: flex;
-    flex-direction: row;
-    column-gap: 0.5rem;
-    margin-top: 5px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
   }
+}
+.errorMsg {
+  font-size: 13px;
+  color: #dc3545;
+  display: flex;
+  flex-direction: row;
+  column-gap: 0.5rem;
+  margin-top: 5px;
+}
