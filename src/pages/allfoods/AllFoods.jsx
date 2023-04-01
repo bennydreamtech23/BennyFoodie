@@ -144,7 +144,7 @@ const AllfoodsPage = () => {
 
         <Row className="gap-5 d-flex justify-content-between">
           {displayPage.map((item) => (
-            <Col xl="3" lg="3" md="4" sm="6" className="mb-5" key={item.id}>
+           <Col xl="3" lg="3" md="5"  className="mb-5" key={item.id}>
               <ProductCard item={item} />
             </Col>
           ))}

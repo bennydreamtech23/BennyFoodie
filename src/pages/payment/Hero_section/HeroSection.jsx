@@ -1,11 +1,11 @@
-import HeaderSection from '../../../components/headerSection/HeaderSection'
-
-const HeroSection = () =>{
-  return(
+import HeaderSection from "../../../components/headerSection/HeaderSection";
+import Styles from "../paystack/Paystack.module.scss";
+const HeroSection = () => {
+  return (
     <section>
-    <HeaderSection title='Payment with Paystack'/>
+      <HeaderSection className={Styles.Title} title="Payment with Paystack" />
     </section>
-    )
-}
+  );
+};
 
-export default HeroSection
+export default HeroSection;
